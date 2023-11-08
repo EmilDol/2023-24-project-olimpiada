@@ -3,7 +3,12 @@
     <input type="text" name="name" ngModel="user.name">
     <input type="email" name="email" ngModel="user.email">
     <input type="password" name="password" ngModel="user.password">
-    <button type="submit">Submit</button>
+    <div class="btn btn-group">
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <button type="button" (click)="unrenderComponent()">Close</button>
+    </div>
+    
+
 
 </form>
 </div>
