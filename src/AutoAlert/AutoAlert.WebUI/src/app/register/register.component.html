@@ -1,15 +1,37 @@
-<div>
-<form (ngSubmit)="onSubmit()">
-    <input type="text" name="name" ngModel="user.name">
-    <input type="email" name="email" ngModel="user.email">
-    <input type="password" name="password" ngModel="user.password">
-    <div class="btn btn-group">
-        <button class="btn btn-primary" type="submit">Submit</button>
-        <button type="button" (click)="unrenderComponent()">Close</button>
-    </div>
-    
-
-
-</form>
+<div class="container">
+    <form class="register" (ngSubmit)="onSubmit()">
+        <div>
+            <h1>Register</h1>
+        </div>
+        <div class="inputDiv">
+            <label><h5>First Name:</h5></label>
+            <input type="text" name="firstName" ngModel="user.firstName">
+        </div>
+        
+        <div class="inputDiv">
+            <label><h5>Last Name:</h5></label>
+            <input type="text" name="lastName" ngModel="user.lastName">
+        </div>
+        
+        <div class="inputDiv">
+            <label><h5>Email:</h5></label>
+            <input type="email" name="email" ngModel="user.email">
+        </div>
+        
+        <div class="inputDiv">
+            <label><h5>Password:</h5></label>
+            <input type="password" name="password" ngModel="user.password">
+        </div>
+        
+        <div class="inputDiv">
+            <label><h5>Confirm Password:</h5></label>
+            <input type="password" name="confirmPassword" ngModel="user.confirmPassword">
+        </div>
+        
+        <div class="buttons">
+            <button class="btn btn-primary" type="submit" id="Submit">Submit</button>
+            <button class="btn btn-secondary" type="button" id="Close" (click)="unrenderComponent()">Close</button>
+        </div>
+    </form>
 </div>
 
