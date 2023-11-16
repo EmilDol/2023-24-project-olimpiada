@@ -1,8 +1,8 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/models/user.model';
+import { User } from '../shared/models/user.model';
 import { HttpClient } from '@angular/common/http';
-import { RegisterService } from 'src/app/shared/services/register.service';
-
+import { RegisterService } from '../shared/services/register.service';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { HideRegisterFormServiceService } from '../shared/services/hide-register-form-service.service';
 @Component({
   selector: 'app-register',
@@ -15,12 +15,12 @@ import { HideRegisterFormServiceService } from '../shared/services/hide-register
 })
 
 export class RegisterComponent implements OnInit {
-  user: User = new User();
+  user: User = new User(1, 'bob', 'jenkins', '@him', 'Aa123456', 'Aa123456');
   showRegisterComponent: boolean = false;
-  constructor(private httpClient: HttpClient, private registerService: RegisterService, private hideRegisterForm: HideRegisterFormServiceService){}
+  constructor(private formBuilder: FormBuilder ,private httpClient: HttpClient, private registerService: RegisterService, private hideRegisterForm: HideRegisterFormServiceService){}
 
   ngOnInit() {
-
+    
   }
   
   onSubmit() {

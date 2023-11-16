@@ -1,31 +1,52 @@
 <div class="container">
-    <form class="register" (ngSubmit)="onSubmit()">
+    
+    <form   class="register" (ngSubmit)="onSubmit()">
         <div>
             <h1>Register</h1>
         </div>
         <div class="inputDiv">
             <label><h5>First Name:</h5></label>
-            <input type="text" name="firstName" ngModel="user.firstName">
+            <input type="text" required #firstName = "ngModel" [(ngModel)]="user.firstName">
+            @if(firstName.valid )
+            {
+            <p>First name is required</p>
+            }
         </div>
         
         <div class="inputDiv">
-            <label><h5>Last Name:</h5></label>
-            <input type="text" name="lastName" ngModel="user.lastName">
+            <label><h5>Lasy Name:</h5></label>
+            <input type="text" required #lastName = "ngModel" [ngModel]="user.lastName">
+            @if(firstName.touched )
+            {
+            <p>First name is required</p>
+            }
         </div>
         
         <div class="inputDiv">
             <label><h5>Email:</h5></label>
-            <input type="email" name="email" ngModel="user.email">
+            <input type="email" required #email = "ngModel" [ngModel]="user.email">
+            @if(firstName.touched )
+            {
+            <p>First name is required</p>
+            }
         </div>
         
         <div class="inputDiv">
             <label><h5>Password:</h5></label>
-            <input type="password" name="password" ngModel="user.password">
+            <input type="password" required #password = "ngModel" [ngModel]="user.password">
+            @if(firstName.touched )
+            {
+            <p>First name is required</p>
+            }
         </div>
         
         <div class="inputDiv">
             <label><h5>Confirm Password:</h5></label>
-            <input type="password" name="confirmPassword" ngModel="user.confirmPassword">
+            <input type="password" required #confirmPassword = "ngModel" [ngModel]="user.confirmPassword">
+            @if(firstName.touched )
+            {
+            <p>First name is required</p>
+            }
         </div>
         
         <div class="buttons">
