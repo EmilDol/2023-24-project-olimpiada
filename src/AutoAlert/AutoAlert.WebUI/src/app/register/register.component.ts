@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { RegisterService } from '../shared/services/register.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { HideRegisterFormServiceService } from '../shared/services/hide-register-form-service.service';
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -15,24 +17,26 @@ import { HideRegisterFormServiceService } from '../shared/services/hide-register
 })
 
 export class RegisterComponent implements OnInit {
-  user: User = new User(1, 'bob', 'jenkins', '@him', 'Aa123456', 'Aa123456');
+ 
+  user: User = new User();
   showRegisterComponent: boolean = false;
-  constructor(private formBuilder: FormBuilder ,private httpClient: HttpClient, private registerService: RegisterService, private hideRegisterForm: HideRegisterFormServiceService){}
+  constructor(private httpClient: HttpClient, private registerService: RegisterService, private hideRegisterForm: HideRegisterFormServiceService) { }
 
   ngOnInit() {
     
   }
-  
-  onSubmit() {
+
+  onSubmit() { 
+    
     if(!this.isModelFilled())
     {
+
       //dont send request return to view?
     }
     //do da api
-    this.registerService.submitUser(this.user).subscribe(
-      responce => {
-
-      }, 
+    this.registerService.submitUser(this.user).subscribe((data:any) => 
+    {if (data.Succeeded = true) this.unrenderComponent},
+     
       error => {
         throw new Error('Failed to submit user');
       }

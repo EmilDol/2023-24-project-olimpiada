@@ -52,26 +52,18 @@ builder.Services.AddAuthentication(options =>
                 };
             });
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AngularRequests", builder =>
-    {
-        builder.WithOrigins("https://localhost:7029")
-               .AllowAnyHeader()
-               .AllowAnyMethod()
-               .AllowCredentials();
-
-        builder.WithOrigins("https://localhost/")
-               .AllowAnyHeader()
-               .AllowAnyMethod()
-               .AllowCredentials();
-    });
-});
+builder.Services.AddCors(p => p.AddPolicy("Angular", b => b
+                .SetIsOriginAllowed((host) => true)
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()));
 
 builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -79,6 +71,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("Angular");
+
+app.UseRouting();
 
 app.UseHttpsRedirection();
 

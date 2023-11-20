@@ -1,13 +1,13 @@
 <div class="container">
-    
-    <form   class="register" (ngSubmit)="onSubmit()">
+    {{regForm.value | json}}
+    <form #regForm="ngForm"  class="register" (ngSubmit)="onSubmit()">
         <div>
             <h1>Register</h1>
         </div>
         <div class="inputDiv">
             <label><h5>First Name:</h5></label>
-            <input type="text" required #firstName = "ngModel" [(ngModel)]="user.firstName">
-            @if(firstName.valid )
+            <input type="text" required name="FirstName" #firstName = "ngModel" [(ngModel)]="user.firstName">
+            @if(!firstName.valid && firstName.touched)
             {
             <p>First name is required</p>
             }
@@ -15,43 +15,47 @@
         
         <div class="inputDiv">
             <label><h5>Lasy Name:</h5></label>
-            <input type="text" required #lastName = "ngModel" [ngModel]="user.lastName">
-            @if(firstName.touched )
+            <input type="text" required name="LastName" #lastName = "ngModel" [(ngModel)]="user.lastName">
+            @if(!lastName.valid && lastName.touched )
             {
-            <p>First name is required</p>
+            <p>lastName name is required</p>
             }
         </div>
         
         <div class="inputDiv">
             <label><h5>Email:</h5></label>
-            <input type="email" required #email = "ngModel" [ngModel]="user.email">
-            @if(firstName.touched )
+            <input type="email" required name="Email" #email = "ngModel" [(ngModel)]="user.email">
+            @if(email.touched && !email.valid)
             {
-            <p>First name is required</p>
+            <p>Email is invalid</p>
             }
         </div>
         
         <div class="inputDiv">
             <label><h5>Password:</h5></label>
-            <input type="password" required #password = "ngModel" [ngModel]="user.password">
-            @if(firstName.touched )
+            <input type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="Password" #password = "ngModel" [(ngModel)]="user.password">
+            @if(password.touched && !password.valid )
             {
-            <p>First name is required</p>
+            <p>Password should have atleast 1 uppercase letter 1 lowercase letter 1 number and 8 or more symbols</p>
             }
         </div>
         
         <div class="inputDiv">
             <label><h5>Confirm Password:</h5></label>
-            <input type="password" required #confirmPassword = "ngModel" [ngModel]="user.confirmPassword">
-            @if(firstName.touched )
+            <input type="password"  required  name="ConfirmPassword" #confirmPassword = "ngModel" [(ngModel)]="user.confirmPassword  " >
+            
+            @if (password.touched && confirmPassword.touched && confirmPassword !== password) 
             {
-            <p>First name is required</p>
+                <p>Password does not match<p>
             }
+           
         </div>
         
-        <div class="buttons">
-            <button class="btn btn-primary" type="submit" id="Submit">Submit</button>
+        <div class="buttons"> 
+            
+            <button class="btn btn-primary" name="Submit" type="submit" id="Submit" [disabled]="!regForm.valid">Submit</button>
             <button class="btn btn-secondary" type="button" id="Close" (click)="unrenderComponent()">Close</button>
+            
         </div>
     </form>
 </div>

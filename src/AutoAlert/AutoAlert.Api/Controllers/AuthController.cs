@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AutoAlert.Api.Controllers
 {
     [ApiController]
-    [Route("api")]
+    [Route("api/users")]
     [AllowAnonymous]
     public class AuthController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace AutoAlert.Api.Controllers
             this.context = context;
         }
 
-        [HttpPost("users/register")]
+        [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
             if (!ModelState.IsValid)
@@ -68,7 +68,7 @@ namespace AutoAlert.Api.Controllers
         }
 
         [HttpPost]
-        [Route("users/login")]
+        [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto request)
         {
 
