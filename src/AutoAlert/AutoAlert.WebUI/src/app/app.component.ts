@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { RegisterComponent } from './register/register.component';
-import { HideRegisterFormServiceService } from './shared/services/hide-register-form-service.service';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from './shared/services/login.service';
+import { RegisterService } from './shared/services/register.service';
 
 
 @Component({
@@ -11,20 +11,31 @@ import { HideRegisterFormServiceService } from './shared/services/hide-register-
 export class AppComponent implements OnInit {
   title = 'AutoAlertTest';
   
-  showRegisterComponent: boolean = false;
-
+  hideRegisterComponent: boolean = true;
+  hideLoginComponent: boolean = true;
   
 
-  constructor(private registerComponent: RegisterComponent, private hideRegisterForm: HideRegisterFormServiceService) {}
+  constructor(private registerService: RegisterService, private loginService: LoginService) {}
   
   ngOnInit() {
-    this.hideRegisterForm.hideRegisterComponent.subscribe(() => {
-      this.showRegisterComponent = false;
+    
+    this.registerService.hideRegisterComponent$.subscribe((hideRegisterComponent) => {
+      this.hideRegisterComponent = hideRegisterComponent;
+      console.log("hideRegisterComponent in onInit is = " + this.hideRegisterComponent);
+    });
+    this.loginService.hideLoginComponent$.subscribe((hideLoginComponent) => {
+      this.hideLoginComponent = hideLoginComponent; 
+      console.log("hideLoginComponent in  onInit is = " + this.hideLoginComponent);
     });
   }
 
   onRegisterClick() {
+    this.registerService.showRegisterBody();
+    console.log("hideRegisterComponent in component is = " + this.hideRegisterComponent)
+  }
 
-    this.showRegisterComponent = true;
+  onLoginClick() {
+    this.loginService.showLoginBody();
+    console.log("hideLoginComponent in component is = " + this.hideLoginComponent)
   }
 }

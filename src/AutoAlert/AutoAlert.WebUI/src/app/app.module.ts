@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterService } from './shared/services/register.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     FormsModule,
@@ -19,7 +21,8 @@ import { RegisterService } from './shared/services/register.service';
     AppRoutingModule
   ],
   providers: [
-    RegisterService
+    RegisterService,
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })

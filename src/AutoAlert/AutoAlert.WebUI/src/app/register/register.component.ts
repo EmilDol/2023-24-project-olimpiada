@@ -1,10 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { User } from '../shared/models/user.model';
-import { HttpClient } from '@angular/common/http';
 import { RegisterService } from '../shared/services/register.service';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { HideRegisterFormServiceService } from '../shared/services/hide-register-form-service.service';
-
+import { LoginService } from '../shared/services/login.service';
 
 @Component({
   selector: 'app-register',
@@ -19,8 +16,8 @@ import { HideRegisterFormServiceService } from '../shared/services/hide-register
 export class RegisterComponent implements OnInit {
  
   user: User = new User();
-  showRegisterComponent: boolean = false;
-  constructor(private httpClient: HttpClient, private registerService: RegisterService, private hideRegisterForm: HideRegisterFormServiceService) { }
+  constructor(private registerService: RegisterService) { }
+  hideRegisterComponent: boolean = true;
 
   ngOnInit() {
     
@@ -28,37 +25,48 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() { 
     
-    if(!this.isModelFilled())
-    {
+    // if(!this.isModelFilled())
+    // {
 
-      //dont send request return to view?
-    }
+    //   //dont send request return to view?
+    // }
     //do da api
     this.registerService.submitUser(this.user).subscribe((data:any) => 
-    {if (data.Succeeded = true) this.unrenderComponent},
-     
-      error => {
-        throw new Error('Failed to submit user');
+    {
+      if (data.Succeeded = true) 
+      {
+        this.registerService.hideRegisterBody()
+        
       }
+      
+    },
+     
+       error => {
+         throw new Error('Failed to submit user');
+       }
+      
     )
   };
 
     unrenderComponent() {
-        this.hideRegisterForm.hideRegisterComponent.emit(true);
+
+      
+        this.registerService.hideRegisterBody();
+        console.log("hideRegisterComponent is :");
     }
   
-    isModelFilled(): boolean {
-      let filled: boolean = false;
+    // isModelFilled(): boolean {
+    //   let filled: boolean = false;
   
-      if (
-        this.user.email !== null &&
-        this.user.firstName !== null &&
-        this.user.lastName !== null &&
-        this.user.password !== null &&
-        this.user.confirmPassword !== null
-      ) {
-        return true;
-      }
-      return false;
-    };
+    //   if (
+    //     this.user.email !== null &&
+    //     this.user.firstName !== null &&
+    //     this.user.lastName !== null &&
+    //     this.user.password !== null &&
+    //     this.user.confirmPassword !== null
+    //   ) {
+    //     return true;
+    //   }
+    //   return false;
+    // };
 }

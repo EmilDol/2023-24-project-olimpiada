@@ -1,4 +1,16 @@
-<button *ngIf="!showRegisterComponent" (click)="onRegisterClick()">Register</button>
-<div class="register-form" *ngIf="showRegisterComponent">
+<button (click)="onRegisterClick()">Register</button>
+@if (hideRegisterComponent == false) 
+{
+  <div>
   <app-register></app-register>
 </div>
+}
+
+
+<button  (click)="onLoginClick()">Login</button>
+@if (hideLoginComponent == false) 
+{
+  <div>
+  <app-login></app-login>
+</div>
+}

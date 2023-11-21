@@ -14,7 +14,7 @@
         </div>
         
         <div class="inputDiv">
-            <label><h5>Lasy Name:</h5></label>
+            <label><h5>Last Name:</h5></label>
             <input type="text" required name="LastName" #lastName = "ngModel" [(ngModel)]="user.lastName">
             @if(!lastName.valid && lastName.touched )
             {
@@ -24,7 +24,7 @@
         
         <div class="inputDiv">
             <label><h5>Email:</h5></label>
-            <input type="email" required name="Email" #email = "ngModel" [(ngModel)]="user.email">
+            <input type="email" pattern="[^@\s]+@[^@\s]+" required name="Email" #email = "ngModel" [(ngModel)]="user.email">
             @if(email.touched && !email.valid)
             {
             <p>Email is invalid</p>
