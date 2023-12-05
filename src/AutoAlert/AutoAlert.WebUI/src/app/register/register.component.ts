@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { User } from '../shared/models/user.model';
 import { RegisterService } from '../shared/services/register.service';
-import { LoginService } from '../shared/services/login.service';
+
 
 @Component({
   selector: 'app-register',
@@ -36,37 +36,17 @@ export class RegisterComponent implements OnInit {
       if (data.Succeeded = true) 
       {
         this.registerService.hideRegisterBody()
-        
       }
-      
     },
-     
        error => {
          throw new Error('Failed to submit user');
        }
-      
     )
   };
 
-    unrenderComponent() {
-
-      
+    unrenderComponent() 
+    {
         this.registerService.hideRegisterBody();
         console.log("hideRegisterComponent is :");
     }
-  
-    // isModelFilled(): boolean {
-    //   let filled: boolean = false;
-  
-    //   if (
-    //     this.user.email !== null &&
-    //     this.user.firstName !== null &&
-    //     this.user.lastName !== null &&
-    //     this.user.password !== null &&
-    //     this.user.confirmPassword !== null
-    //   ) {
-    //     return true;
-    //   }
-    //   return false;
-    // };
 }

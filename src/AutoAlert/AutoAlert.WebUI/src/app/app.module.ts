@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterService } from './shared/services/register.service';
 import { LoginComponent } from './login/login.component';
+import { AddCarComponent } from './add-car/add-car.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AddCarComponent
   ],
   imports: [
     FormsModule,
@@ -22,7 +24,8 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     RegisterService,
-    LoginComponent
+    LoginComponent,
+    AddCarComponent
   ],
   bootstrap: [AppComponent]
 })

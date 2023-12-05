@@ -14,3 +14,12 @@
   <app-login></app-login>
 </div>
 }
+
+<!-- @if () {}  if authenticated check-->
+<button  (click)="onAddCarClick()">Add Car</button>
+@if (hideAddCarComponent == false) 
+{
+  <div>
+  <app-add-car></app-add-car>
+</div>
+}

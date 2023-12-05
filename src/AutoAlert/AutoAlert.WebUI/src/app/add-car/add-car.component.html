@@ -1,0 +1,103 @@
+<div class="container">
+    {{addForm.value | json}}
+    <!-- <form #regForm="ngForm"  class="register" (ngSubmit)="onSubmit()"> -->
+        <form #addForm="ngForm">
+            <div>
+                <button class="btn btn-secondary" type="button" id="CarInfo" (click)="renderNewForm('showCarInfo')">Car info</button>
+                <button class="btn btn-secondary" type="button" id="EngineOilInfo" (click)="renderNewForm('showEngineOilInfo')">Engine oil info</button>
+                <button class="btn btn-secondary" type="button" id="TransmissionOilInfo" (click)="renderNewForm('showTransmissionOilInfo')">Transmission oil info</button>
+                <button class="btn btn-secondary" type="button" id="VignetteInfo" (click)="renderNewForm('showVignetteInfo')">Vignette info</button>
+                <button class="btn btn-secondary" type="button" id="Inshurance" (click)="renderNewForm('showInshurenceInfo')">Inshurance</button>
+            </div>
+            
+            @if (showCarInfo === true) 
+            {
+                <div>
+                    <h1>Add car</h1>
+                </div>
+        
+                <div class="inputDiv">
+                    <label><h5>Plate Number:</h5></label>
+                    <input type="text" required name="PlateNumber" #plateNumber = "ngModel" [(ngModel)]="car.plateNumber">
+                    @if(!plateNumber.valid && plateNumber.touched)
+                    {
+                    <p>Plate number is required</p>
+                    }
+                </div>
+            }
+
+            @if (showEngineOilInfo === true) 
+            {
+                <div>
+                    <h1>Engine oil</h1>
+                </div>
+        
+                <div class="inputDiv">
+                    <label><h5>Plate Number:</h5></label>
+                    <input type="text" required name="PlateNumber" #plateNumber = "ngModel" [(ngModel)]="car.plateNumber">
+                    @if(!plateNumber.valid && plateNumber.touched)
+                    {
+                    <p>Plate number is required</p>
+                    }
+                </div>
+            }
+
+            @if (showTransmissionOilInfo === true) 
+            {
+                <div>
+                    <h1>Transmission oil</h1>
+                </div>
+        
+                <div class="inputDiv">
+                    <label><h5>Plate Number:</h5></label>
+                    <input type="text" required name="PlateNumber" #plateNumber = "ngModel" [(ngModel)]="car.plateNumber">
+                    @if(!plateNumber.valid && plateNumber.touched)
+                    {
+                    <p>Plate number is required</p>
+                    }
+                </div>
+            }
+
+            @if (showInshurenceInfo === true) 
+            {
+                <div>
+                    <h1>Inshurence</h1>
+                </div>
+        
+                <div class="inputDiv">
+                    <label><h5>Plate Number:</h5></label>
+                    <input type="text" required name="PlateNumber" #plateNumber = "ngModel" [(ngModel)]="car.plateNumber">
+                    @if(!plateNumber.valid && plateNumber.touched)
+                    {
+                    <p>Plate number is required</p>
+                    }
+                </div>
+            }
+
+            @if (showVignetteInfo === true) 
+            {
+                <div>
+                    <h1>Vignette</h1>
+                </div>
+        
+                <div class="inputDiv">
+                    <label><h5>Plate Number:</h5></label>
+                    <input type="text" required name="PlateNumber" #plateNumber = "ngModel" [(ngModel)]="car.plateNumber">
+                    @if(!plateNumber.valid && plateNumber.touched)
+                    {
+                    <p>Plate number is required</p>
+                    }
+                </div>
+            }
+        
+        
+       
+       
+            <div class="buttons"> 
+                <button class="btn btn-primary" name="Submit" type="submit" [disabled]="!validateForm()" id="Submit">Submit</button>
+                <button class="btn btn-secondary" type="button" id="Close" (click)="unrenderComponent()">Close</button>
+            </div>
+        
+    </form>
+</div>
+
