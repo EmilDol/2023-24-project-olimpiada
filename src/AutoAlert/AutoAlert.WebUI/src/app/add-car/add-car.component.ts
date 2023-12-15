@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarModel } from '../shared/models/car/car.model';
 import { AddCarService } from '../shared/services/add-car/add-car.service';
+import { CarMakesService } from '../shared/services/car-make-service';
 
 @Component({
   selector: 'app-add-car',
@@ -11,14 +12,14 @@ export class AddCarComponent implements OnInit  {
   ngOnInit() {
     
   }
-
+  
   showCarInfo: boolean = true;
   showEngineOilInfo: boolean = false;
   showTransmissionOilInfo: boolean = false;
   showVignetteInfo: boolean = false;
   showInshurenceInfo: boolean = false;
 
-  constructor(private addCarService: AddCarService){}
+  constructor(private addCarService: AddCarService, public carMakesService: CarMakesService){}
   
   car: CarModel = new CarModel();
   // onSubmit() { 

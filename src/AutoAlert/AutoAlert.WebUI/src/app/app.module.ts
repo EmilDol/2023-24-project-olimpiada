@@ -8,6 +8,10 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterService } from './shared/services/register.service';
 import { LoginComponent } from './login/login.component';
 import { AddCarComponent } from './add-car/add-car.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { AddCarComponent } from './add-car/add-car.component';
     FormsModule,
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule
   ],
   providers: [
     RegisterService,
