@@ -8,11 +8,13 @@ import { CarMakesService } from '../shared/services/car-make-service';
   templateUrl: './add-car.component.html',
   styleUrl: './add-car.component.css'
 })
+
+
 export class AddCarComponent implements OnInit  {
   ngOnInit() {
-    
+    this.filteredCarMakes = this.carMakesService.filterCarMakes('');
   }
-  
+  filteredCarMakes: string[] = [];
   showCarInfo: boolean = true;
   showEngineOilInfo: boolean = false;
   showTransmissionOilInfo: boolean = false;
@@ -22,26 +24,7 @@ export class AddCarComponent implements OnInit  {
   constructor(private addCarService: AddCarService, public carMakesService: CarMakesService){}
   
   car: CarModel = new CarModel();
-  // onSubmit() { 
-    
-  //   // if(!this.isModelFilled())
-  //   // {
 
-  //   //   //dont send request return to view?
-  //   // }
-  //   //do da api
-  //   this.registerService.submitUser(this.user).subscribe((data:any) => 
-  //   {
-  //     if (data.Succeeded = true) 
-  //     {
-  //       this.registerService.hideRegisterBody()
-  //     }
-  //   },
-  //      error => {
-  //        throw new Error('Failed to submit user');
-  //      }
-  //   )
-  // };
     unrenderComponent() 
     {
       this.addCarService.hideAddCarBody();
@@ -75,6 +58,11 @@ export class AddCarComponent implements OnInit  {
           this.showInshurenceInfo = true
           break;
       }
+    }
+
+    filterMakes(event: Event): void {
+      const value = (event.target as HTMLInputElement).value;
+      this.filteredCarMakes = this.carMakesService.filterCarMakes(value);
     }
 
     validateForm() : boolean

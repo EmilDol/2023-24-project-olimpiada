@@ -90,4 +90,8 @@ export class CarMakesService {
       'Zenvo'
     ];
   }
+  filterCarMakes(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.carMakes.filter(make => make.toLowerCase().includes(filterValue));
+  }
 }

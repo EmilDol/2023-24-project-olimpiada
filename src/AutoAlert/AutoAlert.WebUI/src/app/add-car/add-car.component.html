@@ -46,11 +46,11 @@
 
                 <div class="inputDiv">
                     <label><h5>Car Make:</h5></label>
-                    <input type="text" name="Make" [(ngModel)]="car.make" [matAutocomplete]="auto">
+                    <input type="text" name="Make" [(ngModel)]="car.make" [matAutocomplete]="auto" (input)="filterMakes($event)">
                     <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let make of carMakesService.carMakes" [value]="make">{{ make }}</mat-option>
+                      <mat-option *ngFor="let make of filteredCarMakes || []" [value]="make">{{ make }}</mat-option>
                     </mat-autocomplete>
-                </div>
+                  </div>
             }
 
             @if (showEngineOilInfo === true) 

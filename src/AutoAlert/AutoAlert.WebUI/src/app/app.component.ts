@@ -4,6 +4,7 @@ import { RegisterService } from './shared/services/register.service';
 import { AddCarService } from './shared/services/add-car/add-car.service';
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +13,7 @@ import { AddCarService } from './shared/services/add-car/add-car.service';
 export class AppComponent implements OnInit {
   title = 'AutoAlertTest';
   
+
   hideRegisterComponent: boolean = true;
   hideLoginComponent: boolean = true;
   hideAddCarComponent: boolean = true;
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit {
   constructor(private registerService: RegisterService, private loginService: LoginService, private addCarService: AddCarService) {}
   
   ngOnInit() {
+   
     //if not logged in
     
       this.registerService.hideRegisterComponent$.subscribe((hideRegisterComponent) => {
