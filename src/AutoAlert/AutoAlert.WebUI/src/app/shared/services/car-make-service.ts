@@ -81,7 +81,6 @@ export class CarMakesService {
       'GAC',
       'Great Wall',
       'Haval',
-      'JAC Motors',
       'Lynk & Co',
       'NIO',
       'Noble',
@@ -90,8 +89,13 @@ export class CarMakesService {
       'Zenvo'
     ];
   }
+
   filterCarMakes(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.carMakes.filter(make => make.toLowerCase().includes(filterValue));
+  }
+
+  includes(value:string) : boolean{
+    return this.carMakes.includes(value);
   }
 }

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CarModel } from '../shared/models/car/car.model';
 import { AddCarService } from '../shared/services/add-car/add-car.service';
 import { CarMakesService } from '../shared/services/car-make-service';
+import { EngineOilModel } from '../shared/models/car/engine-oil.model';
+import { TransmitionOilModel } from '../shared/models/car/transmition-oil.model';
+import { VignetteModel } from '../shared/models/car/vignette.model';
+import { InsurenceModel } from '../shared/models/car/insurence.model';
 
 @Component({
   selector: 'app-add-car',
@@ -9,11 +13,12 @@ import { CarMakesService } from '../shared/services/car-make-service';
   styleUrl: './add-car.component.css'
 })
 
-
 export class AddCarComponent implements OnInit  {
+
   ngOnInit() {
     this.filteredCarMakes = this.carMakesService.filterCarMakes('');
   }
+
   filteredCarMakes: string[] = [];
   showCarInfo: boolean = true;
   showEngineOilInfo: boolean = false;
@@ -24,6 +29,10 @@ export class AddCarComponent implements OnInit  {
   constructor(private addCarService: AddCarService, public carMakesService: CarMakesService){}
   
   car: CarModel = new CarModel();
+  engineOilReminder: EngineOilModel = new EngineOilModel();
+  transmitionOilReminder: TransmitionOilModel = new TransmitionOilModel();
+  vignette: VignetteModel = new VignetteModel();
+  insurence: InsurenceModel = new InsurenceModel();
 
     unrenderComponent() 
     {
@@ -60,11 +69,23 @@ export class AddCarComponent implements OnInit  {
       }
     }
 
-    filterMakes(event: Event): void {
-      const value = (event.target as HTMLInputElement).value;
-      this.filteredCarMakes = this.carMakesService.filterCarMakes(value);
+    logObjectState(obj: any, objName: string) {
+      console.log(`Properties inside ${objName}:`);
+      for (const prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          console.log(`${prop}: ${obj[prop]}`);
+        }
+      }
     }
-
+    
+    displayAll()
+    {
+      this.logObjectState(this.car, 'car');
+      this.logObjectState(this.engineOilReminder, 'engineOilReminder');
+      this.logObjectState(this.transmitionOilReminder, 'transmitionOilReminder');
+      this.logObjectState(this.vignette, 'vignette');
+      this.logObjectState(this.insurence, 'insurence');
+    }
     validateForm() : boolean
     {
       if(this.isCarModelValid())
@@ -73,31 +94,45 @@ export class AddCarComponent implements OnInit  {
       }  else return false
     }
     private isCarModelValid(): boolean {
+      
       return !!(
-        this.car.plateNumber &&
-        this.car.model &&
-        this.car.make &&
-        this.car.yearOfMake &&
-        this.car.mileage &&
-        this.car.horsePower &&
-        this.car.euroType &&
-        this.car.taxPayed !== undefined &&
-        this.car.technicalCheckExpirationDate instanceof Date &&
-        this.car.engineOilReminder !== undefined &&
-        this.car.engineOilReminder.oilType &&
-        this.car.engineOilReminder.mileageOfLastChange &&
-        this.car.engineOilReminder.mileageOfNextChange &&
-        this.car.engineOilReminder.dateOfLastChange instanceof Date &&
-        this.car.regionId &&
-        this.car.transmissionOilReminder !== undefined &&
-        this.car.transmissionOilReminder.dateOfLastChange instanceof Date &&
-        this.car.transmissionOilReminder.mileageOfLastChange &&
-        this.car.transmissionOilReminder.mileageOfNextChange &&
-        this.car.transmissionOilReminder.oilType &&
-        this.car.vignette !== undefined &&
-        this.car.vignette.dateBought instanceof Date &&
-        this.car.vignette.expireDate instanceof Date
+        this.car.plateNumber != null &&
+        this.car.model != null &&
+        this.car.make != null &&
+        this.car.yearOfMake != null &&
+        this.car.mileage != null &&
+        this.car.horsePower != null &&
+        this.car.euroType != null &&
+        this.car.taxPayed != null &&
+        this.car.technicalCheckExpirationDate != undefined&&
+        this.engineOilReminder.oilType != null&&
+        this.engineOilReminder.mileageOfLastChange != null&&
+        this.engineOilReminder.mileageOfNextChange != null&&
+        this.engineOilReminder.dateOfLastChange != undefined&&
+        //this.car.regionId != null&&
+        this.transmitionOilReminder.dateOfLastChange != undefined&&
+        this.transmitionOilReminder.mileageOfLastChange != null&&
+        this.transmitionOilReminder.mileageOfNextChange != null&&
+        this.transmitionOilReminder.oilType != null
       );
     }
+
+    checkIfContained(value: string): boolean {
+      return this.carMakesService.includes(value);
+    }
    
+    filterMakes(event: Event): void {
+      const value = (event.target as HTMLInputElement).value;
+      this.filteredCarMakes = this.carMakesService.filterCarMakes(value);
+    }    
+
+    submit()
+    {
+      this.car.engineOilReminder = this.engineOilReminder
+      this.car.transmitionOilReminder = this.transmitionOilReminder
+      this.car.vignette = this.vignette
+      this.car.insurence = this.insurence
+
+      //post
+    }
 }
