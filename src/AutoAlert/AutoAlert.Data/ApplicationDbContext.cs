@@ -18,7 +18,7 @@ namespace AutoAlert.Data
 
         public DbSet<TransmitionOilReminder> TransmitionOilReminders { get; set; }
 
-        public DbSet<InshurenceReminder> InshurenceReminders { get; set; }
+        public DbSet<InsurenceReminder> InsurenceReminders { get; set; }
 
         public DbSet<Notification> Notifications { get; set; }
 

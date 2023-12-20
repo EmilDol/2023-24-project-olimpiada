@@ -60,6 +60,8 @@ builder.Services.AddCors(p => p.AddPolicy("Angular", b => b
 
 builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<ICarService, CarService>();
+builder.Services.AddScoped<IRegionService, RegionService>();
 
 var app = builder.Build();
 
