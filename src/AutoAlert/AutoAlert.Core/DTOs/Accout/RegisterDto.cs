@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AutoAlert.Core.DTOs
+namespace AutoAlert.Core.DTOs.Accout
 {
     public class RegisterDto
     {

@@ -63,9 +63,9 @@ namespace AutoAlert.Data.Models
         public VignetteReminder VignetteReminder { get; set; } = null!;
 
         [Required]
-        [ForeignKey(nameof(InshurenceReminder))]
+        [ForeignKey(nameof(InsurenceReminder))]
         public Guid InshurenceReminderId { get; set; }
-        public InshurenceReminder InshurenceReminder { get; set; } = null!;
+        public InsurenceReminder InsurenceReminder { get; set; } = null!;
 
         [Required]
         [ForeignKey(nameof(User))]

@@ -1,4 +1,4 @@
-﻿using AutoAlert.Core.DTOs;
+﻿using AutoAlert.Core.DTOs.Accout;
 using AutoAlert.Core.Services.Contracts;
 using AutoAlert.Data;
 using AutoAlert.Data.Models;

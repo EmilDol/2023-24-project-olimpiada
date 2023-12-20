@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AutoAlert.Data.Models
 {
-    public class InshurenceReminder
+    public class InsurenceReminder
     {
         [Key]
         public Guid Id { get; set; }
 
-        [InverseProperty(nameof(Models.Car.InshurenceReminder))]
+        [InverseProperty(nameof(Models.Car.InsurenceReminder))]
         public Car Car { get; set; } = null!;
     }
 }
