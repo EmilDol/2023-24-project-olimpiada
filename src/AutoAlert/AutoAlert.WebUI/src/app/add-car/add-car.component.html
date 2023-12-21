@@ -212,9 +212,13 @@
                     <input type="date" title="Please the expiration date of your vignette" required name="expireDate" #expireDate = "ngModel" [(ngModel)]="vignette.expireDate">
                 </div>
             }
+
+            @if (errorString!==null) {
+                <p>{{errorString}}</p>
+            }
         
             <div class="buttons"> 
-                <button class="btn btn-primary" name="Submit" type="submit" [disabled]="!validateForm()" id="Submit">Submit</button>
+                <button class="btn btn-primary" name="Submit" [disabled]="!validateForm()" id="Submit" (click)="onSubmit()">Submit</button>
                 <button class="btn btn-secondary" type="button" id="Close" (click)="unrenderComponent()">Close</button>
                 <button class="btn btn-secondary" type="button" id="DisplayAll" (click)="displayAll()">DisplayAll</button>
             </div>

@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { User } from '../shared/models/user.model';
-import { LoginService } from '../shared/services/login.service';
+import { AuthenticationService } from '../shared/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -15,36 +15,32 @@ import { LoginService } from '../shared/services/login.service';
 export class LoginComponent implements OnInit {
 
   user: User = new User();
+  public errorString?: string;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     
   }
 
   unrenderComponent() {
-    this.loginService.hideLoginBody();
-}
+    this.authService.hideLoginBody();
+  }
 
-onSubmit() { 
-    
-  
-  //do da api
-  this.loginService.submitUser(this.user).subscribe((data:any) => 
-  {
-    if (data.Succeeded = true) 
+  onSubmit() { 
+    this.authService.login(this.user).subscribe((success: boolean) => 
     {
-    this.loginService.hideLoginBody();
-    const token = data.token;
-
-      // Store the JWT token in user's browser storage
-      localStorage.setItem('jwtToken', token);
-    }
-  },
-   
-    error => {
-      throw new Error('Failed to submit user');
-    }
-  )
-};
+      console.log(success)
+      if (success === true) 
+      {
+      this.authService.hideLoginBody();
+      }
+    },
+     
+      error => {
+        console.error('Component-level error handling:', error);
+        this.errorString = "Failed to submit user";
+      }
+    )
+  }
 }

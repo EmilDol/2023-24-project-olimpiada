@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './shared/services/login.service';
+import { AuthenticationService } from './shared/services/authentication/authentication.service';
 import { RegisterService } from './shared/services/register.service';
 import { AddCarService } from './shared/services/add-car/add-car.service';
 
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   hideLoginComponent: boolean = true;
   hideAddCarComponent: boolean = true;
 
-  constructor(private registerService: RegisterService, private loginService: LoginService, private addCarService: AddCarService) {}
+  constructor(private registerService: RegisterService, private authService: AuthenticationService, private addCarService: AddCarService) {}
   
   ngOnInit() {
    
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
         this.hideRegisterComponent = hideRegisterComponent;
         console.log("hideRegisterComponent in onInit is = " + this.hideRegisterComponent);
       });
-      this.loginService.hideLoginComponent$.subscribe((hideLoginComponent) => {
+      this.authService.hideLoginComponent$.subscribe((hideLoginComponent) => {
         this.hideLoginComponent = hideLoginComponent; 
         console.log("hideLoginComponent in  onInit is = " + this.hideLoginComponent);
       });
@@ -44,22 +44,26 @@ export class AppComponent implements OnInit {
     }
   }
 
+  authCheck(): boolean{
+    return this.authService.isAuthenticated();
+  }
+
   onAddCarClick() {
     this.addCarService.showAddCarBody();
-    this.loginService.hideLoginBody();
+    this.authService.hideLoginBody();
     this.registerService.hideRegisterBody();
     console.log("hideAddCarComponent in component is = " + this.hideAddCarComponent)
   }
 
   onRegisterClick() {
     this.addCarService.hideAddCarBody();
-    this.loginService.hideLoginBody();
+    this.authService.hideLoginBody();
     this.registerService.showRegisterBody();
     console.log("hideRegisterComponent in component is = " + this.hideRegisterComponent)
   }
 
   onLoginClick() {
-    this.loginService.showLoginBody();
+    this.authService.showLoginBody();
     this.addCarService.hideAddCarBody();
     this.registerService.hideRegisterBody();
     console.log("hideLoginComponent in component is = " + this.hideLoginComponent)

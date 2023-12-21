@@ -32,6 +32,11 @@
             <button class="btn btn-secondary" type="button" id="Close" (click)="unrenderComponent()">Close</button>
             
         </div>
+
+        @if (errorString!=null) 
+        {
+            <p>{{ errorString }}</p>
+        }
     </form>
 </div>
 

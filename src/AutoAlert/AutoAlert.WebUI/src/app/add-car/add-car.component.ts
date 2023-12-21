@@ -33,6 +33,7 @@ export class AddCarComponent implements OnInit  {
   transmitionOilReminder: TransmitionOilModel = new TransmitionOilModel();
   vignette: VignetteModel = new VignetteModel();
   insurence: InsurenceModel = new InsurenceModel();
+  public errorString?: string;
 
     unrenderComponent() 
     {
@@ -126,13 +127,23 @@ export class AddCarComponent implements OnInit  {
       this.filteredCarMakes = this.carMakesService.filterCarMakes(value);
     }    
 
-    submit()
+    onSubmit()
     {
       this.car.engineOilReminder = this.engineOilReminder
       this.car.transmitionOilReminder = this.transmitionOilReminder
       this.car.vignette = this.vignette
       this.car.insurence = this.insurence
 
-      //post
+      this.addCarService.onSubmit(this.car).subscribe(
+        (response) => {
+          console.log('API response:', response);
+          if(response.success == true) this.addCarService.hideAddCarBody()
+          else console.log(response.error)
+        },
+        (error) => {
+          console.error('API error:', error);
+          this.errorString = error
+        }
+      );
     }
 }

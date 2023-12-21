@@ -1,111 +1,148 @@
-.container{
-    margin-top: 15px; 
+.container {
+    margin-top: 50px;
     height: 100vh;
-    
-    /*display: flex;
-    
-    align-items: center;
-    width: 90vw;
-    height: calc(100vh - 15px); */
+    display: flex;
+    align-items: flex-start;
+    justify-content: top;
 }
 
-form{
-    margin-top: 25vh;
+#CarInfo{
+    border-color:pink
+}
+
+#EngineOilInfo{
+    border-color: brown;
+}
+
+#TransmissionOilInfo{
+    border-color: green;
+}
+
+#VignetteInfo{
+    border-color: purple;
+}
+
+#Inshurance{
+    border-color: rgb(3, 78, 189);
+}
+
+form {
+    margin-top: 2vh;
     border-radius: 20px;
     border-style: none;
     border-width: 1px;
     border-color: #0d162d;
     background: #1A1F3B;
-    box-shadow:  -14px -14px 48px #0b0d19,
-    14px 14px 48px #29315d;
+    box-shadow: -14px -14px 48px #0b0d19, 14px 14px 48px #29315d;
     max-width: 30vw;
-    min-width: 15rem;
+    min-width: 40rem;
     width: auto;
     padding-bottom: 2rem;
-    display: block;
+    display: flex;
+    flex-direction: column; /* Adjusted for flex container */
     margin-right: auto;
     margin-left: auto;
     height: auto;
-    max-height: 50vh;
-    min-height: 29rem;
-    
 }
-input[type=text][name="firstName"]
-{
+
+input[type=text][name="firstName"] {
     border-color: #0b1b41;
     border-width: 2px;
     border-style: solid;
     border-radius: 5px;
     background-color: #3866d1;
-}
-input
-{
     min-height: 1.5rem;
-    height: 5rem;
-    max-height: 3vh;
+    height: 3vh;
+    max-height: 5rem;
+}
+
+.inputDiv input[type="radio"] {
+    margin-right: 5px;
+    height: 1rem;
+    width: 1rem;
+}
+
+.inputDiv input {
+    min-height: 1.5rem;
+    height: 3vh;
+    max-height: 5rem;
     background: #3866d1;
     border-width: 2px;
     border-color: #0b1b41;
     border-style: solid;
-    border-radius: 5px;   
+    border-radius: 5px;
+    flex-grow: 1; /* Takes the remaining width */
 }
-.inputDiv{
-   
-    display: flex;
+
+.inputDiv {
     margin-top: 10px;
     margin-left: 15px;
     margin-right: 15px;
+    display: flex;
     flex-direction: column;
-    justify-content: flex-start;
 }
-.inputDiv label {
-    font-size: calc(1.5vw * 1.5vh * 1rem) ;
-    container-name: form;
-    color: white;
-  }
 
-.buttons{
+.inputDiv label {
+    font-size: calc(1.5vw * 1.5vh * 1rem);
+    color: white;
+    margin-bottom: 5px; /* Added margin for separation */
+}
+
+.buttons {
     margin-top: 1rem;
     display: flex;
-    justify-content: center;
-    margin-bottom: -15px;
+    justify-content: space-around; /* Adjusted for equal spacing */
 }
 
-button{
+.stretched-button {
+    flex-grow: 1;
+}
+
+button {
     margin-left: 5px;
     margin-right: 5px;
     background: linear-gradient(315deg, #182c59, #1d346a);
-    box-shadow:  -20px -20px 81px #0e1932,
-             20px 20px 81px #294a95;
+    box-shadow: -20px -20px 81px #0e1932, 20px 20px 81px #294a95;
 }
 
-button:hover{
+button:hover {
     background: linear-gradient(315deg, #132245, #162952);
 }
 
-button:focus{
+button:focus {
     background: linear-gradient(315deg, #0d162d, #0f1a36);
 }
-#Submit{
+
+#Submit {
     border-color: greenyellow;
 }
-#Close{
+
+#Close {
     border-color: #FFD02C;
 }
 
-h1{
+h1 {
     padding-top: 1.5rem;
     color: white;
     display: flex;
     justify-content: center;
 }
 
-@container form (min-width: 15rem) {
-    .module h2 {
-      font-size: 2rem;
-    }
-  }
-
-  p{
+p {
     color: red;
+}
+
+/* Adjusted media query */
+@media (min-width: 15rem) {
+    .container form {
+        .module h2 {
+            font-size: 2rem;
+        }
+    }
+}
+
+.container form .buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
 }

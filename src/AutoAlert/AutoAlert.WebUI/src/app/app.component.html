@@ -1,4 +1,14 @@
+@if (!authCheck()) 
+{
 <button (click)="onRegisterClick()">Register</button>
+<button  (click)="onLoginClick()">Login</button>
+}
+
+@if (authCheck()) 
+{
+  <button  (click)="onAddCarClick()">Add Car</button>
+}
+
 @if (hideRegisterComponent == false) 
 {
   <div>
@@ -6,8 +16,6 @@
 </div>
 }
 
-
-<button  (click)="onLoginClick()">Login</button>
 @if (hideLoginComponent == false) 
 {
   <div>
@@ -15,8 +23,6 @@
 </div>
 }
 
-<!-- @if () {}  if authenticated check-->
-<button  (click)="onAddCarClick()">Add Car</button>
 @if (hideAddCarComponent == false) 
 {
   <div>
