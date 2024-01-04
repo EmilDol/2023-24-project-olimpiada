@@ -134,6 +134,8 @@ export class AddCarComponent implements OnInit  {
       this.car.vignette = this.vignette
       this.car.insurence = this.insurence
 
+      
+
       this.addCarService.onSubmit(this.car).subscribe(
         (response) => {
           console.log('API response:', response);

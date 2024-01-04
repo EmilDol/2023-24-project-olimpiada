@@ -21,7 +21,7 @@ namespace AutoAlert.Api.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult> Create(CarCreateDto car)
+        public async Task<ActionResult> Create([FromBody]CarCreateDto car)
         {
             if (!ModelState.IsValid)
             {
