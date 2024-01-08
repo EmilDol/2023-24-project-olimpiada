@@ -6,6 +6,7 @@ using AutoAlert.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoAlert.Api.Controllers
 {
@@ -35,6 +36,11 @@ namespace AutoAlert.Api.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(registerDto);
+            }
+
+            if (await context.Users.AnyAsync(u => u.NormalizedEmail == registerDto.Email.ToUpper()))
+            {
+                return StatusCode(418);
             }
 
             var guid = Guid.NewGuid();
