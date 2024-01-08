@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { AppConfigurationService } from './app-configuration.service';
 
@@ -20,9 +20,20 @@ export class RegisterService {
 
   submitUser(user: User): Observable<any>
   {
-    return this.httpClient.post(this.apiUrl+'/users/register', user);
+    return this.httpClient.post<any>(this.apiUrl+'/users/register',  user ).pipe(
+      map(response => {
+        if (response && response.Succeeded) {
+          return true;
+        } else {
+          return false;
+        }
+      }),
+      catchError(error => {
+        console.error('Login error:', error);
+        return throwError(() => error);
+      })
+    );
   }
-
   
   hideRegisterBody() {
     this.hideRegisterComponent.next(true);

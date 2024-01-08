@@ -44,7 +44,7 @@
             <label><h5>Confirm Password:</h5></label>
             <input type="password"  required  name="ConfirmPassword" #confirmPassword = "ngModel" [(ngModel)]="user.confirmPassword  " >
             
-            @if (password.touched && confirmPassword.touched && confirmPassword !== password) 
+            @if (password.touched && confirmPassword.touched && !passwordComparer()) 
             {
                 <p>Password does not match<p>
             }
