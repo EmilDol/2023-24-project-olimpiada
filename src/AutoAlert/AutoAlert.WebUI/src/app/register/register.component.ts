@@ -31,22 +31,26 @@ export class RegisterComponent implements OnInit {
     //   //dont send request return to view?
     // }
     //do da api
-    this.registerService.submitUser(this.user).subscribe((data:any) => 
-    {
-      if (data.Succeeded = true) 
-      {
-        this.registerService.hideRegisterBody()
+    this.registerService.submitUser(this.user).subscribe(( response: boolean ) => {
+       if(response) {
+          this.registerService.hideRegisterBody();
       }
-    },
-       error => {
-         throw new Error('Failed to submit user');
-       }
-    )
+  }, error => {
+      throw new Error('Failed to submit user');
+  });
   };
 
     unrenderComponent() 
     {
         this.registerService.hideRegisterBody();
         console.log("hideRegisterComponent is :");
+    }
+
+    passwordComparer(): boolean
+    {
+      if(this.user.password === this.user.confirmPassword)  {
+        console.log("password :"+ this.user.password + "confirmPassword" + this.user.confirmPassword)
+        return true
+      }return false
     }
 }
