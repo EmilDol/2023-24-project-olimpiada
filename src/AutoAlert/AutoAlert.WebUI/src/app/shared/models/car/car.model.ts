@@ -1,3 +1,4 @@
+import { RegionModel } from "../region/region.model";
 import { EngineOilModel } from "./engine-oil.model";
 import { InsurenceModel } from "./insurence.model";
 import { TransmitionOilModel } from "./transmition-oil.model";
@@ -16,9 +17,9 @@ export class CarModel
   public euroType?: number;
   public taxPayed?: boolean;
   public technicalCheckExpirationDate?: Date;
-  public regionId?: string;
-  public engineOilReminder?: EngineOilModel;
-  public transmitionOilReminder?: TransmitionOilModel;
+  public region?: RegionModel;
+  public engineOil?: EngineOilModel;
+  public transmitionOil?: TransmitionOilModel;
   public vignette?: VignetteModel;
   public insurence?: InsurenceModel;
 }

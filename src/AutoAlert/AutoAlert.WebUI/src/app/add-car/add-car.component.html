@@ -43,9 +43,22 @@
                     <mat-autocomplete #auto="matAutocomplete">
                       <mat-option *ngFor="let make of filteredCarMakes || []" [value]="make">{{ make }}</mat-option>
                     </mat-autocomplete>
-                    @if(make.touched && !checkIfContained(make.value))
+                    @if(make.touched && !checkIfCarIsContained(make.value))
                     {
                     <p>Car make is empty or incorrect, please choose one of the options in the dropdown menu</p>
+                    }
+                </div>
+
+                <div class="inputDiv">
+                    <label><h5>Region of registration:</h5></label>
+                    <input type="text" #region = "ngModel" title="Region of registration is an autocompleted field so we advise to click on the option that suits you" name="Region" [(ngModel)]="region.name" [matAutocomplete]="auto" (input)="filterRegions($event)">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let region of filteredRegions || []" [value]="region">{{ region.name }}</mat-option>
+                      </mat-autocomplete>
+                      
+                    @if(region.touched && !checkIfRegionIsContained(region.value))
+                    {
+                    <p>Region of registration is empty or incorrect, please choose one of the options in the dropdown menu</p>
                     }
                 </div>
 
@@ -110,7 +123,7 @@
         
                 <div class="inputDiv">
                     <label><h5>Oil type:</h5></label>
-                    <input type="text" required name="OilType" title="Please enter your oil type" #oilType = "ngModel" [(ngModel)]="engineOilReminder.oilType">
+                    <input type="text" required name="OilType" title="Please enter your oil type" #oilType = "ngModel" [(ngModel)]="engineOil.oilType">
                     @if(!oilType.valid && oilType.touched)
                     {
                     <p>oilType is required</p>
@@ -119,7 +132,7 @@
 
                 <div class="inputDiv">
                     <label><h5>Mileage of last oil change:</h5></label>
-                    <input type="text" required name="MileageOfLastChange" title="Please enter the mileage of your last change" #mileageOfLastChange = "ngModel" [(ngModel)]="engineOilReminder.mileageOfLastChange">
+                    <input type="text" required name="MileageOfLastChange" title="Please enter the mileage of your last change" #mileageOfLastChange = "ngModel" [(ngModel)]="engineOil.mileageOfLastChange">
                     @if(!mileageOfLastChange.valid && mileageOfLastChange.touched)
                     {
                     <p>Mileage of last change is required</p>
@@ -128,7 +141,7 @@
 
                 <div class="inputDiv">
                     <label><h5>Mileage of next oil change:</h5></label>
-                    <input type="text" required name="MileageOfNextChange" title="Please enter the mileage ff your next change" #mileageOfNextChange = "ngModel" [(ngModel)]="engineOilReminder.mileageOfNextChange">
+                    <input type="text" required name="MileageOfNextChange" title="Please enter the mileage ff your next change" #mileageOfNextChange = "ngModel" [(ngModel)]="engineOil.mileageOfNextChange">
                     @if(!mileageOfNextChange.valid && mileageOfNextChange.touched)
                     {
                     <p>Mileage of last change is required</p>
@@ -137,7 +150,7 @@
 
                 <div class="inputDiv">
                     <label><h5>Date of last change:</h5></label>
-                    <input type="date" title="Please the date of your last oil change" required name="DateOfLastChange" #dateOfLastChange = "ngModel" [(ngModel)]="engineOilReminder.dateOfLastChange">
+                    <input type="date" title="Please the date of your last oil change" required name="DateOfLastChange" #dateOfLastChange = "ngModel" [(ngModel)]="engineOil.dateOfLastChange">
                 </div>
             }
 
@@ -149,7 +162,7 @@
         
                 <div class="inputDiv">
                     <label><h5>Oil type:</h5></label>
-                    <input type="text" required name="OilType" title="Please enter your oil type" #oilType = "ngModel" [(ngModel)]="transmitionOilReminder.oilType">
+                    <input type="text" required name="OilType" title="Please enter your oil type" #oilType = "ngModel" [(ngModel)]="transmitionOil.oilType">
                     @if(!oilType.valid && oilType.touched)
                     {
                     <p>oilType is required</p>
@@ -158,7 +171,7 @@
 
                 <div class="inputDiv">
                     <label><h5>Mileage of last oil change:</h5></label>
-                    <input type="text" required name="MileageOfLastChange" title="Please enter the mileage of your last change" #mileageOfLastChange = "ngModel" [(ngModel)]="transmitionOilReminder.mileageOfLastChange">
+                    <input type="text" required name="MileageOfLastChange" title="Please enter the mileage of your last change" #mileageOfLastChange = "ngModel" [(ngModel)]="transmitionOil.mileageOfLastChange">
                     @if(!mileageOfLastChange.valid && mileageOfLastChange.touched)
                     {
                     <p>Mileage of last change is required</p>
@@ -167,7 +180,7 @@
 
                 <div class="inputDiv">
                     <label><h5>Mileage of next oil change:</h5></label>
-                    <input type="text" required name="MileageOfNextChange" title="Please enter the mileage ff your next change" #mileageOfNextChange = "ngModel" [(ngModel)]="transmitionOilReminder.mileageOfNextChange">
+                    <input type="text" required name="MileageOfNextChange" title="Please enter the mileage ff your next change" #mileageOfNextChange = "ngModel" [(ngModel)]="transmitionOil.mileageOfNextChange">
                     @if(!mileageOfNextChange.valid && mileageOfNextChange.touched)
                     {
                     <p>Mileage of last change is required</p>
@@ -176,7 +189,7 @@
 
                 <div class="inputDiv">
                     <label><h5>Date of last change:</h5></label>
-                    <input type="date" title="Please the date of your last oil change" required name="DateOfLastChange" #dateOfLastChange = "ngModel" [(ngModel)]="transmitionOilReminder.dateOfLastChange">
+                    <input type="date" title="Please the date of your last oil change" required name="DateOfLastChange" #dateOfLastChange = "ngModel" [(ngModel)]="transmitionOil.dateOfLastChange">
                 </div>
             }
 

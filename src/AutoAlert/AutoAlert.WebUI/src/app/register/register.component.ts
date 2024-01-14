@@ -1,6 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { User } from '../shared/models/user.model';
 import { RegisterService } from '../shared/services/register.service';
+import { AuthenticationService } from '../shared/services/authentication/authentication.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { RegisterService } from '../shared/services/register.service';
 export class RegisterComponent implements OnInit {
  
   user: User = new User();
-  constructor(private registerService: RegisterService) { }
+  constructor(private registerService: RegisterService, private loginService: AuthenticationService) { }
   hideRegisterComponent: boolean = true;
 
   ngOnInit() {
@@ -24,16 +25,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() { 
-    
-    // if(!this.isModelFilled())
-    // {
-
-    //   //dont send request return to view?
-    // }
-    //do da api
     this.registerService.submitUser(this.user).subscribe(( response: boolean ) => {
        if(response) {
           this.registerService.hideRegisterBody();
+          this.loginService.showLoginBody();
       }
   }, error => {
       throw new Error('Failed to submit user');

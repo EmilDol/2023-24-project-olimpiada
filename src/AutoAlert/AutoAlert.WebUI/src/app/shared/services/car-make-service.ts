@@ -90,12 +90,7 @@ export class CarMakesService {
     ];
   }
 
-  filterCarMakes(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.carMakes.filter(make => make.toLowerCase().includes(filterValue));
-  }
-
-  includes(value:string) : boolean{
-    return this.carMakes.includes(value);
+  getMakes():Array<string>{
+    return this.carMakes
   }
 }

@@ -6,6 +6,9 @@ import { EngineOilModel } from '../shared/models/car/engine-oil.model';
 import { TransmitionOilModel } from '../shared/models/car/transmition-oil.model';
 import { VignetteModel } from '../shared/models/car/vignette.model';
 import { InsurenceModel } from '../shared/models/car/insurence.model';
+import { AutocompleteService } from '../shared/services/autocomplete/autocomplete.service';
+import { RegionService } from '../shared/services/region/region.service';
+import { RegionModel } from '../shared/models/region/region.model';
 
 @Component({
   selector: 'app-add-car',
@@ -16,21 +19,35 @@ import { InsurenceModel } from '../shared/models/car/insurence.model';
 export class AddCarComponent implements OnInit  {
 
   ngOnInit() {
-    this.filteredCarMakes = this.carMakesService.filterCarMakes('');
+    this.filteredCarMakes = this.autocompleteService.filter('', this.carMakesService.getMakes());
+    
+  }
+
+  onClickRegionInput(): void {
+    this.regionService.getAllRegions().subscribe({
+      next: (regions: RegionModel[]) => {
+        this.filteredRegions = regions;
+      },
+      error: (error: any) => {
+        console.error('Error fetching regions:', error);
+      }
+    });
   }
 
   filteredCarMakes: string[] = [];
+  filteredRegions: RegionModel[] = [];
   showCarInfo: boolean = true;
   showEngineOilInfo: boolean = false;
   showTransmissionOilInfo: boolean = false;
   showVignetteInfo: boolean = false;
   showInshurenceInfo: boolean = false;
 
-  constructor(private addCarService: AddCarService, public carMakesService: CarMakesService){}
+  constructor(private regionService: RegionService, private autocompleteService: AutocompleteService, private addCarService: AddCarService, public carMakesService: CarMakesService){}
   
   car: CarModel = new CarModel();
-  engineOilReminder: EngineOilModel = new EngineOilModel();
-  transmitionOilReminder: TransmitionOilModel = new TransmitionOilModel();
+  region: RegionModel = new RegionModel();
+  engineOil: EngineOilModel = new EngineOilModel();
+  transmitionOil: TransmitionOilModel = new TransmitionOilModel();
   vignette: VignetteModel = new VignetteModel();
   insurence: InsurenceModel = new InsurenceModel();
   public errorString?: string;
@@ -82,8 +99,8 @@ export class AddCarComponent implements OnInit  {
     displayAll()
     {
       this.logObjectState(this.car, 'car');
-      this.logObjectState(this.engineOilReminder, 'engineOilReminder');
-      this.logObjectState(this.transmitionOilReminder, 'transmitionOilReminder');
+      this.logObjectState(this.engineOil, 'engineOil');
+      this.logObjectState(this.transmitionOil, 'transmitionOil');
       this.logObjectState(this.vignette, 'vignette');
       this.logObjectState(this.insurence, 'insurence');
     }
@@ -106,31 +123,49 @@ export class AddCarComponent implements OnInit  {
         this.car.euroType != null &&
         this.car.taxPayed != null &&
         this.car.technicalCheckExpirationDate != undefined&&
-        this.engineOilReminder.oilType != null&&
-        this.engineOilReminder.mileageOfLastChange != null&&
-        this.engineOilReminder.mileageOfNextChange != null&&
-        this.engineOilReminder.dateOfLastChange != undefined&&
+        this.engineOil.oilType != null&&
+        this.engineOil.mileageOfLastChange != null&&
+        this.engineOil.mileageOfNextChange != null&&
+        this.engineOil.dateOfLastChange != undefined&&
         //this.car.regionId != null&&
-        this.transmitionOilReminder.dateOfLastChange != undefined&&
-        this.transmitionOilReminder.mileageOfLastChange != null&&
-        this.transmitionOilReminder.mileageOfNextChange != null&&
-        this.transmitionOilReminder.oilType != null
+        this.transmitionOil.dateOfLastChange != undefined&&
+        this.transmitionOil.mileageOfLastChange != null&&
+        this.transmitionOil.mileageOfNextChange != null&&
+        this.transmitionOil.oilType != null
       );
     }
 
-    checkIfContained(value: string): boolean {
-      return this.carMakesService.includes(value);
+    checkIfCarIsContained(value: string): boolean {
+
+      return this.autocompleteService.includes(value, this.carMakesService.getMakes());
     }
    
     filterMakes(event: Event): void {
       const value = (event.target as HTMLInputElement).value;
-      this.filteredCarMakes = this.carMakesService.filterCarMakes(value);
-    }    
+      this.filteredCarMakes = this.autocompleteService.filter(value, this.carMakesService.getMakes());
+    }   
+    
+    checkIfRegionIsContained(value: string): boolean {
+      return this.regionService.includes(value, this.filteredRegions);
+    }
+
+    filterRegions(event: Event): void {
+      const value = (event.target as HTMLInputElement).value;
+      
+      this.regionService.getAllRegions().subscribe({
+        next: (allRegions: RegionModel[]) => {
+          this.filteredRegions = this.regionService.filter(value, allRegions);
+        },
+        error: (error: any) => {
+          console.error('Error fetching regions:', error);
+        }
+      });
+    }
 
     onSubmit()
     {
-      this.car.engineOilReminder = this.engineOilReminder
-      this.car.transmitionOilReminder = this.transmitionOilReminder
+      this.car.engineOil = this.engineOil
+      this.car.transmitionOil = this.transmitionOil
       this.car.vignette = this.vignette
       this.car.insurence = this.insurence
 
