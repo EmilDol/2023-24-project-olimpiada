@@ -25,15 +25,15 @@ export class AddCarComponent implements OnInit  {
 
   onClickRegionInput(): void {
     this.regionService.getAllRegions().subscribe({
-      next: (regions: RegionModel[]) => {
-        this.filteredRegions = regions;
+      next: (allRegions) => {
+        this.filteredRegions = allRegions;
       },
       error: (error: any) => {
         console.error('Error fetching regions:', error);
       }
     });
   }
-
+  allRegions: RegionModel[] = [];
   filteredCarMakes: string[] = [];
   filteredRegions: RegionModel[] = [];
   showCarInfo: boolean = true;
@@ -152,14 +152,7 @@ export class AddCarComponent implements OnInit  {
     filterRegions(event: Event): void {
       const value = (event.target as HTMLInputElement).value;
       
-      this.regionService.getAllRegions().subscribe({
-        next: (allRegions: RegionModel[]) => {
-          this.filteredRegions = this.regionService.filter(value, allRegions);
-        },
-        error: (error: any) => {
-          console.error('Error fetching regions:', error);
-        }
-      });
+      this.filteredRegions = this.regionService.filter(value, this.allRegions)
     }
 
     onSubmit()
@@ -168,8 +161,7 @@ export class AddCarComponent implements OnInit  {
       this.car.transmitionOil = this.transmitionOil
       this.car.vignette = this.vignette
       this.car.insurence = this.insurence
-
-      
+      this.car.regionId="3495E697-5193-4084-A779-91714E160A5C"
 
       this.addCarService.onSubmit(this.car).subscribe(
         (response) => {

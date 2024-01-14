@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { AppConfigurationService } from '../app-configuration.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../authentication/authentication.service';
@@ -37,9 +37,24 @@ export class AddCarService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.jwtToken}`,
     });
-  console.log('JSON Data to be sent in the POST request:', JSON.stringify(carModel));
+ 
     const options = { headers };
+    console.log('CarModel before request:', carModel);
 
-    return this.httpClient.post(`${this.apiUrl}/car/create`, carModel, options);
+    // Log headers for verification
+    console.log('Headers:', headers);
+
+    return this.httpClient.post(`${this.apiUrl}/car/create`, carModel, options)
+    .pipe(
+      tap(response => {
+        // Log the response for debugging
+        console.log('API Response:', response);
+      }),
+      catchError(error => {
+        // Log any errors for debugging
+        console.error('API Error:', error);
+        throw error;
+    })
+  );
   }
 }

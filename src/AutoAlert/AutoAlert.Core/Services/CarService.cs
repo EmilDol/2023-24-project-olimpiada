@@ -19,7 +19,7 @@ namespace AutoAlert.Core.Services
             var carNew = new Car
             {
                 OwnerId = userId,
-                Euro = car.Euro,
+                EuroType = car.EuroType,
                 HorsePower = car.HorsePower,
                 Make = car.Make,
                 Mileage = car.Mileage,

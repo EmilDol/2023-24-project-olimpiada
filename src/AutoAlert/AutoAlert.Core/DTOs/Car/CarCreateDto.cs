@@ -33,7 +33,7 @@ namespace AutoAlert.Core.DTOs.Car
         public int HorsePower { get; set; }
 
         [Required]
-        public EuroType Euro { get; set; }
+        public EuroType EuroType { get; set; }
 
         [Required]
         public bool TaxPayed { get; set; }

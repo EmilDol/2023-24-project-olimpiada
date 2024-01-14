@@ -17,7 +17,7 @@ export class CarModel
   public euroType?: number;
   public taxPayed?: boolean;
   public technicalCheckExpirationDate?: Date;
-  public region?: RegionModel;
+  public regionId?: string;
   public engineOil?: EngineOilModel;
   public transmitionOil?: TransmitionOilModel;
   public vignette?: VignetteModel;
