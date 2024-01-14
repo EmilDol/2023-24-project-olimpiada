@@ -62,12 +62,12 @@ export class RegionService {
   filter(value: string, array: RegionModel[]): RegionModel[] {
     const filterValue = value.toLowerCase();
     return array.filter(region => {
-      if (!region.name) {
-        return false;
-      }
-      return region.name.toLowerCase().includes(filterValue);
+        if (!region.name) {
+            return false;
+        }
+        return region.name.toLowerCase().includes(filterValue);
     });
-  }
+}
 
   includes(value: string, array: RegionModel[]): boolean {
     return array.some((region) => {

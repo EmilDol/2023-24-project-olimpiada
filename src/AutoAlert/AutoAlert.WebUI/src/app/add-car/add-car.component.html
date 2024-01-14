@@ -39,8 +39,8 @@
 
                 <div class="inputDiv">
                     <label><h5>Car Make:</h5></label>
-                    <input type="text" #make = "ngModel" title="Car make is an autocompleted field so we advise to click on the option that suits you" name="Make" [(ngModel)]="car.make" [matAutocomplete]="auto" (input)="filterMakes($event)">
-                    <mat-autocomplete #auto="matAutocomplete">
+                    <input type="text" #make = "ngModel" title="Car make is an autocompleted field so we advise to click on the option that suits you" name="Make" [(ngModel)]="car.make" [matAutocomplete]="autoMake" (input)="filterMakes($event)">
+                    <mat-autocomplete #autoMake="matAutocomplete">
                       <mat-option *ngFor="let make of filteredCarMakes || []" [value]="make">{{ make }}</mat-option>
                     </mat-autocomplete>
                     @if(make.touched && !checkIfCarIsContained(make.value))
@@ -51,16 +51,20 @@
 
                 <div class="inputDiv">
                     <label><h5>Region of registration:</h5></label>
-                    <input type="text" #region = "ngModel" title="Region of registration is an autocompleted field so we advise to click on the option that suits you" name="Region" [(ngModel)]="region.name" [matAutocomplete]="auto" (input)="filterRegions($event)">
-                    <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let region of filteredRegions || []" [value]="region">{{ region.name }}</mat-option>
-                      </mat-autocomplete>
+                    <input type="text" #region="ngModel" name="Region" [(ngModel)]="region" [matAutocomplete]="autoRegion" (input)="filterRegions($event)" [ngModelOptions]="{standalone: true}">
+                    <mat-autocomplete #autoRegion="matAutocomplete">
+                        <mat-option *ngFor="let region of filteredRegions" [value]="region">
+                            {{ region.name }}
+                        </mat-option>
+                    </mat-autocomplete>
+                    
                       
                     @if(region.touched && !checkIfRegionIsContained(region.value))
                     {
-                    <p>Region of registration is empty or incorrect, please choose one of the options in the dropdown menu</p>
+                        <p>Region of registration is empty or incorrect, please choose one of the options in the dropdown menu</p>
                     }
                 </div>
+                
 
                 <div class="inputDiv">
                     <label><h5>Year of make:</h5></label>

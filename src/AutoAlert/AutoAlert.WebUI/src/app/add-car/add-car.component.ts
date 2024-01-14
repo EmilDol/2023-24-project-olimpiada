@@ -19,6 +19,16 @@ import { RegionModel } from '../shared/models/region/region.model';
 export class AddCarComponent implements OnInit  {
 
   ngOnInit() {
+    this.regionService.getAllRegions().subscribe({
+      next: (allRegions) => {
+        this.allRegions = allRegions;
+        this.filteredRegions = [...this.allRegions];
+      },
+      error: (error: any) => {
+        console.error('Error fetching regions:', error);
+      }
+    });
+  
     this.filteredCarMakes = this.autocompleteService.filter('', this.carMakesService.getMakes());
     
   }
@@ -127,7 +137,7 @@ export class AddCarComponent implements OnInit  {
         this.engineOil.mileageOfLastChange != null&&
         this.engineOil.mileageOfNextChange != null&&
         this.engineOil.dateOfLastChange != undefined&&
-        //this.car.regionId != null&&
+        this.car.regionId != null&&
         this.transmitionOil.dateOfLastChange != undefined&&
         this.transmitionOil.mileageOfLastChange != null&&
         this.transmitionOil.mileageOfNextChange != null&&
@@ -151,9 +161,19 @@ export class AddCarComponent implements OnInit  {
 
     filterRegions(event: Event): void {
       const value = (event.target as HTMLInputElement).value;
-      
-      this.filteredRegions = this.regionService.filter(value, this.allRegions)
-    }
+      console.log('Input Value:', value);
+      console.log('All Regions:', this.allRegions);
+  
+      // Assuming you want to set car.regionId when a region is selected
+      const selectedRegion = this.filteredRegions.find(region => region.name === value);
+      if (selectedRegion) {
+          this.car.regionId = selectedRegion.id;
+      }
+  
+      this.filteredRegions = this.regionService.filter(value, this.allRegions);
+      console.log('Filtered Regions:', this.filteredRegions);
+  }
+  
 
     onSubmit()
     {
