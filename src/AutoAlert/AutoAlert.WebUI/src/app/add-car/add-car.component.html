@@ -51,19 +51,18 @@
 
                 <div class="inputDiv">
                     <label><h5>Region of registration:</h5></label>
-                    <input type="text" #region="ngModel" name="Region" [(ngModel)]="region" [matAutocomplete]="autoRegion" (input)="filterRegions($event)" [ngModelOptions]="{standalone: true}">
-                    <mat-autocomplete #autoRegion="matAutocomplete">
-                        <mat-option *ngFor="let region of filteredRegions" [value]="region">
-                            {{ region.name }}
-                        </mat-option>
+                    <input type="text" #regionAutocomp="ngModel" name="Region" [(ngModel)]="region.name" [matAutocomplete]="autoRegion" (input)="filterRegions($event)">
+                    <mat-autocomplete #autoRegion="matAutocomplete" (optionSelected)="onRegionSelected($event)">
+                      <mat-option *ngFor="let region of filteredRegions" [value]="region.name">
+                        {{ region.name }}
+                      </mat-option>
                     </mat-autocomplete>
-                    
-                      
-                    @if(region.touched && !checkIfRegionIsContained(region.value))
-                    {
-                        <p>Region of registration is empty or incorrect, please choose one of the options in the dropdown menu</p>
+                  
+                    @if(regionAutocomp.touched && !checkIfRegionIsContained(regionAutocomp.value)) {
+                      <p>Region of registration is empty or incorrect, please choose one of the options in the dropdown menu</p>
                     }
-                </div>
+                  </div>
+                  
                 
 
                 <div class="inputDiv">

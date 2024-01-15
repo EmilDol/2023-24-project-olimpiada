@@ -137,7 +137,7 @@ export class AddCarComponent implements OnInit  {
         this.engineOil.mileageOfLastChange != null&&
         this.engineOil.mileageOfNextChange != null&&
         this.engineOil.dateOfLastChange != undefined&&
-        this.car.regionId != null&&
+        //this.region.id != null&&
         this.transmitionOil.dateOfLastChange != undefined&&
         this.transmitionOil.mileageOfLastChange != null&&
         this.transmitionOil.mileageOfNextChange != null&&
@@ -163,16 +163,20 @@ export class AddCarComponent implements OnInit  {
       const value = (event.target as HTMLInputElement).value;
       console.log('Input Value:', value);
       console.log('All Regions:', this.allRegions);
-  
-      // Assuming you want to set car.regionId when a region is selected
-      const selectedRegion = this.filteredRegions.find(region => region.name === value);
-      if (selectedRegion) {
-          this.car.regionId = selectedRegion.id;
-      }
-  
+    
       this.filteredRegions = this.regionService.filter(value, this.allRegions);
       console.log('Filtered Regions:', this.filteredRegions);
-  }
+    }
+
+    onRegionSelected(event: any): void {
+      const selectedRegionName = event.option.viewValue;
+      const selectedRegion = this.filteredRegions.find(region => region.name === selectedRegionName);
+      
+      if (selectedRegion) {
+        console.log('Selected Region:', selectedRegion);
+        this.car.regionId = selectedRegion.id;
+      }
+    }
   
 
     onSubmit()
@@ -181,7 +185,6 @@ export class AddCarComponent implements OnInit  {
       this.car.transmitionOil = this.transmitionOil
       this.car.vignette = this.vignette
       this.car.insurence = this.insurence
-      this.car.regionId="3495E697-5193-4084-A779-91714E160A5C"
 
       this.addCarService.onSubmit(this.car).subscribe(
         (response) => {

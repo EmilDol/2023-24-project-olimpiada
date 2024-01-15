@@ -30,12 +30,10 @@ export class RegionService {
 
     return this.httpClient.get<RegionModel[]>(this.apiUrl + '/region/getall', options)
       .pipe(
-        
         map((response: any) => {
 
           if (response) {
             console.log("inside if")
-            this.authenticationService.setToken(response.token);
             const regions: RegionModel[] = [];
             response.forEach((region: any) => {
               console.log(region)
@@ -69,12 +67,12 @@ export class RegionService {
     });
 }
 
-  includes(value: string, array: RegionModel[]): boolean {
-    return array.some((region) => {
-      if (!region.name) {
-        return false;
-      }
-      return region.name.toLowerCase() === value.toLowerCase();
-    });
-  }
+includes(value: string, array: RegionModel[]): boolean {
+  return array.some((region) => {
+    if (!region.name || typeof value !== 'string') {
+      return false;
+    }
+    return region.name.toLowerCase() === value.toLowerCase();
+  });
+}
 }
