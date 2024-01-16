@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { RegionModel } from '../../models/region/region.model';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AppConfigurationService } from '../app-configuration.service';
 import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable({
@@ -12,9 +11,9 @@ export class RegionService {
   
   private apiUrl: string;
   private jwtToken: any;
-  constructor(private appConfig: AppConfigurationService,private httpClient: HttpClient, private authenticationService: AuthenticationService) 
+  constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService) 
   {
-    this.apiUrl = appConfig.getApiUrl();
+    this.apiUrl = authenticationService.getApiUrl();
   }
   getAllRegions(): Observable<RegionModel[]> {
     

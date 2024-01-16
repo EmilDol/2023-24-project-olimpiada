@@ -16,7 +16,9 @@ export class AuthenticationService {
   hideLoginComponent$ = this.hideLoginComponent.asObservable();
   httpClient: any;
  
-
+  getApiUrl(): string {
+    return this.apiUrl;
+  }
 
   hideLoginBody() {
     this.hideLoginComponent.next(true);
