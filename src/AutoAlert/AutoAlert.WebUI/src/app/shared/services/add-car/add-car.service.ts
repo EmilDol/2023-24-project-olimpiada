@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
-import { AppConfigurationService } from '../app-configuration.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { CarModel } from '../../models/car/car.model';
@@ -15,9 +14,9 @@ export class AddCarService {
   private apiUrl: string;
   private jwtToken: any;
 
-  constructor(private authService: AuthenticationService, private appConfig: AppConfigurationService,private httpClient: HttpClient) 
+  constructor(private authService: AuthenticationService,private httpClient: HttpClient) 
   {
-    this.apiUrl = appConfig.getApiUrl();
+    this.apiUrl = authService.getApiUrl();
   }
 
   hideAddCarBody() {
