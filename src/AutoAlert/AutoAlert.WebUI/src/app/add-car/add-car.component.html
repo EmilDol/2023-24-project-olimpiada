@@ -112,7 +112,6 @@
                     <input type="date" title="Please the date of expiration on your technical check" required name="TechnicalCheckExpirationDate" #technicalCheckExpirationDate = "ngModel" [(ngModel)]="car.technicalCheckExpirationDate">
                 </div>
 
-                <!-- region pick should be here -->
             }
 
             @if (showEngineOilInfo === true) 
@@ -123,10 +122,10 @@
         
                 <div class="inputDiv">
                     <label><h5>Oil type:</h5></label>
-                    <input type="text" required name="OilType" title="Please enter your oil type" #oilType = "ngModel" [(ngModel)]="engineOil.oilType">
+                    <input type="text" required name="OilType" title="Please enter your oil type" #oilType = "ngModel" [(ngModel)]="engineOil.oilType" pattern="....+">
                     @if(!oilType.valid && oilType.touched)
                     {
-                    <p>oilType is required</p>
+                    <p>Oil Type is required and must be at least 4 symbols</p>
                     }
                 </div>
 
@@ -162,10 +161,10 @@
         
                 <div class="inputDiv">
                     <label><h5>Oil type:</h5></label>
-                    <input type="text" required name="OilType" title="Please enter your oil type" #oilType = "ngModel" [(ngModel)]="transmitionOil.oilType">
+                    <input type="text" required name="OilType" title="Please enter your oil type" #oilType = "ngModel" [(ngModel)]="transmitionOil.oilType" pattern="....+">
                     @if(!oilType.valid && oilType.touched)
                     {
-                    <p>oilType is required</p>
+                    <p>Oil Type is required and must be at least 4 symbols</p>
                     }
                 </div>
 
