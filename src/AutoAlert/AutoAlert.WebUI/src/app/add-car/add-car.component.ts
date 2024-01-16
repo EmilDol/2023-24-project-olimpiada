@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, booleanAttribute } from '@angular/core';
 import { CarModel } from '../shared/models/car/car.model';
 import { AddCarService } from '../shared/services/add-car/add-car.service';
 import { CarMakesService } from '../shared/services/car-make-service';
@@ -19,6 +19,7 @@ import { RegionModel } from '../shared/models/region/region.model';
 export class AddCarComponent implements OnInit  {
 
   ngOnInit() {
+
     this.regionService.getAllRegions().subscribe({
       next: (allRegions) => {
         this.allRegions = allRegions;
@@ -185,6 +186,9 @@ export class AddCarComponent implements OnInit  {
       this.car.transmitionOil = this.transmitionOil
       this.car.vignette = this.vignette
       this.car.insurence = this.insurence
+
+      console.log("boolean before sending" + JSON.stringify(this.car.taxPayed))
+      console.log("car before sending to service"+JSON.stringify(this.car))
 
       this.addCarService.onSubmit(this.car).subscribe(
         (response) => {

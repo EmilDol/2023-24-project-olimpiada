@@ -44,7 +44,7 @@ export class AddCarService {
     // Log headers for verification
     console.log('Headers:', headers);
 
-    return this.httpClient.post(`${this.apiUrl}/car/create`, carModel, options)
+    return this.httpClient.post(`${this.apiUrl}/car/create`, JSON.stringify(carModel), options)
     .pipe(
       tap(response => {
         // Log the response for debugging

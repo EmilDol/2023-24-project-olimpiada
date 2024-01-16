@@ -1,13 +1,27 @@
-@if (!authCheck()) 
-{
-<button (click)="onRegisterClick()">Register</button>
-<button  (click)="onLoginClick()">Login</button>
-}
+<div class="container">
+  <header>
+      <img class="logo" src="" alt="Your Logo">
+      <div class="buttonContainer">
+          <div>
+            @if (!authCheck()) 
+            {
+            <button (click)="onRegisterClick()">Register</button>
+            <button  (click)="onLoginClick()">Login</button>
+            }
+            @if (authCheck()) 
+            {
+            <button (click)="onAddCarClick()">Add Car</button>
+            }
+          </div>
+      </div>
+     
+      
+    </header>
+</div>
 
-@if (authCheck()) 
-{
-  <button  (click)="onAddCarClick()">Add Car</button>
-}
+
+
+
 
 @if (hideRegisterComponent == false) 
 {

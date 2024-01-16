@@ -1,19 +1,19 @@
 <div class="container">
-    {{addForm.value | json}}
-    <!-- <form #regForm="ngForm"  class="register" (ngSubmit)="onSubmit()"> -->
-        <form #addForm="ngForm">
-            <div class="buttons">
-                <div class="stretched-button">
-                <button class="btn btn-secondary" type="button" id="CarInfo" (click)="renderNewForm('showCarInfo')">Car info</button>
-                <button class="btn btn-secondary" type="button" id="EngineOilInfo" (click)="renderNewForm('showEngineOilInfo')">Engine oil info</button>
-                <button class="btn btn-secondary" type="button" id="TransmissionOilInfo" (click)="renderNewForm('showTransmissionOilInfo')">Transmission oil info</button>
-                <button class="btn btn-secondary" type="button" id="VignetteInfo" (click)="renderNewForm('showVignetteInfo')">Vignette info</button>
-                <button class="btn btn-secondary" type="button" id="Inshurance" (click)="renderNewForm('showInshurenceInfo')">Inshurance</button>
-                </div>
+    <!-- {{addForm.value | json}} -->
+   
+    <form #addForm="ngForm">
+        <div class="buttons">
+            <div class="stretched-button">
+            <button class="btn btn-secondary" type="button" id="CarInfo" (click)="renderNewForm('showCarInfo')">Car info</button>
+            <button class="btn btn-secondary" type="button" id="EngineOilInfo" (click)="renderNewForm('showEngineOilInfo')">Engine oil info</button>
+            <button class="btn btn-secondary" type="button" id="TransmissionOilInfo" (click)="renderNewForm('showTransmissionOilInfo')">Transmission oil info</button>
+            <button class="btn btn-secondary" type="button" id="VignetteInfo" (click)="renderNewForm('showVignetteInfo')">Vignette info</button>
+            <button class="btn btn-secondary" type="button" id="Inshurance" (click)="renderNewForm('showInshurenceInfo')">Inshurance</button>
             </div>
+        </div>    
             
             
-            @if (showCarInfo === true) 
+        @if (showCarInfo === true) 
             {
                 <div>
                     <h1>Add car</h1>
@@ -104,11 +104,8 @@
 
                 <div class="inputDiv">
                     <label><h5>TAX?:</h5></label>
-                    <label><h6>TAX?NO:</h6></label>
-                    <input id="radioButton" type="radio" required name="TaxPayed" #taxTrue = "ngModel" [(ngModel)]="car.taxPayed" value="true">
-                    <label><h6>TAX? YES:</h6></label>
-                    <input type="radio" required name="TaxNotPayed" #taxFalse = "ngModel" [(ngModel)]="car.taxPayed" value="false">
-                </div>
+                    <input id="checkBox" required name="taxPayed" #taxPayed="ngModel" type="checkbox" [(ngModel)]="car.taxPayed">
+                </div>                      
 
                 <div class="inputDiv">
                     <label><h5>Technical check Expiration Date:</h5></label>
@@ -237,6 +234,6 @@
                 <button class="btn btn-primary" name="Submit" [disabled]="!validateForm()" id="Submit" (click)="onSubmit()">Submit</button>
                 <button class="btn btn-secondary" type="button" id="Close" (click)="unrenderComponent()">Close</button>
                 <button class="btn btn-secondary" type="button" id="DisplayAll" (click)="displayAll()">DisplayAll</button>
-            </div>
+            </div>    
     </form>
 </div>

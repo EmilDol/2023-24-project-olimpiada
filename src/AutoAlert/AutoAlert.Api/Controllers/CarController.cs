@@ -25,10 +25,10 @@ namespace AutoAlert.Api.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Create([FromBody] CarCreateDto car)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
