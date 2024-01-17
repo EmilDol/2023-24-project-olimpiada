@@ -87,10 +87,10 @@ namespace AutoAlert.Api.Controllers
 
             var result = await userManager.CheckPasswordAsync(user, request.Password);
 
-            if (!user.EmailConfirmed && !user.PhoneNumberConfirmed)
-            {
-                return Forbid();
-            }
+            //if (!user.EmailConfirmed && !user.PhoneNumberConfirmed)
+            //{
+            //    return Forbid();
+            //}
 
             if (result)
             {

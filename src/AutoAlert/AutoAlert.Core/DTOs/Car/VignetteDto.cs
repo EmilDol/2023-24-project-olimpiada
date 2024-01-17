@@ -2,7 +2,7 @@
 
 namespace AutoAlert.Core.DTOs.Car
 {
-    public class VignetteCreateDto
+    public class VignetteDto
     {
         public Guid Id { get; set; }
 

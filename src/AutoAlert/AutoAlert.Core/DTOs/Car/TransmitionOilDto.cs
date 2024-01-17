@@ -2,7 +2,7 @@
 
 namespace AutoAlert.Core.DTOs.Car
 {
-    public class EngineOilCreateDto
+    public class TransmitionOilDto
     {
         public Guid Id { get; set; }
 

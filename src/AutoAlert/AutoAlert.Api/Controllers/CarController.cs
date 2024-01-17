@@ -22,8 +22,7 @@ namespace AutoAlert.Api.Controllers
 
         
         [HttpPost("create")]
-        [AllowAnonymous]
-        public async Task<ActionResult> Create([FromBody] CarCreateDto car)
+        public async Task<ActionResult> Create([FromBody] CarDto car)
         {
             if (!ModelState.IsValid)
             {
@@ -42,6 +41,25 @@ namespace AutoAlert.Api.Controllers
             {
                 return BadRequest();
             }
+        }
+
+
+        [HttpGet("get-all")]
+        public async Task<ActionResult<List<CarBaseInfoDto>>> GetAll()
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var cars = await carService.GetAll(userId);
+
+            return cars;
+        }
+
+
+        [HttpGet("get-by-id")]
+        public async Task<ActionResult<CarDto>> GetById(Guid id)
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var car = await carService.GetById(userId, id);
+            return car;
         }
     }
 }

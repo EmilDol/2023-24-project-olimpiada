@@ -4,7 +4,7 @@ using AutoAlert.Data.Models.Enums;
 
 namespace AutoAlert.Core.DTOs.Car
 {
-    public class CarCreateDto
+    public class CarDto
     {
         public Guid Id { get; set; }
 
@@ -45,14 +45,16 @@ namespace AutoAlert.Core.DTOs.Car
         public Guid RegionId { get; set; }
 
         [Required]
-        public EngineOilCreateDto EngineOil { get; set; } = null!;
+        public EngineOilDto EngineOil { get; set; } = null!;
 
         [Required]
-        public TransmitionOilCreateDto TransmitionOil { get; set; } = null!;
+        public TransmitionOilDto TransmitionOil { get; set; } = null!;
 
-        public VignetteCreateDto? Vignette { get; set; }
+        public VignetteDto? Vignette { get; set; }
 
-        public InsuranceCreateDto? Insurance { get; set; }
+        public InsuranceDto? Insurance { get; set; }
+
+        public string? Region { get; set; }
 
     }
 }
