@@ -44,6 +44,11 @@ export class AppComponent implements OnInit {
     }
   }
 
+  logout() {
+    this.authService.logout()
+    this.authCheck()
+  }
+
   authCheck(): boolean{
     console.log(this.authService.isAuthenticated())
     return this.authService.isAuthenticated();

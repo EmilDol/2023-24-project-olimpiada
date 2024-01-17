@@ -20,7 +20,8 @@ export class RegisterService {
 
   submitUser(user: User): Observable<any>
   {
-    return this.httpClient.post<any>(this.apiUrl+'/users/register',  user ).pipe(
+    return this.httpClient.post<any>(this.apiUrl+'/users/register',  user )
+    .pipe(
       map(response => {
         if (response && response.Succeeded) {
           return true;

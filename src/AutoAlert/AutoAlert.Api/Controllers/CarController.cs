@@ -35,7 +35,7 @@ namespace AutoAlert.Api.Controllers
 
             if (success)
             {
-                return Ok();
+                return Ok(true);
             }
             else
             {

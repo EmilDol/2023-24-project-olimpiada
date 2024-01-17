@@ -1,6 +1,6 @@
 <div class="container">
   <header>
-      <img class="logo" src="" alt="Your Logo">
+      <img class="logo" src="" alt="CER">
       <div class="buttonContainer">
           <div>
             @if (!authCheck()) 
@@ -11,6 +11,7 @@
             @if (authCheck()) 
             {
             <button (click)="onAddCarClick()">Add Car</button>
+            <button (click)="logout()">Logout</button>
             }
           </div>
       </div>

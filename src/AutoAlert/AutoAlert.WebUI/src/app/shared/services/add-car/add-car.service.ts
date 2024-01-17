@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { CarModel } from '../../models/car/car.model';
@@ -43,17 +43,18 @@ export class AddCarService {
     // Log headers for verification
     console.log('Headers:', headers);
 
-    return this.httpClient.post(`${this.apiUrl}/car/create`, JSON.stringify(carModel), options)
+    return this.httpClient.post<any>(`${this.apiUrl}/car/create`, JSON.stringify(carModel), options)
     .pipe(
-      tap(response => {
-        // Log the response for debugging
-        console.log('API Response:', response);
+      map(response => {
+        const statusCode = response.status;
+        console.log('Status Code:', statusCode);
+          return response;
+        
       }),
       catchError(error => {
-        // Log any errors for debugging
-        console.error('API Error:', error);
-        throw error;
-    })
-  );
+        console.error('Login error:', error);
+        return throwError(() => error);
+      })
+    )
   }
 }

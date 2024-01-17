@@ -193,7 +193,7 @@ export class AddCarComponent implements OnInit  {
       this.addCarService.onSubmit(this.car).subscribe(
         (response) => {
           console.log('API response:', response);
-          if(response.success == true) this.addCarService.hideAddCarBody()
+          if(response == true) this.addCarService.hideAddCarBody()
           else console.log(response.error)
         },
         (error) => {
