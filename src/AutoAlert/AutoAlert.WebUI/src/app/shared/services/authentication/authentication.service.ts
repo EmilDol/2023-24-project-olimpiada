@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { User } from '../../models/user.model';
+import { User } from '../../models/user/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +20,13 @@ export class AuthenticationService {
     return this.apiUrl;
   }
 
-  hideLoginBody() {
-    this.hideLoginComponent.next(true);
-  }
+  // hideLoginBody() {
+  //   this.hideLoginComponent.next(true);
+  // }
 
-  showLoginBody() {
-    this.hideLoginComponent.next(false);
-  }
+  // showLoginBody() {
+  //   this.hideLoginComponent.next(false);
+  // }
 
   constructor(private http: HttpClient) {}
 

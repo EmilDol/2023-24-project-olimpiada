@@ -5,12 +5,13 @@
           <div>
             @if (!authCheck()) 
             {
-            <button (click)="onRegisterClick()">Register</button>
-            <button  (click)="onLoginClick()">Login</button>
+            <button routerLink="/Register">Register</button>
+            <button routerLink="/Login">Login</button>
             }
             @if (authCheck()) 
             {
-            <button (click)="onAddCarClick()">Add Car</button>
+            <button routerLink="/AddCar">Add Car</button>
+            <button routerLink="/AllCars">All cars</button>
             <button (click)="logout()">Logout</button>
             }
           </div>
@@ -19,28 +20,6 @@
       
     </header>
 </div>
+<router-outlet></router-outlet>
 
 
-
-
-
-@if (hideRegisterComponent == false) 
-{
-  <div>
-  <app-register></app-register>
-</div>
-}
-
-@if (hideLoginComponent == false) 
-{
-  <div>
-  <app-login></app-login>
-</div>
-}
-
-@if (hideAddCarComponent == false) 
-{
-  <div>
-  <app-add-car></app-add-car>
-</div>
-}

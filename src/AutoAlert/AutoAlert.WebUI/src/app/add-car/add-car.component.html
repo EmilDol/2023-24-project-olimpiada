@@ -197,15 +197,6 @@
                 <div>
                     <h1>Inshurence</h1>
                 </div>
-        
-                <!-- <div class="inputDiv">
-                    <label><h5>Plate Number:</h5></label>
-                    <input type="text" required name="PlateNumber" #plateNumber = "ngModel" [(ngModel)]="car.plateNumber">
-                    @if(!plateNumber.valid && plateNumber.touched)
-                    {
-                    <p>Plate number is required</p>
-                    }
-                </div> -->
             }
 
             @if (showVignetteInfo === true) 
@@ -231,8 +222,7 @@
         
             <div class="buttons"> 
                 <button class="btn btn-primary" name="Submit" [disabled]="!validateForm()" id="Submit" (click)="onSubmit()">Submit</button>
-                <button class="btn btn-secondary" type="button" id="Close" (click)="unrenderComponent()">Close</button>
-                <button class="btn btn-secondary" type="button" id="DisplayAll" (click)="displayAll()">DisplayAll</button>
+                <button class="btn btn-secondary" type="button" id="Close" routerLink="/">Close</button>
             </div>    
     </form>
 </div>

@@ -18,8 +18,9 @@ export class CarModel
   public taxPayed?: boolean;
   public technicalCheckExpirationDate?: Date;
   public regionId?: string;
+  public region?: string;
   public engineOil?: EngineOilModel;
   public transmitionOil?: TransmitionOilModel;
-  public vignette?: VignetteModel;
-  public insurence?: InsurenceModel;
+  public vignette?: VignetteModel | null;
+  public insurence?: InsurenceModel | null;
 }

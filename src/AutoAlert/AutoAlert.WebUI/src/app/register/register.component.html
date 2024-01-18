@@ -1,5 +1,5 @@
 <div class="container">
-    {{regForm.value | json}}
+    <!-- {{regForm.value | json}} -->
     <form #regForm="ngForm"  class="register" (ngSubmit)="onSubmit()">
         <div>
             <h1>Register</h1>
@@ -54,7 +54,7 @@
         <div class="buttons"> 
             
             <button class="btn btn-primary" name="Submit" type="submit" id="Submit" [disabled]="!regForm.valid">Submit</button>
-            <button class="btn btn-secondary" type="button" id="Close" (click)="unrenderComponent()">Close</button>
+            <button class="btn btn-secondary" type="button" id="Close" routerLink="/">Close</button>
             
         </div>
     </form>

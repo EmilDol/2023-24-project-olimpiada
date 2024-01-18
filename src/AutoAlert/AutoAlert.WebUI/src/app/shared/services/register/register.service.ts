@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user.model';
+import { User } from '../../models/user/user.model';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { AuthenticationService } from './authentication/authentication.service';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -36,12 +36,5 @@ export class RegisterService {
     );
   }
   
-  hideRegisterBody() {
-    this.hideRegisterComponent.next(true);
-    console.log("Service hideRegisterComponent = true")
-  }
 
-  showRegisterBody() {
-    this.hideRegisterComponent.next(false);
-  }
 }

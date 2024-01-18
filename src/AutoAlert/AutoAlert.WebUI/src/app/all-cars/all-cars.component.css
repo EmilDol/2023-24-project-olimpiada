@@ -1,0 +1,62 @@
+.container {
+    margin-top: 50px;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: top;
+}
+
+.car-card{
+    border: 1;
+    border-style: solid;
+    border-radius: 10px;
+    color: white;
+}
+
+button {
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 10px;
+    background: linear-gradient(315deg, #182c59, #1d346a);
+    box-shadow: -20px -20px 81px #0e1932, 20px 20px 81px #294a95;
+}
+
+button:hover {
+    background: linear-gradient(315deg, #132245, #162952);
+}
+
+button:focus {
+    background: linear-gradient(315deg, #0d162d, #0f1a36);
+}
+
+#Submit {
+    border-color: greenyellow;
+}
+
+#Close {
+    border-color: #FFD02C;
+}
+
+h1 {
+    padding-top: 1.5rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* Adjusted media query */
+@media (min-width: 15rem) {
+    .container form {
+        .module h2 {
+            font-size: 2rem;
+        }
+    }
+}
+
+.container form .buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+

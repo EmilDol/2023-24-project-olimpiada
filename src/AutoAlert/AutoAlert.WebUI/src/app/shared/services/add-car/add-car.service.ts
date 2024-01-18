@@ -19,16 +19,6 @@ export class AddCarService {
     this.apiUrl = authService.getApiUrl();
   }
 
-  hideAddCarBody() {
-    this.hideAddCarComponent.next(true);
-    console.log("Service hideAddCarComponent = true")
-  }
-
-  showAddCarBody() {
-    this.hideAddCarComponent.next(false);
-    console.log("Service hideAddCarComponent = false")
-  }
-
   onSubmit(carModel: CarModel): Observable <any> {
     
     this.jwtToken = this.authService.getToken();

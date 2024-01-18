@@ -1,6 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { User } from '../shared/models/user.model';
+import { User } from '../shared/models/user/user.model';
 import { AuthenticationService } from '../shared/services/authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,15 +18,18 @@ export class LoginComponent implements OnInit {
   user: User = new User();
   public errorString?: string;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(
+    private authService: AuthenticationService,
+    public router: Router
+    ) { }
 
   ngOnInit(): void {
     
   }
 
-  unrenderComponent() {
-    this.authService.hideLoginBody();
-  }
+  // unrenderComponent() {
+  //   this.authService.hideLoginBody();
+  // }
 
   onSubmit() { 
     this.authService.login(this.user).subscribe((success: boolean) => 
@@ -33,7 +37,7 @@ export class LoginComponent implements OnInit {
       console.log(success)
       if (success === true) 
       {
-      this.authService.hideLoginBody();
+      this.router.navigate(['/'])
       }
     },
      

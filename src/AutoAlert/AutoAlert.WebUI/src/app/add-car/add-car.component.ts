@@ -1,7 +1,7 @@
 import { Component, OnInit, booleanAttribute } from '@angular/core';
 import { CarModel } from '../shared/models/car/car.model';
 import { AddCarService } from '../shared/services/add-car/add-car.service';
-import { CarMakesService } from '../shared/services/car-make-service';
+import { CarMakesService } from '../shared/services/car-models/car-make-service';
 import { EngineOilModel } from '../shared/models/car/engine-oil.model';
 import { TransmitionOilModel } from '../shared/models/car/transmition-oil.model';
 import { VignetteModel } from '../shared/models/car/vignette.model';
@@ -9,6 +9,7 @@ import { InsurenceModel } from '../shared/models/car/insurence.model';
 import { AutocompleteService } from '../shared/services/autocomplete/autocomplete.service';
 import { RegionService } from '../shared/services/region/region.service';
 import { RegionModel } from '../shared/models/region/region.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-car',
@@ -53,7 +54,14 @@ export class AddCarComponent implements OnInit  {
   showVignetteInfo: boolean = false;
   showInshurenceInfo: boolean = false;
 
-  constructor(private regionService: RegionService, private autocompleteService: AutocompleteService, private addCarService: AddCarService, public carMakesService: CarMakesService){}
+  constructor
+  (
+    private regionService: RegionService,
+    private autocompleteService: AutocompleteService, 
+    private addCarService: AddCarService, 
+    public carMakesService: CarMakesService,
+    public router: Router
+    ){}
   
   car: CarModel = new CarModel();
   region: RegionModel = new RegionModel();
@@ -62,11 +70,6 @@ export class AddCarComponent implements OnInit  {
   vignette: VignetteModel = new VignetteModel();
   insurence: InsurenceModel = new InsurenceModel();
   public errorString?: string;
-
-    unrenderComponent() 
-    {
-      this.addCarService.hideAddCarBody();
-    }
 
     renderNewForm(toShow: string)
     {
@@ -193,7 +196,7 @@ export class AddCarComponent implements OnInit  {
       this.addCarService.onSubmit(this.car).subscribe(
         (response) => {
           console.log('API response:', response);
-          if(response == true) this.addCarService.hideAddCarBody()
+          if(response == true)  this.router.navigate(['/'])
           else console.log(response.error)
         },
         (error) => {

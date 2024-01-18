@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { User } from '../shared/models/user.model';
-import { RegisterService } from '../shared/services/register.service';
-import { AuthenticationService } from '../shared/services/authentication/authentication.service';
+import { User } from '../shared/models/user/user.model';
+import { RegisterService } from '../shared/services/register/register.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,29 +17,25 @@ import { AuthenticationService } from '../shared/services/authentication/authent
 export class RegisterComponent implements OnInit {
  
   user: User = new User();
-  constructor(private registerService: RegisterService, private loginService: AuthenticationService) { }
-  hideRegisterComponent: boolean = true;
+  constructor(
+
+    private registerService: RegisterService, 
+    private router: Router
+    ) { }
 
   ngOnInit() {
     
   }
 
   onSubmit() { 
-    this.registerService.submitUser(this.user).subscribe(( response: boolean ) => {
-       if(response) {
-          this.registerService.hideRegisterBody();
-          this.loginService.showLoginBody();
-      }
-  }, error => {
-      throw new Error('Failed to submit user');
-  });
+      this.registerService.submitUser(this.user).subscribe(( response: boolean ) => {
+        if(response==true) {
+          this.router.navigate(['/Login']);
+        }
+    }, error => {
+        throw new Error('Failed to submit user');
+    });  
   };
-
-    unrenderComponent() 
-    {
-        this.registerService.hideRegisterBody();
-        console.log("hideRegisterComponent is :");
-    }
 
     passwordComparer(): boolean
     {

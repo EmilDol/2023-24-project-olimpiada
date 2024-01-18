@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="car-card" *ngFor="let car of allCars">
+        <div class="car-details">
+          <p><strong>Plate Number:</strong> {{ car.plateNumber }}</p>
+          <p><strong>Model:</strong> {{ car.model }}</p>
+          <p><strong>Make:</strong> {{ car.make }}</p>
+    
+        </div>
+        <div class="car-actions">
+          <button routerLink="/InspectCar">Inspect</button>
+          <button routerLink="/DeleteCar">Delete</button>
+        </div>
+      </div>
+      <div>
+        <button routerLink="/">Close</button>
+      </div>
+</div>
+
