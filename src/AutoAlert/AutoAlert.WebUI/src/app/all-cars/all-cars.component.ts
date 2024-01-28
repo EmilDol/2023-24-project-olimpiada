@@ -3,6 +3,7 @@ import { GetAllCarsService } from '../shared/services/get-all-cars/get-all-cars.
 import { CarModel } from '../shared/models/car/car.model';
 import { AuthenticationService } from '../shared/services/authentication/authentication.service';
 import { Router } from '@angular/router';
+import { InspectCarService } from '../shared/services/inspect-car/inspect-car.service';
 
 @Component({
   selector: 'app-all-cars',
@@ -14,7 +15,8 @@ export class AllCarsComponent implements OnInit{
   constructor(
     private router: Router,
     private auth: AuthenticationService,
-    public getAllCarsService: GetAllCarsService
+    public getAllCarsService: GetAllCarsService,
+    private getCarService: InspectCarService
   ){};
 
   public allCars: CarModel[] = [];
@@ -32,6 +34,11 @@ export class AllCarsComponent implements OnInit{
         }
       });
     }
-   
+  }
+
+  inspectCar(id:string | undefined){
+    if (id) {
+      this.router.navigate(['InspectCar', id]);
+  } console.log(id)
   }
 }

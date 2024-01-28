@@ -54,7 +54,7 @@ namespace AutoAlert.Api.Controllers
         }
 
 
-        [HttpGet("get-by-id")]
+        [HttpGet("get-by-id/{id?}")]
         public async Task<ActionResult<CarDto>> GetById(Guid id)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;

@@ -8,6 +8,7 @@ export class CarModel
 { 
   [key: string]: any;
 
+  public id?:string;
   public plateNumber?: string;
   public model?: string;
   public make?: string;
