@@ -12,7 +12,7 @@ export class AiChatService {
   private apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   // Replace with your OpenAI API key
-  private apiKey = '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';
+  private apiKey = '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';
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +23,12 @@ export class AiChatService {
     });
 
     const body = JSON.stringify({
-      model: 'text-davinci-003',
+      messages: [
+        {
+          "role": "user",
+          "content": ` ${text}`
+        }],
+      model: 'gpt-3.5-turbo',
       prompt: text,
       max_tokens: 150,
       temperature: 0.7
