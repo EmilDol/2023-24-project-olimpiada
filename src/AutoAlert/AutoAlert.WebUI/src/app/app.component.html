@@ -7,12 +7,13 @@
             {
             <button routerLink="/Register">Register</button>
             <button routerLink="/Login">Login</button>
+            <button routerLink="/Chat">ai chat</button>
+
             }
             @if (authCheck()) 
             {
             <button routerLink="/AddCar">Add Car</button>
             <button routerLink="/AllCars">All cars</button>
-            <button routerLink="/Chat">All cars</button>
             <button (click)="logout()">Logout</button>
             }
           </div>

@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { RouterModule } from '@angular/router';
 import { AllCarsComponent } from './all-cars/all-cars.component';
 import { InspectCarComponent } from './inspect-car/inspect-car.component';
+import { AiChatComponent } from './ai-chat/ai-chat.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { InspectCarComponent } from './inspect-car/inspect-car.component';
     LoginComponent,
     AddCarComponent, 
     AllCarsComponent, 
-    InspectCarComponent
+    InspectCarComponent,
+    AiChatComponent
   ],
   imports: [
     FormsModule,

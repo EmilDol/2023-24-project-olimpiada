@@ -1,1 +1,12 @@
-<p>ai-chat works!</p>
+<div class="chat-container">
+    <div class="chat-history">
+      <ul>
+        <li *ngFor="let message of chatHistory">{{ message }}</li>
+      </ul>
+    </div>
+    <div class="chat-input">
+      <input type="text" [(ngModel)]="userInput" (keyup.enter)="onSendMessage()">
+      <button (click)="onSendMessage()">Send</button>
+    </div>
+  </div>
+  

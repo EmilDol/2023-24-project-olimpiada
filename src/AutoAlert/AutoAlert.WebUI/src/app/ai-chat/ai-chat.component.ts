@@ -28,6 +28,7 @@ export class AiChatComponent implements OnInit {
       this.chatHistory.push(`You: ${this.userInput}`);
       this.chatHistory.push(`Gemini: ${response}`);
       this.userInput = ''; // Clear input after sending
+      console.log(JSON.stringify(response))
     } catch (error) {
       console.error('Error calling Gemini API:', error);
       // Handle API errors gracefully, e.g., display error message to user

@@ -28,8 +28,10 @@ export class AiChatService {
       max_tokens: 150,
       temperature: 0.7
     });
+    
+    console.log("In Service")
 
-    return this.http.post(this.apiUrl, body, { headers })
+    return this.http.post<any>(this.apiUrl, body, { headers })
       .pipe(
         catchError(error => {
           console.error('Error sending message:', error);
