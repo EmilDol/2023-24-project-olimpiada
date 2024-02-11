@@ -71,6 +71,7 @@ export class CarMakesService {
       'Tata Motors',
       'Mahindra',
       'Perodua',
+      'Peugeot',
       'Proton',
       'Wuling',
       'BYD',

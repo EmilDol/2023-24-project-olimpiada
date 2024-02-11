@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 import { AllCarsComponent } from './all-cars/all-cars.component';
 import { InspectCarComponent } from './inspect-car/inspect-car.component';
 import { AiChatComponent } from './ai-chat/ai-chat.component';
+import { ScrollListenerDirective } from './shared/directives/scroll-listener.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AiChatComponent } from './ai-chat/ai-chat.component';
     AddCarComponent, 
     AllCarsComponent, 
     InspectCarComponent,
-    AiChatComponent
+    AiChatComponent,
+    ScrollListenerDirective
   ],
   imports: [
     FormsModule,

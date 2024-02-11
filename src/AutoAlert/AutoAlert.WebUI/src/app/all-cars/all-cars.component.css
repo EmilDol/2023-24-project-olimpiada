@@ -1,6 +1,5 @@
 .container {
     margin-top: 50px;
-    height: 100vh;
     display: flex;
     align-items: flex-start;
     justify-content: top;
@@ -42,16 +41,6 @@ h1 {
     color: white;
     display: flex;
     justify-content: center;
-}
-
-
-/* Adjusted media query */
-@media (min-width: 15rem) {
-    .container form {
-        .module h2 {
-            font-size: 2rem;
-        }
-    }
 }
 
 .container form .buttons {
