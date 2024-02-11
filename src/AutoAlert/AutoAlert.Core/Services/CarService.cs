@@ -96,7 +96,7 @@ namespace AutoAlert.Core.Services
                 .Where(c => c.OwnerId == userId)
                 .Include(c => c.EngineOilReminder)
                 .Include(c => c.TransmitionOilReminder)
-                .Include(c => c.InshurenceReminderId)
+                .Include(c => c.InsurenceReminder)
                 .Include(c => c.VignetteReminder)
                 .Include(c => c.Region)
                 .Select(c => new CarDto
