@@ -1,6 +1,5 @@
 .container {
-    margin-top: 50px;
-    height: 100vh;
+    margin-top: 70px;
     display: flex;
     align-items: flex-start;
     justify-content: top;
@@ -34,9 +33,9 @@ form {
     border-color: #0d162d;
     background: #1A1F3B;
     box-shadow: -14px -14px 48px #0b0d19, 14px 14px 48px #29315d;
-    max-width: 30vw;
-    min-width: 40rem;
-    width: auto;
+    max-width: 80%; /* Adjust as needed */
+    width: 50%; 
+    min-width: 300px;
     padding-bottom: 2rem;
     display: flex;
     flex-direction: column; /* Adjusted for flex container */
@@ -54,13 +53,9 @@ input[type=text][name="firstName"] {
     min-height: 1.5rem;
     height: 3vh;
     max-height: 5rem;
+    width: 100%; 
 }
 
-.inputDiv input[type="radio"] {
-    margin-right: 5px;
-    height: 1rem;
-    width: 1rem;
-}
 
 .inputDiv input {
     min-height: 1.5rem;
@@ -72,6 +67,7 @@ input[type=text][name="firstName"] {
     border-style: solid;
     border-radius: 5px;
     flex-grow: 1; /* Takes the remaining width */
+    width: 100%; 
 }
 
 .inputDiv {
@@ -133,11 +129,9 @@ p {
 }
 
 /* Adjusted media query */
-@media (min-width: 15rem) {
-    .container form {
-        .module h2 {
-            font-size: 2rem;
-        }
+@media (max-width: 763px) {
+    form{
+        width: 100%;
     }
 }
 

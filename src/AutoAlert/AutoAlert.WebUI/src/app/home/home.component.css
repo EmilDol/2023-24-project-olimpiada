@@ -1,6 +1,5 @@
 .container {
     margin-top: 50px;
-    height: 100vh;
     display: flex;
     align-items: flex-start;
     justify-content: top;

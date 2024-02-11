@@ -23,18 +23,16 @@ export class RegisterService {
     return this.httpClient.post<any>(this.apiUrl+'/users/register',  user )
     .pipe(
       map(response => {
-        if (response && response.Succeeded) {
+        console.log(JSON.stringify(response))
+        if (response = true) {
           return true;
         } else {
           return false;
         }
       }),
       catchError(error => {
-        console.error('Login error:', error);
         return throwError(() => error);
       })
     );
   }
-  
-
 }

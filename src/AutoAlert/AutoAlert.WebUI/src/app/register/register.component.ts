@@ -40,7 +40,6 @@ export class RegisterComponent implements OnInit {
     passwordComparer(): boolean
     {
       if(this.user.password === this.user.confirmPassword)  {
-        console.log("password :"+ this.user.password + "confirmPassword" + this.user.confirmPassword)
         return true
       }return false
     }

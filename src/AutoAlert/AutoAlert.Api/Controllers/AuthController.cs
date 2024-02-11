@@ -67,7 +67,7 @@ namespace AutoAlert.Api.Controllers
             {
                 //await mailService.SendMail(user.Email, $"Registration - You have successfully registered!");
 
-                return Ok();
+                return Ok(true);
             }
 
             return BadRequest(result.Errors);

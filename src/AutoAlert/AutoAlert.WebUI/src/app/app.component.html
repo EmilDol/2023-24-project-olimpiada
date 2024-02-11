@@ -1,45 +1,45 @@
-<header>
+<header appScrollListener (scrolled)="closeMenu()">
   <nav class="navbar">
     <a routerLink="/" class="nav-branding">AutoAlert</a>
 
-    <ul class="nav-menu">
+    <ul class="nav-menu" [class.active]="isMenuOpen">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/">Home</a>
+        <a class="nav-link" (click)="closeMenu()" routerLink="/">Home</a>
       </li>
 
 
       @if (!authCheck()) 
       {
         <li class="nav-item">
-          <a class="nav-link" routerLink="/Login">Login</a>
+          <a class="nav-link" (click)="closeMenu()" routerLink="/Login">Login</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/Register">Register</a>
+          <a class="nav-link" (click)="closeMenu()" routerLink="/Register">Register</a>
         </li>
       }
       @else{
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/AddCar">Add Car</a>
+          <a class="nav-link" (click)="closeMenu()" routerLink="/AddCar">Add Car</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/AllCars">All Cars</a>
+          <a class="nav-link" (click)="closeMenu()" routerLink="/AllCars">All Cars</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/Chat">AI Helper</a>
+          <a class="nav-link" (click)="closeMenu()" routerLink="/Chat">AI Helper</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" (click)="logout()">Logout</a>
+          <a class="nav-link" (click)="closeMenu()" (click)="logout()">Logout</a>
         </li>
       }           
 
     </ul>
 
-    <div class="hamburger">
+    <div class="hamburger" (click)="toggleMenu()" [ngClass]="{'active': isMenuOpen}">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
@@ -47,8 +47,4 @@
   </nav>
 </header>
 
-<script src="/src/app/shared/js-scripts/hamburger.js"></script>
-
 <router-outlet></router-outlet> 
-
-

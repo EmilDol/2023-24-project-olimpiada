@@ -36,11 +36,11 @@ export class AuthenticationService {
   }
 
   getToken(): string | null {
-    return this.token || localStorage.getItem(this.tokenKey);
+    return localStorage.getItem(this.tokenKey);
   }
 
   isAuthenticated(): boolean {
-    return !!this.token;
+    return !!this.getToken();
   }
 
   login(user: User): Observable<boolean> {

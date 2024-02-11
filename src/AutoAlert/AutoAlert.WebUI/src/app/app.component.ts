@@ -24,9 +24,13 @@ export class AppComponent implements OnInit {
     return this.authService.isAuthenticated();
   }
 
-  isEnabled = false;
+  isMenuOpen = false;
 
-  toggleEnabled() {
-    this.isEnabled = !this.isEnabled;
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 }

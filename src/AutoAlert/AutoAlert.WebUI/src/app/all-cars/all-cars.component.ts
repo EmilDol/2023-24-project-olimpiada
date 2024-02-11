@@ -22,6 +22,7 @@ export class AllCarsComponent implements OnInit{
   public allCars: CarModel[] = [];
   
   ngOnInit(): void {
+    if(this.auth.isAuthenticated() === false) this.router.navigate(['/'])
     if (this.auth.isAuthenticated()) {
       this.getAllCarsService.getAllCars().subscribe({
         next: (allCars) => {
