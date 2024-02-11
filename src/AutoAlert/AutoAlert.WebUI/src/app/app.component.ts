@@ -23,4 +23,10 @@ export class AppComponent implements OnInit {
     console.log(this.authService.isAuthenticated())
     return this.authService.isAuthenticated();
   }
+
+  isEnabled = false;
+
+  toggleEnabled() {
+    this.isEnabled = !this.isEnabled;
+  }
 }
