@@ -119,7 +119,7 @@ namespace AutoAlert.Data.Migrations
                     b.Property<int>("HorsePower")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("InshurenceReminderId")
+                    b.Property<Guid?>("InshurenceReminderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Make")
@@ -168,7 +168,8 @@ namespace AutoAlert.Data.Migrations
                         .IsUnique();
 
                     b.HasIndex("InshurenceReminderId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[InshurenceReminderId] IS NOT NULL");
 
                     b.HasIndex("OwnerId");
 
@@ -262,6 +263,133 @@ namespace AutoAlert.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Regions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3295e68f-519c-4110-947d-10020365b95c"),
+                            Name = "Sliven"
+                        },
+                        new
+                        {
+                            Id = new Guid("2219d8e0-579c-4110-945d-10120365b95c"),
+                            Name = "Ruse"
+                        },
+                        new
+                        {
+                            Id = new Guid("3195e68b-519c-4110-946d-10120365b95c"),
+                            Name = "Smolyan"
+                        },
+                        new
+                        {
+                            Id = new Guid("1c19d8f0-57ac-4110-944d-10220365b95c"),
+                            Name = "Pernik"
+                        },
+                        new
+                        {
+                            Id = new Guid("2d19d8e2-57bc-4110-943d-10320365b95c"),
+                            Name = "Targovishte"
+                        },
+                        new
+                        {
+                            Id = new Guid("22cb1119-9934-4230-b0a0-1faf04b6f95c"),
+                            Name = "Burgas"
+                        },
+                        new
+                        {
+                            Id = new Guid("01faf0e4-174f-4750-807d-22f60e3a1a5c"),
+                            Name = "Sofia"
+                        },
+                        new
+                        {
+                            Id = new Guid("11faf812-1791-4750-808d-22f60e3a1a5c"),
+                            Name = "Kardzhali"
+                        },
+                        new
+                        {
+                            Id = new Guid("14faf3c8-1791-4750-808d-22f60e3a1a5c"),
+                            Name = "Varna"
+                        },
+                        new
+                        {
+                            Id = new Guid("12faf5c0-1791-4750-809d-22f60e3a1a5c"),
+                            Name = "Stara Zagora"
+                        },
+                        new
+                        {
+                            Id = new Guid("02b3d7c8-57ad-4038-bc66-4293e254b56c"),
+                            Name = "Haskovo"
+                        },
+                        new
+                        {
+                            Id = new Guid("05fafe08-1c4f-42a0-aa6d-52b8faf7aa5c"),
+                            Name = "Pazardzhik"
+                        },
+                        new
+                        {
+                            Id = new Guid("10faf664-238f-4100-9531-55b8faf3895c"),
+                            Name = "Pleven"
+                        },
+                        new
+                        {
+                            Id = new Guid("00faf4b0-5c38-4720-98e3-714805b16a5c"),
+                            Name = "Kyustendil"
+                        },
+                        new
+                        {
+                            Id = new Guid("23d1a252-593c-4b50-9141-77faf6604a5c"),
+                            Name = "Razgrad"
+                        },
+                        new
+                        {
+                            Id = new Guid("03d1a262-594c-4b50-9151-78faf6604a5c"),
+                            Name = "Montana"
+                        },
+                        new
+                        {
+                            Id = new Guid("26d1a242-594c-4b50-9131-79faf6604a5c"),
+                            Name = "Silistra"
+                        },
+                        new
+                        {
+                            Id = new Guid("4e27b2d5-7954-4610-b8fd-8143614c778d"),
+                            Name = "Blagoevgrad"
+                        },
+                        new
+                        {
+                            Id = new Guid("04059520-78d2-4456-9364-90e1d1d3465c"),
+                            Name = "Gabrovo"
+                        },
+                        new
+                        {
+                            Id = new Guid("2456e699-5173-4094-a749-91614e160a5c"),
+                            Name = "Lovech"
+                        },
+                        new
+                        {
+                            Id = new Guid("3395e693-5193-4084-a769-91714e160a5c"),
+                            Name = "Shumen"
+                        },
+                        new
+                        {
+                            Id = new Guid("3495e697-5193-4084-a779-91714e160a5c"),
+                            Name = "Plovdiv"
+                        },
+                        new
+                        {
+                            Id = new Guid("0afaf1f8-1a8f-40e0-b191-d605faf126cb"),
+                            Name = "Sofia-Grad"
+                        },
+                        new
+                        {
+                            Id = new Guid("0858a1f7-1a09-40e0-b1b1-d605faf126cb"),
+                            Name = "Dobrich"
+                        },
+                        new
+                        {
+                            Id = new Guid("cf3f3ba8-6459-41c5-8bf5-49992f623c77"),
+                            Name = "Veliko Tarnovo"
+                        });
                 });
 
             modelBuilder.Entity("AutoAlert.Data.Models.TransmitionOilReminder", b =>
@@ -477,9 +605,7 @@ namespace AutoAlert.Data.Migrations
 
                     b.HasOne("AutoAlert.Data.Models.InsurenceReminder", "InsurenceReminder")
                         .WithOne("Car")
-                        .HasForeignKey("AutoAlert.Data.Models.Car", "InshurenceReminderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AutoAlert.Data.Models.Car", "InshurenceReminderId");
 
                     b.HasOne("AutoAlert.Data.Models.ApplicationUser", "User")
                         .WithMany("Cars")

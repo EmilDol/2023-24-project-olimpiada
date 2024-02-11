@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace AutoAlert.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class SeededRegions : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -26,7 +28,7 @@ namespace AutoAlert.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EngineOilReminder",
+                name: "EngineOilReminders",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -37,22 +39,22 @@ namespace AutoAlert.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EngineOilReminder", x => x.Id);
+                    table.PrimaryKey("PK_EngineOilReminders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "InshurenceReminder",
+                name: "InsurenceReminders",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InshurenceReminder", x => x.Id);
+                    table.PrimaryKey("PK_InsurenceReminders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Region",
+                name: "Regions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -60,11 +62,11 @@ namespace AutoAlert.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Region", x => x.Id);
+                    table.PrimaryKey("PK_Regions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TransmitionOilReminder",
+                name: "TransmitionOilReminders",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -75,7 +77,7 @@ namespace AutoAlert.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TransmitionOilReminder", x => x.Id);
+                    table.PrimaryKey("PK_TransmitionOilReminders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -92,7 +94,7 @@ namespace AutoAlert.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "VignetteReminder",
+                name: "VignetteReminders",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -101,7 +103,7 @@ namespace AutoAlert.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VignetteReminder", x => x.Id);
+                    table.PrimaryKey("PK_VignetteReminders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -245,7 +247,7 @@ namespace AutoAlert.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Car",
+                name: "Cars",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -255,11 +257,11 @@ namespace AutoAlert.Data.Migrations
                     YearOfMake = table.Column<int>(type: "int", nullable: false),
                     Mileage = table.Column<int>(type: "int", nullable: false),
                     HorsePower = table.Column<int>(type: "int", nullable: false),
-                    Euro = table.Column<int>(type: "int", nullable: false),
+                    EuroType = table.Column<int>(type: "int", nullable: false),
                     TaxPayed = table.Column<bool>(type: "bit", nullable: false),
                     TechnicalCheckExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RegionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EngineOilReminderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    EngineOilReminderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TransmissionOilReminderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     VignetteId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     InshurenceReminderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -267,44 +269,45 @@ namespace AutoAlert.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Car", x => x.Id);
+                    table.PrimaryKey("PK_Cars", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Car_AspNetUsers_OwnerId",
+                        name: "FK_Cars_AspNetUsers_OwnerId",
                         column: x => x.OwnerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Car_EngineOilReminder_EngineOilReminderId",
+                        name: "FK_Cars_EngineOilReminders_EngineOilReminderId",
                         column: x => x.EngineOilReminderId,
-                        principalTable: "EngineOilReminder",
-                        principalColumn: "Id");
+                        principalTable: "EngineOilReminders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Car_InshurenceReminder_InshurenceReminderId",
+                        name: "FK_Cars_InsurenceReminders_InshurenceReminderId",
                         column: x => x.InshurenceReminderId,
-                        principalTable: "InshurenceReminder",
+                        principalTable: "InsurenceReminders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Car_Region_RegionId",
+                        name: "FK_Cars_Regions_RegionId",
                         column: x => x.RegionId,
-                        principalTable: "Region",
+                        principalTable: "Regions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Car_TransmitionOilReminder_TransmissionOilReminderId",
+                        name: "FK_Cars_TransmitionOilReminders_TransmissionOilReminderId",
                         column: x => x.TransmissionOilReminderId,
-                        principalTable: "TransmitionOilReminder",
+                        principalTable: "TransmitionOilReminders",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Car_VignetteReminder_VignetteId",
+                        name: "FK_Cars_VignetteReminders_VignetteId",
                         column: x => x.VignetteId,
-                        principalTable: "VignetteReminder",
+                        principalTable: "VignetteReminders",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Notification",
+                name: "Notifications",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -314,18 +317,50 @@ namespace AutoAlert.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notification", x => x.Id);
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Notification_AspNetUsers_UserId",
+                        name: "FK_Notifications_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Notification_Car_CarId",
+                        name: "FK_Notifications_Cars_CarId",
                         column: x => x.CarId,
-                        principalTable: "Car",
+                        principalTable: "Cars",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { new Guid("00faf4b0-5c38-4720-98e3-714805b16a5c"), "Kyustendil" },
+                    { new Guid("01faf0e4-174f-4750-807d-22f60e3a1a5c"), "Sofia" },
+                    { new Guid("02b3d7c8-57ad-4038-bc66-4293e254b56c"), "Haskovo" },
+                    { new Guid("03d1a262-594c-4b50-9151-78faf6604a5c"), "Montana" },
+                    { new Guid("04059520-78d2-4456-9364-90e1d1d3465c"), "Gabrovo" },
+                    { new Guid("05fafe08-1c4f-42a0-aa6d-52b8faf7aa5c"), "Pazardzhik" },
+                    { new Guid("0858a1f7-1a09-40e0-b1b1-d605faf126cb"), "Dobrich" },
+                    { new Guid("0afaf1f8-1a8f-40e0-b191-d605faf126cb"), "Sofia-Grad" },
+                    { new Guid("10faf664-238f-4100-9531-55b8faf3895c"), "Pleven" },
+                    { new Guid("11faf812-1791-4750-808d-22f60e3a1a5c"), "Kardzhali" },
+                    { new Guid("12faf5c0-1791-4750-809d-22f60e3a1a5c"), "Stara Zagora" },
+                    { new Guid("14faf3c8-1791-4750-808d-22f60e3a1a5c"), "Varna" },
+                    { new Guid("1c19d8f0-57ac-4110-944d-10220365b95c"), "Pernik" },
+                    { new Guid("2219d8e0-579c-4110-945d-10120365b95c"), "Ruse" },
+                    { new Guid("22cb1119-9934-4230-b0a0-1faf04b6f95c"), "Burgas" },
+                    { new Guid("23d1a252-593c-4b50-9141-77faf6604a5c"), "Razgrad" },
+                    { new Guid("2456e699-5173-4094-a749-91614e160a5c"), "Lovech" },
+                    { new Guid("26d1a242-594c-4b50-9131-79faf6604a5c"), "Silistra" },
+                    { new Guid("2d19d8e2-57bc-4110-943d-10320365b95c"), "Targovishte" },
+                    { new Guid("3195e68b-519c-4110-946d-10120365b95c"), "Smolyan" },
+                    { new Guid("3295e68f-519c-4110-947d-10020365b95c"), "Sliven" },
+                    { new Guid("3395e693-5193-4084-a769-91714e160a5c"), "Shumen" },
+                    { new Guid("3495e697-5193-4084-a779-91714e160a5c"), "Plovdiv" },
+                    { new Guid("4e27b2d5-7954-4610-b8fd-8143614c778d"), "Blagoevgrad" },
+                    { new Guid("cf3f3ba8-6459-41c5-8bf5-49992f623c77"), "Veliko Tarnovo" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -374,50 +409,49 @@ namespace AutoAlert.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Car_EngineOilReminderId",
-                table: "Car",
+                name: "IX_Cars_EngineOilReminderId",
+                table: "Cars",
                 column: "EngineOilReminderId",
-                unique: true,
-                filter: "[EngineOilReminderId] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Car_InshurenceReminderId",
-                table: "Car",
+                name: "IX_Cars_InshurenceReminderId",
+                table: "Cars",
                 column: "InshurenceReminderId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Car_OwnerId",
-                table: "Car",
+                name: "IX_Cars_OwnerId",
+                table: "Cars",
                 column: "OwnerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Car_RegionId",
-                table: "Car",
+                name: "IX_Cars_RegionId",
+                table: "Cars",
                 column: "RegionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Car_TransmissionOilReminderId",
-                table: "Car",
+                name: "IX_Cars_TransmissionOilReminderId",
+                table: "Cars",
                 column: "TransmissionOilReminderId",
                 unique: true,
                 filter: "[TransmissionOilReminderId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Car_VignetteId",
-                table: "Car",
+                name: "IX_Cars_VignetteId",
+                table: "Cars",
                 column: "VignetteId",
                 unique: true,
                 filter: "[VignetteId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notification_CarId",
-                table: "Notification",
+                name: "IX_Notifications_CarId",
+                table: "Notifications",
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notification_UserId",
-                table: "Notification",
+                name: "IX_Notifications_UserId",
+                table: "Notifications",
                 column: "UserId");
         }
 
@@ -440,31 +474,31 @@ namespace AutoAlert.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Notification");
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Car");
+                name: "Cars");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "EngineOilReminder");
+                name: "EngineOilReminders");
 
             migrationBuilder.DropTable(
-                name: "InshurenceReminder");
+                name: "InsurenceReminders");
 
             migrationBuilder.DropTable(
-                name: "Region");
+                name: "Regions");
 
             migrationBuilder.DropTable(
-                name: "TransmitionOilReminder");
+                name: "TransmitionOilReminders");
 
             migrationBuilder.DropTable(
-                name: "VignetteReminder");
+                name: "VignetteReminders");
 
             migrationBuilder.DropTable(
                 name: "UserSettings");

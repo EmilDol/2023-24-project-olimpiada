@@ -44,17 +44,23 @@ namespace AutoAlert.Core.Services
                     OilType = car.TransmitionOil.OilType,
                     MileageOfLastChange = car.TransmitionOil.MileageOfLastChange,
                     MileageOfNextChange = car.TransmitionOil.MileageOfNextChange
-                },
-                InsurenceReminder = new InsurenceReminder
-                {
+                }
+            };
 
-                },
-                VignetteReminder = new VignetteReminder
+            if (car.Vignette != null)
+            {
+                carNew.VignetteReminder = new VignetteReminder
                 {
                     DateBought = car.Vignette.DateBought,
                     ExpireDate = car.Vignette.ExpireDate
-                }
-            };
+                };
+            }
+            
+            if (car.Insurance != null)
+            {
+                carNew.InsurenceReminder = new InsurenceReminder();
+            }
+
             try
             {
                 await context.Cars.AddAsync(carNew);

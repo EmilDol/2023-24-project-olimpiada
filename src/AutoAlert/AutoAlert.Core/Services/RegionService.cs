@@ -23,6 +23,7 @@ namespace AutoAlert.Core.Services
                     Id = r.Id,
                     Name = r.Name,
                 })
+                .OrderBy(r => r.Name)
                 .ToListAsync();
 
             return regions;

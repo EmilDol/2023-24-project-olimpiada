@@ -1,4 +1,5 @@
-﻿using AutoAlert.Data.Models;
+﻿using AutoAlert.Data.Configurations;
+using AutoAlert.Data.Models;
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,8 @@ namespace AutoAlert.Data
                 .HasOne(c => c.Car)
                 .WithMany(c => c.Notifications)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.ApplyConfiguration(new RegionConfiguration());
         }
     }
 }
