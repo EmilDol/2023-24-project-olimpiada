@@ -1,5 +1,10 @@
-/* @import "D:/Users/Nikolai/GithubDesktop/AutoAlert/src/AutoAlert/AutoAlert.WebUI/node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";  */
+body {
+    overflow: auto;
+    background: #1b154a;
+}
 
-body{
-    background-color: rgb(26, 31, 59);}
-html, body { height: 100%; }
+@media (max-width: 763px) {
+    body {
+        background-color: #161616; /* Dark color for small screens */
+    }
+}

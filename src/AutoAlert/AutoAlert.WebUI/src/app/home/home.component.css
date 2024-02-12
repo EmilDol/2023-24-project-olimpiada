@@ -1,147 +1,80 @@
-.container {
-    margin-top: 50px;
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
     display: flex;
-    align-items: flex-start;
-    justify-content: top;
+    justify-content: center;
+    align-items: center;
+    margin-top: -70px;
+    height: 100vh;
+    background-image: url('./traffic-bg.jpg'); /* Replace 'your-background-image.jpg' with the path to your background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-#CarInfo{
-    border-color:pink
-}
 
-#EngineOilInfo{
-    border-color: brown;
-}
-
-#TransmissionOilInfo{
-    border-color: green;
-}
-
-#VignetteInfo{
-    border-color: purple;
-}
-
-#Inshurance{
-    border-color: rgb(3, 78, 189);
-}
-
-form {
-    margin-top: 2vh;
-    border-radius: 20px;
-    border-style: none;
-    border-width: 1px;
-    border-color: #0d162d;
-    background: #1A1F3B;
-    box-shadow: -14px -14px 48px #0b0d19, 14px 14px 48px #29315d;
-    max-width: 30vw;
-    min-width: 40rem;
-    width: auto;
-    padding-bottom: 2rem;
-    display: flex;
-    flex-direction: column; /* Adjusted for flex container */
-    margin-right: auto;
-    margin-left: auto;
-    height: auto;
-}
-
-input[type=text][name="firstName"] {
-    border-color: #0b1b41;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 5px;
-    background-color: #3866d1;
-    min-height: 1.5rem;
-    height: 3vh;
-    max-height: 5rem;
-}
-
-.inputDiv input[type="radio"] {
-    margin-right: 5px;
-    height: 1rem;
-    width: 1rem;
-}
-
-.inputDiv input {
-    min-height: 1.5rem;
-    height: 3vh;
-    max-height: 5rem;
-    background: #3866d1;
-    border-width: 2px;
-    border-color: #0b1b41;
-    border-style: solid;
-    border-radius: 5px;
-    flex-grow: 1; /* Takes the remaining width */
-}
-
-.inputDiv {
-    margin-top: 10px;
-    margin-left: 15px;
-    margin-right: 15px;
+.items{
     display: flex;
     flex-direction: column;
+
 }
 
-.inputDiv label {
-    font-size: calc(1.5vw * 1.5vh * 1rem);
-    color: white;
-    margin-bottom: 5px; /* Added margin for separation */
-}
-
-.buttons {
-    margin-top: 1rem;
+.navigation{
     display: flex;
-    justify-content: space-around; /* Adjusted for equal spacing */
+    justify-content: space-evenly;
+    font-size: 3vw;
 }
 
-.stretched-button {
-    flex-grow: 1;
+.text-container {
+    font-size: 10vw;
+    background-image: linear-gradient(to right, rgb(89, 89, 222), rgb(100, 19, 100),rgb(185, 58, 58) );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    transition: background-position 0.5s ease;
+    background-size: 200% 100%;
+    background-position: 100% 0;
 }
 
-button {
-    margin-left: 5px;
-    margin-right: 5px;
-    background: linear-gradient(315deg, #182c59, #1d346a);
-    box-shadow: -20px -20px 81px #0e1932, 20px 20px 81px #294a95;
+.text-container:hover {
+    background-position: 0 0;
 }
 
-button:hover {
-    background: linear-gradient(315deg, #132245, #162952);
+.logBtn{
+    font-size: 3vw;
+    background-image: linear-gradient(to right, rgb(203, 47, 47), rgb(190, 62, 190),rgb(46, 141, 236) );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    transition: background-position 0.5s ease;
+    background-size: 200% 100%;
+    background-position: 100% 0;
+}
+.logBtn:hover{
+    background-position: 0 0;;
 }
 
-button:focus {
-    background: linear-gradient(315deg, #0d162d, #0f1a36);
+.regBtn{
+    font-size: 3vw;
+    background-image: linear-gradient(to right, rgb(100, 239, 123), rgb(62, 149, 190),rgb(209, 6, 228) );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    transition: background-position 0.5s ease;
+    background-size: 200% 100%;
+    background-position: 100% 0;
+}
+.regBtn:hover{
+    background-position: 0 0;
 }
 
-#Submit {
-    border-color: greenyellow;
-}
-
-#Close {
-    border-color: #FFD02C;
-}
-
-h1 {
-    padding-top: 1.5rem;
-    color: white;
-    display: flex;
-    justify-content: center;
-}
-
-p {
-    color: red;
-}
-
-/* Adjusted media query */
-@media (min-width: 15rem) {
-    .container form {
-        .module h2 {
-            font-size: 2rem;
-        }
+@media (max-width: 763px) {
+    body {
+        background-color: #161616; /* Dark color for small screens */
+        background-image: none;
+        margin-top: 0;
     }
-}
-
-.container form .buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
 }

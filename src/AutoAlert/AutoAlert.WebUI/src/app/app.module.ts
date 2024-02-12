@@ -17,6 +17,8 @@ import { AllCarsComponent } from './all-cars/all-cars.component';
 import { InspectCarComponent } from './inspect-car/inspect-car.component';
 import { AiChatComponent } from './ai-chat/ai-chat.component';
 import { ScrollListenerDirective } from './shared/directives/scroll-listener.directive';
+import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { ScrollListenerDirective } from './shared/directives/scroll-listener.dir
     AllCarsComponent, 
     InspectCarComponent,
     AiChatComponent,
-    ScrollListenerDirective
+    ScrollListenerDirective,
+    HomeComponent
   ],
   imports: [
     FormsModule,
