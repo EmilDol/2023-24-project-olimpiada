@@ -9,5 +9,10 @@ namespace AutoAlert.Core.Services.Contracts
         Task<List<CarBaseInfoDto>> GetAll(string userId);
 
         Task<CarDto> GetById(string userId, Guid carId);
+
+        Task<bool> CheckOwnership(Guid carId, string userId);
+
+        Task<bool> Delete(Guid id);
+        Task<bool> Update(CarDto car);
     }
 }
