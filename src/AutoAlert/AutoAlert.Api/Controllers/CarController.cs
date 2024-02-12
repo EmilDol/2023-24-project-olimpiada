@@ -4,7 +4,6 @@ using AutoAlert.Core.DTOs.Car;
 using AutoAlert.Core.Services.Contracts;
 
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoAlert.Api.Controllers
@@ -60,6 +59,36 @@ namespace AutoAlert.Api.Controllers
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var car = await carService.GetById(userId, id);
             return car;
+        }
+
+        [HttpPost("delete/{id?}")]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (await carService.CheckOwnership(id, userId))
+            {
+                return Forbid();
+            }
+            if (await carService.Delete(id))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("update")]
+        public async Task<ActionResult> Edit(CarDto car)
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (await carService.CheckOwnership(car.Id, userId))
+            {
+                return Forbid();
+            }
+            if (await carService.Update(car))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }
