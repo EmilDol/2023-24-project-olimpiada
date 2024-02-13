@@ -12,7 +12,7 @@ export class AiChatService {
   private apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   // Replace with your OpenAI API key
-  private apiKey = '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';
+  private apiKey = '';
 
   constructor(private http: HttpClient) { }
 

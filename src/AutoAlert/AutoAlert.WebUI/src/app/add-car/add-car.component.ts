@@ -101,23 +101,7 @@ export class AddCarComponent implements OnInit  {
       }
     }
 
-    logObjectState(obj: any, objName: string) {
-      console.log(`Properties inside ${objName}:`);
-      for (const prop in obj) {
-        if (obj.hasOwnProperty(prop)) {
-          console.log(`${prop}: ${obj[prop]}`);
-        }
-      }
-    }
-    
-    displayAll()
-    {
-      this.logObjectState(this.car, 'car');
-      this.logObjectState(this.engineOil, 'engineOil');
-      this.logObjectState(this.transmitionOil, 'transmitionOil');
-      this.logObjectState(this.vignette, 'vignette');
-      this.logObjectState(this.insurence, 'insurence');
-    }
+
     validateForm() : boolean
     {
       if(this.isCarModelValid())
@@ -189,9 +173,6 @@ export class AddCarComponent implements OnInit  {
       this.car.transmitionOil = this.transmitionOil
       this.car.vignette = this.vignette
       this.car.insurence = this.insurence
-
-      console.log("boolean before sending" + JSON.stringify(this.car.taxPayed))
-      console.log("car before sending to service"+JSON.stringify(this.car))
 
       this.addCarService.onSubmit(this.car).subscribe(
         (response) => {

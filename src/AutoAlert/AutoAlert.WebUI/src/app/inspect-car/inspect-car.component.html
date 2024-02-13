@@ -1,4 +1,272 @@
-<p>inspect-car works!</p>
-<div>
-    <p><strong>Plate Number:</strong> {{ this.car?.plateNumber }}</p>
+
+
+<div class="container">
+    <!-- {{addForm.value | json}} -->
+   
+    <form #addForm="ngForm">
+        <div class="buttons">
+            <div class="stretched-button">
+            <button class="btn btn-secondary" type="button" id="CarInfo" (click)="renderNewForm('showCarInfo')">Car info</button>
+            <button class="btn btn-secondary" type="button" id="EngineOilInfo" (click)="renderNewForm('showEngineOilInfo')">Engine oil info</button>
+            <button class="btn btn-secondary" type="button" id="TransmissionOilInfo" (click)="renderNewForm('showTransmissionOilInfo')">Transmission oil info</button>
+            <button class="btn btn-secondary" type="button" id="VignetteInfo" (click)="renderNewForm('showVignetteInfo')">Vignette info</button>
+            <button class="btn btn-secondary" type="button" id="Inshurance" (click)="renderNewForm('showInshurenceInfo')">Inshurance</button>
+            </div>
+        </div>    
+            
+            
+        @if (showCarInfo === true) 
+            {
+                <div>
+                    <h1>Add car</h1>
+                </div>
+        
+                <div class="inputDiv">
+                    <label><h5>Plate Number:</h5></label>
+                    <input [disabled]="areEditable === false" type="text" required name="PlateNumber" title="Plate number should be from 4 to 12 symbols" #plateNumber = "ngModel" [(ngModel)]="car.plateNumber" pattern=".{4,12}">
+                    @if(!plateNumber.valid && plateNumber.touched)
+                    {
+                    <p>Plate number is required</p>
+                    }
+                </div>
+
+                <div class="inputDiv">
+                    <label><h5>Model:</h5></label>
+                    <input [disabled]="areEditable === false" type="text" required name="Model" title="Car model should be from 1 to 55 characters" #model = "ngModel" [(ngModel)]="car.model" pattern=".{1,55}">
+                    @if(!model.valid && model.touched)
+                    {
+                    <p>Car model is required</p>
+                    }
+                </div>
+
+                <div class="inputDiv">
+                    <label><h5>Car Make:</h5></label>
+                    <input [disabled]="areEditable === false" type="text" #make = "ngModel" title="Car make is an autocompleted field so we advise to click on the option that suits you" name="Make" [(ngModel)]="car.make" [matAutocomplete]="autoMake" (input)="filterMakes($event)">
+                    <mat-autocomplete #autoMake="matAutocomplete">
+                      <mat-option *ngFor="let make of filteredCarMakes || []" [value]="make">{{ make }}</mat-option>
+                    </mat-autocomplete>
+                    @if(make.touched && !checkIfCarIsContained(make.value))
+                    {
+                    <p>Car make is empty or incorrect, please choose one of the options in the dropdown menu</p>
+                    }
+                </div>
+
+                <div class="inputDiv">
+                    <label><h5>Region of registration:</h5></label>
+                    <input [disabled]="areEditable === false" type="text" #regionAutocomp="ngModel" name="Region" placeholder="{{region.name}}" [(ngModel)]="region.name" [matAutocomplete]="autoRegion" (input)="filterRegions($event)">
+                    <mat-autocomplete #autoRegion="matAutocomplete" (optionSelected)="onRegionSelected($event)">
+                      <mat-option *ngFor="let region of filteredRegions || []" [value]="region.name">{{ region.name }}</mat-option>
+                    </mat-autocomplete>
+                  
+                    @if(regionAutocomp.touched && !checkIfRegionIsContained(regionAutocomp.value)) {
+                      <p>Region of registration is empty or incorrect, please choose one of the options in the dropdown menu</p>
+                    }
+                  </div>
+                  
+                
+
+                <div class="inputDiv">
+                    <label><h5>Year of make:</h5></label>
+                    <input [disabled]="areEditable === false" type="number" title="Year of make is valid when positive and 4 numbers long" required name="YearOfMAke" #yearOfMake = "ngModel" [(ngModel)]="car.yearOfMake" pattern="\d{4}">
+                    @if(!yearOfMake.valid && yearOfMake.touched)
+                    {
+                    <p>Year of make is required</p>
+                    }
+                </div>
+
+                <div class="inputDiv">
+                    <label><h5>Mileage:</h5></label>
+                    <input [disabled]="areEditable === false" type="number" pattern="\d+" title="Mileage should be a positive number" required name="Mileage" #mileage="ngModel" [(ngModel)]="car.mileage">
+                    @if(!mileage.valid && mileage.touched)
+                    {
+                      <p>Mileage is required</p>
+                    }
+                </div>
+                  
+                <div class="inputDiv">
+                    <label><h5>Horse power:</h5></label>
+                    <input [disabled]="areEditable === false" type="number" pattern="\d+" title="Horse power should be a positive number" required name="HorsePower" #horsePower="ngModel" [(ngModel)]="car.horsePower">
+                    @if(!horsePower.valid && horsePower.touched)
+                    {
+                      <p>Horse power is required</p>
+                    }
+                </div>
+                  
+                <div class="inputDiv">
+                    <label><h5>Euro type:</h5></label>
+                    <input [disabled]="areEditable === false" type="number" pattern="[1-6]" title="Please enter a Euro rating between 1 and 6" required name="EuroType" #euroType = "ngModel" [(ngModel)]="car.euroType">
+                    @if(!euroType.valid && euroType.touched)
+                    {
+                    <p>Euro type is required</p>
+                    }
+                </div>
+
+                <div class="inputDiv">
+                    <label><h5>TAX?:</h5></label>
+                    <input [disabled]="areEditable === false" id="checkBox" required name="taxPayed" #taxPayed="ngModel" type="checkbox" [(ngModel)]="car.taxPayed">
+                </div>                      
+
+                @if (areEditable == true) 
+                {
+                                    <div class="inputDiv">
+                    <label><h5>Technical check Expiration Date:</h5></label>
+                    <input type="date" title="Please the date of expiration on your technical check" required name="TechnicalCheckExpirationDate" #technicalCheckExpirationDate = "ngModel" [(ngModel)]="car.technicalCheckExpirationDate">
+                </div>
+                }@else{
+                    <div class="inputDiv">
+                        <label><h5>Technical check Expiration Date:</h5></label>
+                        <input type="text" disabled placeholder="{{car.technicalCheckExpirationDate}}">
+                    </div>
+                }
+
+            }
+
+            @if (showEngineOilInfo === true) 
+            {
+                <div>
+                    <h1>Engine oil</h1>
+                </div>
+        
+                <div class="inputDiv">
+                    <label><h5>Oil type:</h5></label>
+                    <input [disabled]="areEditable === false" type="text" required name="OilType" title="Please enter your oil type" #oilType = "ngModel" [(ngModel)]="engineOil.oilType" pattern="....+">
+                    @if(!oilType.valid && oilType.touched)
+                    {
+                    <p>Oil Type is required and must be at least 4 symbols</p>
+                    }
+                </div>
+
+                <div class="inputDiv">
+                    <label><h5>Mileage of last oil change:</h5></label>
+                    <input [disabled]="areEditable === false" type="text" required name="MileageOfLastChange" title="Please enter the mileage of your last change" #mileageOfLastChange = "ngModel" [(ngModel)]="engineOil.mileageOfLastChange">
+                    @if(!mileageOfLastChange.valid && mileageOfLastChange.touched)
+                    {
+                    <p>Mileage of last change is required</p>
+                    }
+                </div>
+
+                <div class="inputDiv">
+                    <label><h5>Mileage of next oil change:</h5></label>
+                    <input [disabled]="areEditable === false" type="text" required name="MileageOfNextChange" title="Please enter the mileage ff your next change" #mileageOfNextChange = "ngModel" [(ngModel)]="engineOil.mileageOfNextChange">
+                    @if(!mileageOfNextChange.valid && mileageOfNextChange.touched)
+                    {
+                    <p>Mileage of last change is required</p>
+                    }
+                </div>
+
+                @if (areEditable == true) 
+                {
+                    <div class="inputDiv">
+                        <label><h5>Date of last change:</h5></label>
+                        <input type="date" title="Please the date of your last oil change" required name="DateOfLastChange" #dateOfLastChange = "ngModel" [(ngModel)]="engineOil.dateOfLastChange">
+                    </div>
+                    
+                }@else{
+                    <div class="inputDiv">
+                        <label><h5>Date of last change:</h5></label>
+                        <input type="text" disabled placeholder="{{engineOil.dateOfLastChange}}">
+                    </div>
+                }
+            }
+
+            @if (showTransmissionOilInfo === true) 
+            {
+                <div>
+                    <h1>Transmission oil</h1>
+                </div>
+        
+                <div class="inputDiv">
+                    <label><h5>Oil type:</h5></label>
+                    <input [disabled]="areEditable === false" type="text" required name="OilType" title="Please enter your oil type" #oilType = "ngModel" [(ngModel)]="transmitionOil.oilType" pattern="....+">
+                    @if(!oilType.valid && oilType.touched)
+                    {
+                    <p>Oil Type is required and must be at least 4 symbols</p>
+                    }
+                </div>
+
+                <div class="inputDiv">
+                    <label><h5>Mileage of last oil change:</h5></label>
+                    <input [disabled]="areEditable === false" type="text" required name="MileageOfLastChange" title="Please enter the mileage of your last change" #mileageOfLastChange = "ngModel" [(ngModel)]="transmitionOil.mileageOfLastChange">
+                    @if(!mileageOfLastChange.valid && mileageOfLastChange.touched)
+                    {
+                    <p>Mileage of last change is required</p>
+                    }
+                </div>
+
+                <div class="inputDiv">
+                    <label><h5>Mileage of next oil change:</h5></label>
+                    <input [disabled]="areEditable === false" type="text" required name="MileageOfNextChange" title="Please enter the mileage ff your next change" #mileageOfNextChange = "ngModel" [(ngModel)]="transmitionOil.mileageOfNextChange">
+                    @if(!mileageOfNextChange.valid && mileageOfNextChange.touched)
+                    {
+                    <p>Mileage of last change is required</p>
+                    }
+                </div>
+               
+                @if (areEditable == true) 
+                {
+                    <div class="inputDiv">
+                        <label><h5>Date of last change:</h5></label>
+                        <input type="date" title="Please the date of your last oil change" required name="DateOfLastChange" #dateOfLastChange = "ngModel" [(ngModel)]="transmitionOil.dateOfLastChange">
+                    </div>
+                    
+                }@else{
+                    <div class="inputDiv">
+                        <label><h5>Date of last change:</h5></label>
+                        <input type="text" disabled placeholder="{{transmitionOil.dateOfLastChange}}">
+                    </div>
+                }
+            }
+
+            @if (showInshurenceInfo === true) 
+            {
+                <div>
+                    <h1>Inshurence</h1>
+                </div>
+            }
+
+            @if (showVignetteInfo === true) 
+            {
+                <div>
+                    <h1>Vignette</h1>
+                </div>
+                @if (areEditable == true) 
+                {
+                    <div class="inputDiv">
+                        <label><h5>Date bought:</h5></label>
+                        <input  type="date" title="Please the date you bought your vignette" required name="DateBought" #dateBought = "ngModel" [(ngModel)]="vignette.dateBought">
+                    </div>
+    
+                    <div class="inputDiv">
+                        <label><h5>Expiration date:</h5></label>
+                        <input type="date" title="Please the expiration date of your vignette" required name="expireDate" #expireDate = "ngModel" [(ngModel)]="vignette.expireDate">
+                    </div>
+                    
+                }@else{
+                    <div class="inputDiv">
+                        <label><h5>Date bought:</h5></label>
+                        <input type="text" disabled placeholder="{{vignette.dateBought}}">
+                    </div>
+                    <div class="inputDiv">
+                        <label><h5>Expiration date:</h5></label>
+                        <input type="text" disabled placeholder="{{vignette.expireDate}}">
+                    </div>
+                }
+                
+            }
+        
+            <div class="buttons"> 
+                
+                @if (areEditable == true) 
+                {
+                    <button class="btn btn-secondary" name="diableRdit" id="diableRdit" (click)="disableEditing()">Cancel</button>
+                    <button class="btn btn-primary" name="Submit" [disabled]="areEditable === false" id="Submit" (click)="onSubmit()">Update</button>
+                    
+                }@else{
+                    <button class="btn btn-secondary" type="button" id="Edit" (click)="enableEditing()">Edit</button>
+
+                }
+                <button class="btn btn-danger" name="Delete" id="Delete" (click)="deleteCar()">Delete</button>
+                <button class="btn btn-secondary" type="button" id="Close" routerLink="/">Close</button>
+            </div>    
+    </form>
 </div>
