@@ -1,6 +1,6 @@
 body {
     overflow: auto;
-    background: #1b154a;
+    background: radial-gradient(circle, rgb(35, 38, 62) 0%, rgb(18, 20, 33));
 }
 
 @media (max-width: 763px) {

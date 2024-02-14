@@ -1,51 +1,104 @@
-.container {
-    margin-top: 50px;
+.container{
     display: flex;
-    align-items: flex-start;
-    justify-content: top;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
-.car-card{
-    border: 1;
+.card { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 15vw;
+    min-width: 200px; 
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); 
+    height: 20%; 
+    border-width: 2px;
+    border-color: #0d162d;
+    min-height: 205px;
+    border-radius: 20px; 
+    margin-right: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: -14px -14px 48px #0b0d19, 14px 14px 48px #29315d;
+    text-align: center; 
+    background-image: linear-gradient(to right, rgb(54, 33, 85), #1a1f3b,#1a1f3b );
+    transition: background-position 0.5s ease;
+    background-size: 200% 100%;
+    background-position: 100% 0;
+} 
+
+.card:hover{
+    background-position: 0 0;
+}
+
+.info{
+    font-size: 2vh;
+    padding-left: 10px;
+    text-align: left;
+    color: rgb(255, 255, 255);
+}
+
+.car-actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+button{
+    min-width: 70px;
+    min-height: 30px;
+    width: 5vw;
+    height: 3vh;
+    color: blanchedalmond;
     border-style: solid;
-    border-radius: 10px;
-    color: white;
+    border-radius: 7px;
 }
 
-button {
+.inspect-button{
+    background-image: linear-gradient(to right, rgba(236, 174, 30, 0.758), rgb(26, 30, 61),rgba(29, 29, 87, 0.873) );
+    transition: background-position 0.5s ease;
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    border-color: rgb(224, 180, 46);
+}
+
+.inspect-button:hover{
+    background-position: 0 0;
+}
+
+.inspect-button:active{
+    opacity: 80%;
+}
+
+.delete-button{
+    background-image: linear-gradient(to right, rgba(236, 44, 30, 0.758), rgb(26, 30, 61),rgba(29, 29, 87, 0.873)  );
+    transition: background-position 0.5s ease;
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    border-color: rgb(224, 180, 46);
+}
+.delete-button:hover{
+    background-position: 0 0;
+}
+
+.delete-button:active{
+    opacity: 80%;
+}
+
+label{
     margin-left: 5px;
-    margin-right: 5px;
-    border-radius: 10px;
-    background: linear-gradient(315deg, #182c59, #1d346a);
-    box-shadow: -20px -20px 81px #0e1932, 20px 20px 81px #294a95;
+    font-weight: 600;
+    color: black;
+    background: rgba(131, 125, 152, 0.699);
+    border-color: rgb(0, 0, 0);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    padding:0 5px 0 5px;
 }
 
-button:hover {
-    background: linear-gradient(315deg, #132245, #162952);
+@media(min-width: 763){
+    .info{
+        font-size: 3vw;
+    }
 }
-
-button:focus {
-    background: linear-gradient(315deg, #0d162d, #0f1a36);
-}
-
-#Submit {
-    border-color: greenyellow;
-}
-
-#Close {
-    border-color: #FFD02C;
-}
-
-h1 {
-    padding-top: 1.5rem;
-    color: white;
-    display: flex;
-    justify-content: center;
-}
-
-.container form .buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-}
-

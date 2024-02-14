@@ -59,10 +59,11 @@ body {
 
 .regBtn{
     font-size: 3vw;
-    background-image: linear-gradient(to right, rgb(100, 239, 123), rgb(62, 149, 190),rgb(209, 6, 228) );
+    
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
+    background-image: linear-gradient(to right, rgb(100, 239, 123), rgb(62, 149, 190),rgb(209, 6, 228) );
     transition: background-position 0.5s ease;
     background-size: 200% 100%;
     background-position: 100% 0;
