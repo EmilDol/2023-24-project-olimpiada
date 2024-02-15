@@ -6,7 +6,7 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 8%;
     margin-top: -70px;
     height: 100vh;
     background-image: url('./traffic-bg.jpg'); /* Replace 'your-background-image.jpg' with the path to your background image */
@@ -30,7 +30,7 @@ body {
 
 .text-container {
     font-size: 10vw;
-    background-image: linear-gradient(to right, rgb(89, 89, 222), rgb(100, 19, 100),rgb(185, 58, 58) );
+    background-image: radial-gradient(circle, rgb(89, 89, 222), rgb(100, 19, 100),rgb(185, 58, 58) );
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;

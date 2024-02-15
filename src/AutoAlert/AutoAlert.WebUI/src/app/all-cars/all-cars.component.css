@@ -8,10 +8,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 15vw;
+    width: 20vw;
     min-width: 200px; 
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); 
-    height: 20%; 
+    height: 30%; 
     border-width: 2px;
     border-color: #0d162d;
     min-height: 205px;
@@ -21,7 +21,7 @@
     padding: 10px;
     box-shadow: -14px -14px 48px #0b0d19, 14px 14px 48px #29315d;
     text-align: center; 
-    background-image: linear-gradient(to right, rgb(54, 33, 85), #1a1f3b,#1a1f3b );
+    background-image: linear-gradient(to right, rgb(88, 61, 129), #1a1f3b,#1a1f3b );
     transition: background-position 0.5s ease;
     background-size: 200% 100%;
     background-position: 100% 0;
@@ -47,8 +47,8 @@
 button{
     min-width: 70px;
     min-height: 30px;
-    width: 5vw;
-    height: 3vh;
+    width: 7vw;
+    height: 4vh;
     color: blanchedalmond;
     border-style: solid;
     border-radius: 7px;
