@@ -1,1 +1,12 @@
-Hom
+<body>
+    <div class="items">
+        <h1 class="text-container">AutoAlert</h1>
+        <div class="navigation">
+            @if (!authCheck()) {<a class="logBtn" routerLink="/Login">Login</a>|<a class="regBtn" routerLink="/Register">Register</a>}
+            @else{<a class="logBtn">About Us</a>}
+        </div>
+        
+    </div>
+</body>
+
+<router-outlet></router-outlet>
