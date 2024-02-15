@@ -65,7 +65,7 @@ namespace AutoAlert.Api.Controllers
         public async Task<ActionResult> Delete(Guid id)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            if (await carService.CheckOwnership(id, userId))
+            if (!(await carService.CheckOwnership(id, userId)))
             {
                 return Forbid();
             }
@@ -76,11 +76,11 @@ namespace AutoAlert.Api.Controllers
             return BadRequest();
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public async Task<ActionResult> Edit([FromBody] CarDto car)
         {
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            if (await carService.CheckOwnership(car.Id, userId))
+            if (!(await carService.CheckOwnership(car.Id, userId)))
             {
                 return Forbid();
             }

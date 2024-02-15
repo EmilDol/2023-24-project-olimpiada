@@ -24,7 +24,7 @@ namespace AutoAlert.Core.Services
                 .Select(c => c.OwnerId)
                 .FirstAsync();
 
-            return (userId == ownerId) ? true : false;
+            return ((userId == ownerId) ? true : false);
         }
 
         public async Task<bool> Create(CarDto car, string userId)
