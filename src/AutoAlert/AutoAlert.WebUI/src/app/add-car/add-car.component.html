@@ -2,21 +2,19 @@
     <!-- {{addForm.value | json}} -->
    
     <form #addForm="ngForm">
-        <div class="buttons">
             <div class="stretched-button">
-            <button class="btn btn-secondary" type="button" id="CarInfo" (click)="renderNewForm('showCarInfo')">Car info</button>
-            <button class="btn btn-secondary" type="button" id="EngineOilInfo" (click)="renderNewForm('showEngineOilInfo')">Engine oil info</button>
-            <button class="btn btn-secondary" type="button" id="TransmissionOilInfo" (click)="renderNewForm('showTransmissionOilInfo')">Transmission oil info</button>
-            <button class="btn btn-secondary" type="button" id="VignetteInfo" (click)="renderNewForm('showVignetteInfo')">Vignette info</button>
-            <button class="btn btn-secondary" type="button" id="Inshurance" (click)="renderNewForm('showInshurenceInfo')">Inshurance</button>
-            </div>
+            <button class="btn btn-secondary" type="button" id="CarInfo" (click)="renderNewForm('showCarInfo')">Vehicle</button>
+            <button class="btn btn-secondary" type="button" id="TransmissionOilInfo" (click)="renderNewForm('showTransmissionOilInfo')">Transmission oil</button>
+            <button class="btn btn-secondary" type="button" id="EngineOilInfo" (click)="renderNewForm('showEngineOilInfo')">Engine oil</button>
+            <!-- <button class="btn btn-secondary" type="button" id="VignetteInfo" (click)="renderNewForm('showVignetteInfo')">Vignette</button>
+            <button class="btn btn-secondary" type="button" id="Inshurance" (click)="renderNewForm('showInshurenceInfo')">Inshurance</button> -->
         </div>    
             
             
         @if (showCarInfo === true) 
             {
                 <div>
-                    <h1>Add car</h1>
+                    <h1>Add vehicle</h1>
                 </div>
         
                 <div class="inputDiv">
@@ -38,7 +36,7 @@
                 </div>
 
                 <div class="inputDiv">
-                    <label><h5>Car Make:</h5></label>
+                    <label><h5>Make:</h5></label>
                     <input type="text" #make = "ngModel" title="Car make is an autocompleted field so we advise to click on the option that suits you" name="Make" [(ngModel)]="car.make" [matAutocomplete]="autoMake" (input)="filterMakes($event)">
                     <mat-autocomplete #autoMake="matAutocomplete">
                       <mat-option *ngFor="let make of filteredCarMakes || []" [value]="make">{{ make }}</mat-option>

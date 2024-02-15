@@ -16,7 +16,7 @@ export class AllCarsComponent implements OnInit{
     private router: Router,
     private auth: AuthenticationService,
     public getAllCarsService: GetAllCarsService,
-    private getCarService: InspectCarService
+    private getCarService: InspectCarService,
   ){};
 
   public allCars: CarModel[] = [];
@@ -41,5 +41,27 @@ export class AllCarsComponent implements OnInit{
     if (id) {
       this.router.navigate(['InspectCar', id]);
   } console.log(id)
+  }
+  deleteCar(id: string | undefined){
+     
+    this.getCarService.deleteCar(id).subscribe(
+      (response) => {
+        console.log('API response:', response);
+        if(response == true) 
+        {
+          const indexToRemove = this.allCars.findIndex(car => car.id === id);
+
+        // Remove the car from the array
+        if (indexToRemove !== -1) {
+            this.allCars.splice(indexToRemove, 1);
+        }
+      }
+        else console.log(response.error)
+      },
+      (error) => {
+        console.error('API error:', error);
+      }
+    );
+
   }
 }

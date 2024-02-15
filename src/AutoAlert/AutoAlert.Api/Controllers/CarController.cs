@@ -71,7 +71,7 @@ namespace AutoAlert.Api.Controllers
             }
             if (await carService.Delete(id))
             {
-                return Ok();
+                return Ok(true);
             }
             return BadRequest();
         }

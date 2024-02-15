@@ -54,7 +54,7 @@ export class InspectCarService {
     // Log headers for verification
     console.log('Headers:', headers);
 
-    return this.httpClient.post<any>(`${this.apiUrl}/car/update`, JSON.stringify(carModel), options)
+    return this.httpClient.put<any>(`${this.apiUrl}/car/update`, JSON.stringify(carModel), options)
     .pipe(
       map(response => {
         const statusCode = response.status;

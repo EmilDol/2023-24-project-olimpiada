@@ -1,4 +1,8 @@
+<div class="title">
+  All your cars
+</div>
 <div class="container">
+
     <div class="card" *ngFor="let car of allCars">
         <div class="info">
           <p><strong>Plate Number:</strong> <label>{{ car.plateNumber }}</label></p>
@@ -8,7 +12,7 @@
         </div>
         <div class="car-actions">
           <button class="inspect-button" (click)="inspectCar(car['id'])">Inspect</button>
-          <button class="delete-button" routerLink="/DeleteCar">Delete</button>
+          <button class="delete-button" name="Delete" id="Delete" (click)="deleteCar(car.id)">Delete</button>
         </div>
       </div>
 </div>

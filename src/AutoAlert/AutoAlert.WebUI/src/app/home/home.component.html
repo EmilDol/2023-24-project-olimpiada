@@ -2,11 +2,37 @@
     <div class="items">
         <h1 class="text-container">AutoAlert</h1>
         <div class="navigation">
-            @if (!authCheck()) {<a class="logBtn" routerLink="/Login">Login</a>|<a class="regBtn" routerLink="/Register">Register</a>}
-            @else{<a class="logBtn">About Us</a>}
+            @if (!authCheck()) {<a class="logBtn" routerLink="/Login">Login</a>|<a class="regBtn" routerLink="/Register">Sign Up</a>}
+            @else{<a class="slogan">Cars made easy</a>}
         </div>
         
+       
     </div>
-</body>
+    <div class="home-content">
+        <p class="heading">Welcome to AutoAlert</p>
+        <div class="section">
+            <p >Our Goals</p>
+            <p>Describe your goals here...</p>
+        </div>
+    </div>   
+    <div class="secondary-avigation">
 
-<router-outlet></router-outlet>
+    </div>
+    <div class="home-content">
+        <div class="section">
+            <p>Meet the Creators</p>
+            <p>Introduce the creators and their roles...</p>
+        </div>
+        <div class="section">
+            <p>Contact Information</p>
+            <p>Provide contact information...</p>
+        </div>
+    </div> 
+    
+
+    <router-outlet></router-outlet>
+
+    <footer>
+        <!-- Add your footer content here -->
+    </footer>
+</body>

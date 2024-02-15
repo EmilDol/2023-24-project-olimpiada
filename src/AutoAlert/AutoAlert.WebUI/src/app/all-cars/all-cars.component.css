@@ -1,3 +1,4 @@
+
 .container{
     display: flex;
     flex-wrap: wrap;
@@ -21,7 +22,7 @@
     padding: 10px;
     box-shadow: -14px -14px 48px #0b0d19, 14px 14px 48px #29315d;
     text-align: center; 
-    background-image: linear-gradient(to right, rgb(88, 61, 129), #1a1f3b,#1a1f3b );
+    background-image: linear-gradient(to right, rgb(54, 38, 77), #1a1f3b,#1a1f3b );
     transition: background-position 0.5s ease;
     background-size: 200% 100%;
     background-position: 100% 0;
@@ -55,7 +56,7 @@ button{
 }
 
 .inspect-button{
-    background-image: linear-gradient(to right, rgba(236, 174, 30, 0.758), rgb(26, 30, 61),rgba(29, 29, 87, 0.873) );
+    background-image: linear-gradient(to right, rgba(88, 67, 16, 0.758), rgb(26, 30, 61),rgba(29, 29, 87, 0.873) );
     transition: background-position 0.5s ease;
     background-size: 200% 100%;
     background-position: 100% 0;
@@ -71,7 +72,7 @@ button{
 }
 
 .delete-button{
-    background-image: linear-gradient(to right, rgba(236, 44, 30, 0.758), rgb(26, 30, 61),rgba(29, 29, 87, 0.873)  );
+    background-image: linear-gradient(to right, rgba(99, 28, 22, 0.758), rgb(26, 30, 61),rgba(29, 29, 87, 0.873)  );
     transition: background-position 0.5s ease;
     background-size: 200% 100%;
     background-position: 100% 0;
@@ -101,4 +102,13 @@ label{
     .info{
         font-size: 3vw;
     }
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    font-size: 5vh;
+    font-weight: 500;
+    color: white;
+    margin-top: 10px;
 }

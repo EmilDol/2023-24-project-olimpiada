@@ -26,6 +26,9 @@
 }
 
 form {
+  display: flex;
+  padding-left: 5px;
+  padding-right: 5px;
   margin-top: 2vh;
   border-radius: 20px;
   border-style: none;
@@ -42,6 +45,13 @@ form {
   margin-right: auto;
   margin-left: auto;
   height: auto;
+}
+
+.stretched-button{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 input[type=text][name="firstName"] {
@@ -87,19 +97,16 @@ input[type=text][name="firstName"] {
   margin-bottom: 5px; /* Added margin for separation */
 }
 
-.buttons {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: space-around; /* Adjusted for equal spacing */
-}
 
 .stretched-button {
   flex-grow: 1;
 }
 
 button {
-  margin-left: 5px;
-  margin-right: 5px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  justify-content: space-evenly;
   background: linear-gradient(315deg, #182c59, #1d346a);
   box-shadow: -20px -20px 81px #0e1932, 20px 20px 81px #294a95;
 }
@@ -144,6 +151,8 @@ p {
   margin-top: 1rem;
 }
 
+
+
 input:disabled {
-  color: #2d3657;
+  color: #23262e;
 }
