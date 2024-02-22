@@ -11,7 +11,7 @@ import { User } from '../../models/user/user.model';
 export class AuthenticationService {
   private tokenKey = 'token_key';
   private token: string | null = null;
-  private apiUrl = 'https://localhost:7264/api';
+  private apiUrl = 'http://192.168.10.110:5000/api';
   private hideLoginComponent = new BehaviorSubject<boolean>(true);
   hideLoginComponent$ = this.hideLoginComponent.asObservable();
   httpClient: any;

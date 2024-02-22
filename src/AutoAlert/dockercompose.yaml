@@ -1,0 +1,53 @@
+version: "3.8"
+
+networks:
+  autoalert-net:
+    name: autoalert-net
+    driver: overlay
+    attachable: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.123.123.0/24
+      
+services:
+  autoalert-web:
+    image: "nikolaysimeonov/autoalert-web:latest"
+    restart: always
+    ports:
+      - "7200:80"
+    networks:
+      - autoalert-net
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  autoalert-api:
+    image: "nikolaysimeonov/autoalert-api:latest"
+    restart: always
+    ports:
+      - "5000:80"
+    networks:
+      - autoalert-net
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    restart: always
+    command: --interval 30 --cleanup
+    environment:
+      - TZ=UTC
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_DEBUG=true
+      - WATCHTOWER_POLL_INTERVAL=30
+      - WATCHTOWER_LIFECYCLE_HOOKS=1
+    ports:
+      - "8082:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+      - autoalert-net
