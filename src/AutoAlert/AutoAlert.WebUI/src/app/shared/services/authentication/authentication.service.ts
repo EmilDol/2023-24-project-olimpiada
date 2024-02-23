@@ -20,14 +20,6 @@ export class AuthenticationService {
     return this.apiUrl;
   }
 
-  // hideLoginBody() {
-  //   this.hideLoginComponent.next(true);
-  // }
-
-  // showLoginBody() {
-  //   this.hideLoginComponent.next(false);
-  // }
-
   constructor(private http: HttpClient) {}
 
   setToken(token: string): void {
@@ -45,8 +37,6 @@ export class AuthenticationService {
 
   login(user: User): Observable<boolean> {
     const loginUrl = `${this.apiUrl}/users/login`;
-
-    // return this.httpClient.post(this.apiUrl+'/users/register', user)
     
     return this.http.post<any>(loginUrl,  user ).pipe(
       map(response => {
