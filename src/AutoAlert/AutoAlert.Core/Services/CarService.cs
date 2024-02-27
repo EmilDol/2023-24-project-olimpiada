@@ -2,7 +2,6 @@
 using AutoAlert.Core.Services.Contracts;
 using AutoAlert.Data;
 using AutoAlert.Data.Models;
-using AutoAlert.Data.Models.Enums;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +14,40 @@ namespace AutoAlert.Core.Services
         public CarService(ApplicationDbContext context)
         {
             this.context = context;
+        }
+
+        public async Task<bool> AddInsurance(Guid id, InsuranceDto insurance)
+        {
+            try
+            {
+                var car = await context.Cars.FindAsync(id);
+                car.InsurenceReminder = new InsurenceReminder();
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<bool> AddVignette(Guid id, VignetteDto vignette)
+        {
+            try
+            {
+                var car = await context.Cars.FindAsync(id);
+                car.VignetteReminder = new VignetteReminder
+                {
+                    DateBought = vignette.DateBought,
+                    ExpireDate = vignette.ExpireDate
+                };
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
 
         public async Task<bool> CheckOwnership(Guid carId, string userId)
@@ -57,20 +90,6 @@ namespace AutoAlert.Core.Services
                     MileageOfNextChange = car.TransmitionOil.MileageOfNextChange
                 }
             };
-
-            if (car.Vignette != null)
-            {
-                carNew.VignetteReminder = new VignetteReminder
-                {
-                    DateBought = car.Vignette.DateBought,
-                    ExpireDate = car.Vignette.ExpireDate
-                };
-            }
-
-            if (car.Insurance != null)
-            {
-                carNew.InsurenceReminder = new InsurenceReminder();
-            }
 
             try
             {

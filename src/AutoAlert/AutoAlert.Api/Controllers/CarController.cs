@@ -19,7 +19,7 @@ namespace AutoAlert.Api.Controllers
             this.carService = carService;
         }
 
-        
+
         [HttpPost("create")]
         public async Task<ActionResult> Create([FromBody] CarDto car)
         {
@@ -85,6 +85,36 @@ namespace AutoAlert.Api.Controllers
                 return Forbid();
             }
             if (await carService.Update(car))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpPost("add-vignette/{id?}")]
+        public async Task<ActionResult> AddVignette([FromRoute] Guid id, [FromBody] VignetteDto vignette)
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (!(await carService.CheckOwnership(id, userId)))
+            {
+                return Forbid();
+            }
+            if (await carService.AddVignette(id, vignette))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpPost("add-insurance/{id?}")]
+        public async Task<ActionResult> AddVignette([FromRoute] Guid id, [FromBody] InsuranceDto insurance)
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (!(await carService.CheckOwnership(id, userId)))
+            {
+                return Forbid();
+            }
+            if (await carService.AddInsurance(id, insurance))
             {
                 return Ok();
             }

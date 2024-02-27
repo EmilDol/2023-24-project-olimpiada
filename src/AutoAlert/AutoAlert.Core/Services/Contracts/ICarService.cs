@@ -13,6 +13,11 @@ namespace AutoAlert.Core.Services.Contracts
         Task<bool> CheckOwnership(Guid carId, string userId);
 
         Task<bool> Delete(Guid id);
+
         Task<bool> Update(CarDto car);
+
+        Task<bool> AddVignette(Guid id, VignetteDto vignette);
+
+        Task<bool> AddInsurance(Guid id, InsuranceDto insurance);
     }
 }
