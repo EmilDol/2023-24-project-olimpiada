@@ -174,12 +174,6 @@ namespace AutoAlert.Core.Services
                         OilType = c.TransmitionOilReminder.OilType,
                         Id = c.TransmitionOilReminder.Id
                     },
-                    Vignette = new VignetteDto
-                    {
-                        ExpireDate = c.VignetteReminder.ExpireDate,
-                        DateBought = c.VignetteReminder.DateBought,
-                        Id = c.VignetteReminder.Id,
-                    },
                     Region = c.Region.Name
                 })
                 .FirstOrDefaultAsync(c => c.Id == carId);
