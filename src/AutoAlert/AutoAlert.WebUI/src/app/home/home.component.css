@@ -131,11 +131,20 @@ body {
     .slogan{
         font-size: 3vh;
     }
+    .logBtn{
+        font-size: 3vh;
+    }
+    .regBtn{
+        font-size: 3vh;
+    }
     .text-container{
         font-size: 10vh;
     }
     .heading{
         margin-top: -20%;
         font-size: 4vh;
+    }
+    .navigation{
+        font-size: 3vh;
     }
 }

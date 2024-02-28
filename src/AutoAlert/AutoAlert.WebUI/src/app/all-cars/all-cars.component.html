@@ -2,18 +2,21 @@
   All your cars
 </div>
 <div class="container">
-
-    <div class="card" *ngFor="let car of allCars">
-        <div class="info">
-          <p><strong>Plate Number:</strong> <label>{{ car.plateNumber }}</label></p>
-          <p><strong>Model:</strong><label>{{ car.model }}</label></p>
-          <p><strong>Make:</strong> <label>{{ car.make }}</label></p>
-    
-        </div>
-        <div class="car-actions">
-          <button class="inspect-button" (click)="inspectCar(car['id'])">Inspect</button>
-          <button class="delete-button" name="Delete" id="Delete" (click)="deleteCar(car.id)">Delete</button>
-        </div>
-      </div>
+  <div class="card" *ngFor="let car of allCars; let i = index">
+    <div class="info">
+      <p><strong>Plate Number:</strong> <label>{{ car.plateNumber }}</label></p>
+      <p><strong>Model:</strong><label>{{ car.model }}</label></p>
+      <p><strong>Make:</strong> <label>{{ car.make }}</label></p>
+    </div>
+    <div class="car-actions">
+      <button class="inspect-button" (click)="inspectCar(car.id)">Inspect</button>
+      <button class="vignette-button" (click)="openVignettePopup(car.id, car.plateNumber)">Add vignette</button>
+      <button class="delete-button" name="Delete" id="Delete" (click)="deleteCar(car.id)">Delete</button>
+    </div>
+  </div>
+  
+  <div class="popups-container">
+    <app-vignette-popup *ngFor="let id of openPopupIds; trackBy: trackByFn" [carId]="id" [carPlate]="getPlateNumberById(id)" (closePopup)="closeVignettePopup(id)"></app-vignette-popup>
+  </div>
+  
 </div>
-

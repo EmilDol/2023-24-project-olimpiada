@@ -101,7 +101,7 @@ namespace AutoAlert.Api.Controllers
             }
             if (await carService.AddVignette(id, vignette))
             {
-                return Ok();
+                return Ok(true);
             }
             return BadRequest();
         }

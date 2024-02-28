@@ -86,6 +86,18 @@ button{
     opacity: 80%;
 }
 
+.vignette-button{
+    background-image: linear-gradient(to right, rgba(20, 88, 16, 0.758), rgb(26, 30, 61),rgba(29, 29, 87, 0.873) );
+    transition: background-position 0.5s ease;
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    border-color: rgb(224, 180, 46);
+}
+
+.vignette-button:hover{
+    background-position: 0 0;
+}
+
 label{
     margin-left: 5px;
     font-weight: 600;
@@ -97,6 +109,19 @@ label{
     border-width: 2px;
     padding:0 5px 0 5px;
 }
+
+.popups-container {
+    display: flex; /* Arrange popups in a row */
+    flex-wrap: wrap; /* Allow popups to wrap onto multiple lines if needed */
+  }
+  
+  .app-vignette-popup {
+    /* Adjust individual popup styles here */
+    width: 200px; /* Example width, adjust based on your content */
+    margin: 10px; /* Example spacing, adjust as needed */
+    border: 1px solid #ccc; /* Example border, adjust for styling */
+    /* Other styles for appearance */
+  }
 
 @media(min-width: 763){
     .info{

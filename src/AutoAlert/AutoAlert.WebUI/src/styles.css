@@ -1,10 +1,17 @@
 body {
     overflow: auto;
+    
     background: radial-gradient(circle, rgb(35, 38, 62) 0%, rgb(18, 20, 33));
 }
+.min-font-size {
+    font-size: 16px; /* Default font size */
+  }
 
 @media (max-width: 763px) {
     body {
         background-color: #161616; /* Dark color for small screens */
     }
+    .min-font-size {
+        font-size: 16px; /* Minimum font size for smaller viewports */
+      }
 }

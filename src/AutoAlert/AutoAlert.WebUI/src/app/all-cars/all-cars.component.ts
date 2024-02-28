@@ -4,6 +4,7 @@ import { CarModel } from '../shared/models/car/car.model';
 import { AuthenticationService } from '../shared/services/authentication/authentication.service';
 import { Router } from '@angular/router';
 import { InspectCarService } from '../shared/services/inspect-car/inspect-car.service';
+import { AddVignetteService } from '../shared/services/add-vignette/add-vignette.service';
 
 @Component({
   selector: 'app-all-cars',
@@ -17,9 +18,11 @@ export class AllCarsComponent implements OnInit{
     private auth: AuthenticationService,
     public getAllCarsService: GetAllCarsService,
     private getCarService: InspectCarService,
+    private addVignetteService: AddVignetteService
   ){};
 
-  public allCars: CarModel[] = [];
+  public allCars: CarModel[] = []
+  openPopupIds: string[] = [];
   
   ngOnInit(): void {
     if(this.auth.isAuthenticated() === false) this.router.navigate(['/'])
@@ -62,6 +65,37 @@ export class AllCarsComponent implements OnInit{
         console.error('API error:', error);
       }
     );
+  }  
+  private vignettePopup: boolean = false;
+  openVignettePopup(id: string | undefined, plateNumber: string | undefined){
+    if (id != undefined) {
+      // Add ID to openPopupIds if not already open
+      if (!this.openPopupIds.includes(id)) {
+        this.openPopupIds.push(id);
+      }
+    }
+  }
 
+  getPlateNumberById(id: string | undefined): string | undefined {
+    const car = this.allCars.find(car => car.id === id);
+    return car ? car.plateNumber : '';
+  }
+
+  closeVignettePopup(id: string) {
+    const index = this.openPopupIds.indexOf(id);
+    if (index !== -1) {
+      this.openPopupIds.splice(index, 1); // Remove the ID from openPopupIds
+    }
+  }
+
+  addVignette(id: string | undefined){
+    if(id === null || id === undefined){
+      //in app notification
+      return;
+    }
+  }
+
+  trackByFn(index: number, id: string) {
+    return id;
   }
 }

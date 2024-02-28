@@ -18,6 +18,8 @@ import { InspectCarComponent } from './inspect-car/inspect-car.component';
 import { AiChatComponent } from './ai-chat/ai-chat.component';
 import { ScrollListenerDirective } from './shared/directives/scroll-listener.directive';
 import { HomeComponent } from './home/home.component';
+import { VignettePopupComponent } from './vignette-popup/vignette-popup.component';
+import { DragDropModule, DragRef } from '@angular/cdk/drag-drop'
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { HomeComponent } from './home/home.component';
     InspectCarComponent,
     AiChatComponent,
     ScrollListenerDirective,
-    HomeComponent
+    HomeComponent,
+    VignettePopupComponent
   ],
   imports: [
     FormsModule,
@@ -41,7 +44,8 @@ import { HomeComponent } from './home/home.component';
     MatInputModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    RouterModule
+    RouterModule,
+    DragDropModule,
   ],
   providers: [
     RegisterService,

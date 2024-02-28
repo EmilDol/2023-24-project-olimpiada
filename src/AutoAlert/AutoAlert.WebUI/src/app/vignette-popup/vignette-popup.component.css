@@ -1,0 +1,67 @@
+.vignette-container{
+    display: flex;
+}
+.vignette-popup {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    position: absolute; /* Position the popup on top of other content */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the popup */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Ensure the popup is above other elements */
+  }
+  
+  .vignette-popup .close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .vignette-popup h2 {
+    margin-bottom: 10px;
+  }
+  
+  .vignette-popup form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .vignette-popup label {
+    font-weight: bold;
+  }
+  
+  .vignette-popup input[type="date"] {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+  
+  .vignette-popup button[type="submit"] {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .vignette-popup button[type="submit"]:hover {
+    background-color: #45A049; /* Green darker */
+  }
+  
+  #popupElement {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    color: #fff;
+  }
+
+  

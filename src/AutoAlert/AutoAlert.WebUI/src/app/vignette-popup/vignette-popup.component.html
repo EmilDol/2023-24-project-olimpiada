@@ -1,0 +1,29 @@
+<div class="vignette-popup" id="vignette-popup" cdkDrag>
+  <div id="popupElement" cdkDragHandle>Click here to move</div>
+  <span class="close-button" (click)="closePopup.emit()">X</span>
+  <h2>Add Vignette for {{ carPlate }}</h2>
+  <form (ngSubmit)="submitVignette()">
+    <div class="inputDiv">
+      <label><h5>Date bought:</h5></label>
+      <input
+        type="date"
+        title="Please the date you bought your vignette"
+        required
+        name="DateBought"
+        #dateBought="ngModel"
+        [(ngModel)]="vignette.dateBought"
+      >
+    </div>
+    <div class="inputDiv">
+      <label><h5>Expiration date:</h5></label>
+      <input
+        type="date"
+        title="Please the expiration date of your vignette"
+        required
+        name="expireDate"
+        #expireDate="ngModel"
+        [(ngModel)]="vignette.expireDate"
+      >
+    </div>
+    <button type="submit">Add</button>
+  </form>
