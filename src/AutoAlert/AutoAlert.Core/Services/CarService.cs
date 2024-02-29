@@ -109,8 +109,24 @@ namespace AutoAlert.Core.Services
             try
             {
                 var car = await context.Cars.FirstAsync(c => c.Id == id);
+                var engineOil = await context.EngineOilReminders.FirstAsync(c => c.Id == car.EngineOilReminderId);
+                var transOil = await context.TransmitionOilReminders.FirstAsync(c => c.Id == car.TransmissionOilReminderId);
 
+                context.EngineOilReminders.Remove(engineOil);
+                context.TransmitionOilReminders.Remove(transOil);
                 var result = context.Cars.Remove(car);
+
+                if (car.VignetteId is not null)
+                {
+                    var vignette = await context.VignetteReminders.FirstAsync(c => c.Id == car.VignetteId);
+                    context.VignetteReminders.Remove(vignette);
+                }
+                if (car.InshurenceReminderId is not null)
+                {
+                    var insurence = await context.InsurenceReminders.FirstAsync(c => c.Id == car.InshurenceReminderId);
+                    context.InsurenceReminders.Remove(insurence);
+                }
+
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
