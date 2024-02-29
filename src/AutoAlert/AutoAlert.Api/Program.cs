@@ -1,5 +1,6 @@
 using System.Text;
 
+using AutoAlert.Core.QuartzJobs;
 using AutoAlert.Core.Services;
 using AutoAlert.Core.Services.Contracts;
 using AutoAlert.Data;
@@ -10,6 +11,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
+using Quartz;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,9 +21,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options => options.UseSqlServer(connectionString));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -58,6 +61,24 @@ builder.Services.AddCors(p => p.AddPolicy("Angular", b => b
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()));
+
+builder.Services.AddQuartz(qz =>
+{
+    qz.UseMicrosoftDependencyInjectionJobFactory();
+    var jobKey = new JobKey("NotificationCreationJob");
+    qz.AddJob<NotificationCreationJob>(opts =>
+    {
+        opts.WithIdentity(jobKey);
+    });
+
+    qz.AddTrigger(opts => opts
+        .ForJob(jobKey)
+        .WithIdentity("NotificationCreationJob-trigger")
+        .StartNow()
+        .WithSimpleSchedule(x => x.WithIntervalInHours(24))
+    );
+});
+builder.Services.AddQuartzHostedService(qz => qz.WaitForJobsToComplete = true);
 
 builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IJwtService, JwtService>();

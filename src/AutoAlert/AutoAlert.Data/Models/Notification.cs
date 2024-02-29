@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using AutoAlert.Data.Models.Enums;
+
 namespace AutoAlert.Data.Models
 {
     public class Notification
@@ -13,9 +15,7 @@ namespace AutoAlert.Data.Models
         public string Message { get; set; } = null!;
 
         [Required]
-        [ForeignKey(nameof(User))]
-        public string UserId { get; set; } = null!;
-        public ApplicationUser User { get; set; } = null!;
+        public NotificationType NotificationType { get; set; }
 
         [Required]
         [ForeignKey(nameof(Car))]
