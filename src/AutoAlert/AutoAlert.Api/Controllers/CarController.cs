@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 
 using AutoAlert.Core.DTOs.Car;
+using AutoAlert.Core.DTOs.Notification;
 using AutoAlert.Core.Services.Contracts;
 
 using Microsoft.AspNetCore.Authorization;
@@ -13,10 +14,12 @@ namespace AutoAlert.Api.Controllers
     public class CarController : Controller
     {
         private readonly ICarService carService;
+        private readonly INotificationService notificationService;
 
-        public CarController(ICarService carService)
+        public CarController(ICarService carService, INotificationService notificationService)
         {
             this.carService = carService;
+            this.notificationService = notificationService;
         }
 
 
@@ -117,6 +120,30 @@ namespace AutoAlert.Api.Controllers
             if (await carService.AddInsurance(id, insurance))
             {
                 return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("get-notifications")]
+        public async Task<ActionResult<List<NotificationDto>>> GetNotifications()
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var notifications = await notificationService.GetAll(userId);
+
+            return notifications;
+        }
+
+        [HttpDelete("delete-notification/{id?}")]
+        public async Task<ActionResult<bool>> DeleteNotification(Guid id)
+        {
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (!(await notificationService.CheckOwnership(id, userId)))
+            {
+                return Forbid();
+            }
+            if (await notificationService.Delete(id))
+            {
+                return Ok(true);
             }
             return BadRequest();
         }

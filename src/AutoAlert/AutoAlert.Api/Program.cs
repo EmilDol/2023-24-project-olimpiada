@@ -84,6 +84,7 @@ builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<IRegionService, RegionService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 
 var app = builder.Build();
 
