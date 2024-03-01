@@ -4,7 +4,7 @@ import { CarModel } from '../shared/models/car/car.model';
 import { AuthenticationService } from '../shared/services/authentication/authentication.service';
 import { Router } from '@angular/router';
 import { InspectCarService } from '../shared/services/inspect-car/inspect-car.service';
-import { AddVignetteService } from '../shared/services/add-vignette/add-vignette.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-all-cars',
@@ -18,7 +18,7 @@ export class AllCarsComponent implements OnInit{
     private auth: AuthenticationService,
     public getAllCarsService: GetAllCarsService,
     private getCarService: InspectCarService,
-    private addVignetteService: AddVignetteService
+    private toastr: ToastrService
   ){};
 
   public allCars: CarModel[] = []
@@ -43,8 +43,9 @@ export class AllCarsComponent implements OnInit{
   inspectCar(id:string | undefined){
     if (id) {
       this.router.navigate(['InspectCar', id]);
-  } console.log(id)
+    } console.log(id)
   }
+
   deleteCar(id: string | undefined){
      
     this.getCarService.deleteCar(id).subscribe(
@@ -57,9 +58,13 @@ export class AllCarsComponent implements OnInit{
         // Remove the car from the array
         if (indexToRemove !== -1) {
             this.allCars.splice(indexToRemove, 1);
+            this.toastr.warning('Car has been deleted!');
         }
       }
-        else console.log(response.error)
+        else {
+          console.log(response.error)
+          this.toastr.error(response.error);
+        }
       },
       (error) => {
         console.error('API error:', error);
@@ -85,13 +90,6 @@ export class AllCarsComponent implements OnInit{
     const index = this.openPopupIds.indexOf(id);
     if (index !== -1) {
       this.openPopupIds.splice(index, 1); // Remove the ID from openPopupIds
-    }
-  }
-
-  addVignette(id: string | undefined){
-    if(id === null || id === undefined){
-      //in app notification
-      return;
     }
   }
 

@@ -227,19 +227,6 @@ namespace AutoAlert.Core.Services
                 MileageOfNextChange = car.TransmitionOil.MileageOfNextChange
             };
 
-            if (car.Vignette != null)
-            {
-                DbCar.VignetteReminder = new VignetteReminder
-                {
-                    DateBought = car.Vignette.DateBought,
-                    ExpireDate = car.Vignette.ExpireDate
-                };
-            }
-
-            if (car.Insurance != null)
-            {
-                DbCar.InsurenceReminder = new InsurenceReminder();
-            }
 
             try
             {

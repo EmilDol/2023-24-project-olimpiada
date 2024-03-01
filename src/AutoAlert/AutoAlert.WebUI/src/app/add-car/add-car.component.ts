@@ -10,6 +10,7 @@ import { AutocompleteService } from '../shared/services/autocomplete/autocomplet
 import { RegionService } from '../shared/services/region/region.service';
 import { RegionModel } from '../shared/models/region/region.model';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-car',
@@ -60,7 +61,8 @@ export class AddCarComponent implements OnInit  {
     private autocompleteService: AutocompleteService, 
     private addCarService: AddCarService, 
     public carMakesService: CarMakesService,
-    public router: Router
+    public router: Router,
+    private toastr: ToastrService
     ){}
   
   car: CarModel = new CarModel();
@@ -177,8 +179,13 @@ export class AddCarComponent implements OnInit  {
       this.addCarService.onSubmit(this.car).subscribe(
         (response) => {
           console.log('API response:', response);
-          if(response == true)  this.router.navigate(['/'])
-          else console.log(response.error)
+          if(response == true)  {
+            this.router.navigate(['/AllCars'])
+            this.toastr.success('Successfylly added car!');
+          }
+          
+          else {this.toastr.error(response.error);console.log(response.error)
+        }
         },
         (error) => {
           console.error('API error:', error);

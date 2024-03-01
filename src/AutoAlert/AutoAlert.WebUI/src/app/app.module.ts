@@ -20,6 +20,7 @@ import { ScrollListenerDirective } from './shared/directives/scroll-listener.dir
 import { HomeComponent } from './home/home.component';
 import { VignettePopupComponent } from './vignette-popup/vignette-popup.component';
 import { DragDropModule, DragRef } from '@angular/cdk/drag-drop'
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -46,6 +47,8 @@ import { DragDropModule, DragRef } from '@angular/cdk/drag-drop'
     BrowserAnimationsModule,
     RouterModule,
     DragDropModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     RegisterService,

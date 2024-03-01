@@ -132,11 +132,11 @@ p {
 }
 
 
-@media (max-width: 763px) {
+@media (max-width: 1200px) {
     form{
-        width: 100%;
+        min-width: 100%;
     }
-}
+  }
 
 .container form .buttons {
     display: flex;

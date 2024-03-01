@@ -89,7 +89,7 @@ namespace AutoAlert.Api.Controllers
             }
             if (await carService.Update(car))
             {
-                return Ok();
+                return Ok(true);
             }
             return BadRequest();
         }

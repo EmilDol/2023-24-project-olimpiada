@@ -47,11 +47,21 @@ form {
   height: auto;
 }
 
-.stretched-button{
+.stretched-button {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-grow: 1;
+}
+
+button {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  margin-top: 1rem;
+  margin-left: 5px;
   justify-content: space-evenly;
+  background: linear-gradient(315deg, #182c59, #1d346a);
+  box-shadow: -20px -20px 81px #0e1932, 20px 20px 81px #294a95;
 }
 
 input[type=text][name="firstName"] {
@@ -102,15 +112,6 @@ input[type=text][name="firstName"] {
   flex-grow: 1;
 }
 
-button {
-  display: flex;
-  flex-direction: row;
-  margin-top: 1rem;
-  justify-content: space-evenly;
-  background: linear-gradient(315deg, #182c59, #1d346a);
-  box-shadow: -20px -20px 81px #0e1932, 20px 20px 81px #294a95;
-}
-
 button:hover {
   background: linear-gradient(315deg, #132245, #162952);
 }
@@ -139,9 +140,9 @@ p {
 }
 
 /* Adjusted media query */
-@media (max-width: 763px) {
+@media (max-width: 1200px) {
   form{
-      width: 100%;
+      min-width: 100%;
   }
 }
 

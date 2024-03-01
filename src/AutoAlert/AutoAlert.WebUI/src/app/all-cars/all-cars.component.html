@@ -14,9 +14,7 @@
       <button class="delete-button" name="Delete" id="Delete" (click)="deleteCar(car.id)">Delete</button>
     </div>
   </div>
-  
-  <div class="popups-container">
-    <app-vignette-popup *ngFor="let id of openPopupIds; trackBy: trackByFn" [carId]="id" [carPlate]="getPlateNumberById(id)" (closePopup)="closeVignettePopup(id)"></app-vignette-popup>
-  </div>
-  
+</div>
+<div class="popups-container">
+  <app-vignette-popup *ngFor="let id of openPopupIds; trackBy: trackByFn" [carId]="id" [carPlate]="getPlateNumberById(id)" (closePopup)="closeVignettePopup(id)"></app-vignette-popup>
 </div>

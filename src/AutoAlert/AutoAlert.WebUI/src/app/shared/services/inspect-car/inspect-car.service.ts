@@ -57,9 +57,12 @@ export class InspectCarService {
     return this.httpClient.put<any>(`${this.apiUrl}/car/update`, JSON.stringify(carModel), options)
     .pipe(
       map(response => {
-        const statusCode = response.status;
-        console.log('Status Code:', statusCode);
-          return response;
+        if(response === true){
+          const statusCode = response.status;
+          console.log('Status Code:', statusCode);
+            return response;
+        }
+        
         
       }),
       catchError(error => {
@@ -92,6 +95,5 @@ export class InspectCarService {
         return throwError(() => error);
       })
     )
-   
   }
 }

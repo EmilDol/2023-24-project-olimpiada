@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { User } from '../shared/models/user/user.model';
 import { AuthenticationService } from '../shared/services/authentication/authentication.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    public router: Router
+    public router: Router,
+    private toastr: ToastrService
     ) { }
 
   ngOnInit(): void {
@@ -37,13 +39,15 @@ export class LoginComponent implements OnInit {
       console.log(success)
       if (success === true) 
       {
-      this.router.navigate(['/'])
+        this.router.navigate(['/'])
+        this.toastr.success('Login Successful!');
       }
     },
      
       error => {
-        console.error('Component-level error handling:', error);
+        console.error('Component-level error handling:', error);        
         this.errorString = "Failed to submit user";
+        this.toastr.error(this.errorString);
       }
     )
   }

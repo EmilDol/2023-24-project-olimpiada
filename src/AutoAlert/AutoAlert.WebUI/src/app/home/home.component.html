@@ -1,3 +1,4 @@
+
 <body>
     <div class="items">
         <h1 class="text-container">AutoAlert</h1>
@@ -8,31 +9,28 @@
         
        
     </div>
-    <div class="home-content">
-        <p class="heading">Welcome to AutoAlert</p>
-        <div class="section">
-            <p >Our Goals</p>
-            <p>Describe your goals here...</p>
+     
+    @if(authCheck())
+    {
+        <div class="home-content">
+            <p class="heading">Welcome to AutoAlert</p>
+        </div>  
+        <div class="notifications">
+            <header>
+                <div class="notif">Notifications</div>
+            </header>
+            <div class="body">
+                <div class="notification" *ngFor="let notification of allNotifications; let i = index">
+                    <div class="notification-text">{{notification.plateNumber}}, {{notification.make}}: {{notification.model}}: {{notification.text}}</div>
+                    
+                    <svg  name="Delete" id="Delete" (click)="deleteNotif(notification.id)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
+                      <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>
+                    </svg>
+                </div>
+            </div>
+            
         </div>
-    </div>   
-    <div class="secondary-avigation">
-
-    </div>
-    <div class="home-content">
-        <div class="section">
-            <p>Meet the Creators</p>
-            <p>Introduce the creators and their roles...</p>
-        </div>
-        <div class="section">
-            <p>Contact Information</p>
-            <p>Provide contact information...</p>
-        </div>
-    </div> 
-    
+    }
 
     <router-outlet></router-outlet>
-
-    <footer>
-        <!-- Add your footer content here -->
-    </footer>
 </body>

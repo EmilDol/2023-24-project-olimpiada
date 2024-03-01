@@ -99,6 +99,9 @@
   
   
   .stretched-button {
+    display: flex;
+    align-items: start;
+    justify-content: start;
     flex-grow: 1;
   }
   
@@ -106,6 +109,7 @@
     display: flex;
     flex-direction: row;
     margin-top: 1rem;
+    margin-left: 5px;
     justify-content: space-evenly;
     background: linear-gradient(315deg, #182c59, #1d346a);
     box-shadow: -20px -20px 81px #0e1932, 20px 20px 81px #294a95;
@@ -125,6 +129,7 @@
   
   #Close {
     border-color: #FFD02C;
+    margin-left: 5px;
   }
   
   h1 {
@@ -139,9 +144,9 @@
   }
   
   /* Adjusted media query */
-  @media (max-width: 763px) {
+  @media (max-width: 1200px) {
     form{
-        width: 100%;
+        min-width: 100%;
     }
   }
   
@@ -149,4 +154,5 @@
     display: flex;
     justify-content: center;
     margin-top: 1rem;
+    
   }

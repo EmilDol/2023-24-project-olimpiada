@@ -11,6 +11,7 @@ import { InsurenceModel } from '../shared/models/car/insurence.model';
 import { RegionService } from '../shared/services/region/region.service';
 import { AutocompleteService } from '../shared/services/autocomplete/autocomplete.service';
 import { CarMakesService } from '../shared/services/car-models/car-make-service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class InspectCarComponent implements OnInit{
     private route: ActivatedRoute,
     private regionService: RegionService,
     private autocompleteService: AutocompleteService,  
-    public carMakesService: CarMakesService
+    public carMakesService: CarMakesService,
+    private toastr: ToastrService
   ){}
 
   allRegions: RegionModel[] = [];
@@ -196,8 +198,8 @@ export class InspectCarComponent implements OnInit{
       this.getCarService.onSubmit(this.car).subscribe(
         (response) => {
           console.log('API response:', response);
-          if(response == true)  this.router.navigate(['/'])
-          else console.log(response.error)
+          if(response == true)  {this.router.navigate(['/AllCars']); this.toastr.success('Car has been added!');}
+          else {console.log(response.error); this.toastr.success('Car has been added!');}
         },
         (error) => {
           console.error('API error:', error);
@@ -220,8 +222,8 @@ export class InspectCarComponent implements OnInit{
       this.getCarService.deleteCar(this.car.id).subscribe(
         (response) => {
           console.log('API response:', response);
-          if(response == true)  this.router.navigate(['/'])
-          else console.log(response.error)
+          if(response == true)  {this.router.navigate(['/AllCars']); this.toastr.warning('Car has been deleted!');}
+          else {console.log(response.error); this.toastr.error(response.error);}
         },
         (error) => {
           console.error('API error:', error);

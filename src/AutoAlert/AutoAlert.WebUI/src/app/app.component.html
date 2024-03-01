@@ -1,3 +1,4 @@
+<head><link rel="stylesheet" href="/src/app/shared/css/toastr.css"></head>
 <header appScrollListener (scrolled)="closeMenu()">
   <nav class="navbar">
     <a routerLink="/" class="nav-branding">AutoAlert</a>
@@ -10,22 +11,23 @@
 
       @if (!authCheck()) 
       {
-        <li class="nav-item">
-          <a class="nav-link" (click)="closeMenu()" routerLink="/Login">Login</a>
-        </li>
 
         <li class="nav-item">
           <a class="nav-link" (click)="closeMenu()" routerLink="/Register">Sign Up</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="closeMenu()" routerLink="/Login">Login</a>
         </li>
       }
       @else{
 
         <li class="nav-item">
-          <a class="nav-link" (click)="closeMenu()" routerLink="/AddCar">Add Car</a>
+          <a class="nav-link" (click)="closeMenu()" routerLink="/AddCar">Add Vehicle</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" (click)="closeMenu()" routerLink="/AllCars">All Cars</a>
+          <a class="nav-link" (click)="closeMenu()" routerLink="/AllCars">All Vehicles</a>
         </li>
 
         <li class="nav-item">

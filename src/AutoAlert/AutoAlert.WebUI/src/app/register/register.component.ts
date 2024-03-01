@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { User } from '../shared/models/user/user.model';
 import { RegisterService } from '../shared/services/register/register.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
   constructor(
 
     private registerService: RegisterService, 
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
     ) { }
 
   ngOnInit() {
@@ -31,9 +33,11 @@ export class RegisterComponent implements OnInit {
       this.registerService.submitUser(this.user).subscribe(( response: boolean ) => {
         if(response==true) {
           this.router.navigate(['/Login']);
+          this.toastr.success('Register Successful!');
         }
     }, error => {
-        throw new Error('Failed to submit user');
+        this.toastr.error("Failed to Register");
+        throw new Error('Failed to Register');
     });  
   };
 

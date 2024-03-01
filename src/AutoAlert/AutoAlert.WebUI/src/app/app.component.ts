@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './shared/services/authentication/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,14 @@ import { AuthenticationService } from './shared/services/authentication/authenti
 export class AppComponent implements OnInit {
   title = 'AutoAlertTest';
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService, private toastr: ToastrService) {}
   
   ngOnInit() {
   }
 
   logout() {
     this.authService.logout()
+    this.toastr.warning('Logged out!');
     this.authCheck()
   }
 
